@@ -1,4 +1,4 @@
-package com.example.gleb.deliveryphones;
+package com.example.gleb.deliveryphones.helpers;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

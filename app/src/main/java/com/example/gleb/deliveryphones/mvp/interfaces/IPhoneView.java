@@ -1,4 +1,4 @@
-package com.example.gleb.deliveryphones;
+package com.example.gleb.deliveryphones.mvp.interfaces;
 
 import android.view.View;
 

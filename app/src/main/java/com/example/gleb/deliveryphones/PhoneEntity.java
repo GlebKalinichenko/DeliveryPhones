@@ -31,7 +31,6 @@ public class PhoneEntity {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(name);
 
         for (String phone : phones) {
             builder.append(phone);

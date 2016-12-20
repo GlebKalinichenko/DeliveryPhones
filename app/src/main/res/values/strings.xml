@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DeliveryPhones</string>
+    <string name="alert_conf_title">What you want?</string>
+    <string name="alert_conf_content">You need to choose, what mode do you prefer. There are saved you phones on cloud and synchonized or receive numbers from cloud and save to your contacts</string>
+    <string name="confirm_send_contacts">Send</string>
+    <string name="receive_contacts">Receive</string>
 </resources>

@@ -1,11 +1,16 @@
-package com.example.gleb.deliveryphones;
+package com.example.gleb.deliveryphones.mvp.implementations;
 
 import android.content.Context;
 import android.util.Log;
 
+import com.example.gleb.deliveryphones.PhoneEntity;
+import com.example.gleb.deliveryphones.mvp.interfaces.IPhoneView;
+import com.example.gleb.deliveryphones.mvp.interfaces.IPhoneModel;
+import com.example.gleb.deliveryphones.mvp.interfaces.IPhonePresenter;
+
 import java.util.List;
 
-public class PhonePresenter implements IPhonePresenter{
+public class PhonePresenter implements IPhonePresenter {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private IPhoneModel model = new PhoneModel(this);
     private IPhoneView view;

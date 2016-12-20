@@ -1,9 +1,11 @@
-package com.example.gleb.deliveryphones;
+package com.example.gleb.deliveryphones.helpers;
 
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
+
+import com.example.gleb.deliveryphones.PhoneEntity;
 
 import java.util.ArrayList;
 import java.util.List;

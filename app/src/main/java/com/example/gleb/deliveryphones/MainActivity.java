@@ -8,43 +8,20 @@ import java.util.List;
 
 import rx.Observable;
 
-public class MainActivity extends AppCompatActivity implements IPhoneView {
+public class MainActivity extends AppCompatActivity {
     private final String LOG_TAG = this.getClass().getCanonicalName();
-    private IPhonePresenter presenter = new PhonePresenter(this);
-    private ListView phoneList;
-    private Observable<PhoneEntity> phoneObservable;
+    private FragmentHelper helper = FragmentHelper.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initWidgets();
+        loadPhones();
     }
 
-    @Override
-    public void initWidgets() {
-        phoneList = (ListView) findViewById(R.id.phone_list);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        List<PhoneEntity> entities = presenter.getPhones(this);
-        phoneObservable = Observable.from(entities);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        presenter.onResume();
-
-        phoneObservable.subscribe(i -> i.getPhones());
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        presenter.onDestroy();
+    private void loadPhones(){
+        PhonesFragment fragment = PhonesFragment.getInstance();
+        helper.loadFragment(this, R.id.container_phones, fragment);
     }
 }

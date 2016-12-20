@@ -1,5 +1,7 @@
 package com.example.gleb.deliveryphones;
 
+import android.view.View;
+
 public interface IPhoneView {
-    void initWidgets();
+    void initWidgets(View view);
 }

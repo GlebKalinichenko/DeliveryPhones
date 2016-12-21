@@ -1,12 +1,12 @@
-package com.example.gleb.deliveryphones.mvp.implementations;
+package com.example.gleb.deliveryphones.mvp.implementations.phones;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.example.gleb.deliveryphones.PhoneEntity;
 import com.example.gleb.deliveryphones.helpers.ContactPhoneHelper;
-import com.example.gleb.deliveryphones.mvp.interfaces.IPhoneModel;
-import com.example.gleb.deliveryphones.mvp.interfaces.IPhonePresenter;
+import com.example.gleb.deliveryphones.mvp.interfaces.phones.IPhoneModel;
+import com.example.gleb.deliveryphones.mvp.interfaces.phones.IPhonePresenter;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.gleb.deliveryphones;
+package com.example.gleb.deliveryphones.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,9 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.gleb.deliveryphones.mvp.interfaces.IPhonePresenter;
-import com.example.gleb.deliveryphones.mvp.interfaces.IPhoneView;
-import com.example.gleb.deliveryphones.mvp.implementations.PhonePresenter;
+import com.example.gleb.deliveryphones.PhoneEntity;
+import com.example.gleb.deliveryphones.PhonesAdapter;
+import com.example.gleb.deliveryphones.R;
+import com.example.gleb.deliveryphones.mvp.interfaces.phones.IPhonePresenter;
+import com.example.gleb.deliveryphones.mvp.interfaces.phones.IPhoneView;
+import com.example.gleb.deliveryphones.mvp.implementations.phones.PhonePresenter;
 
 import java.util.List;
 import rx.Observable;

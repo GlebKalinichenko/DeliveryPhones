@@ -1,5 +1,6 @@
 package com.example.gleb.deliveryphones;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -7,7 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.gleb.deliveryphones.events.EmailPasswordAuthEvent;
+import com.example.gleb.deliveryphones.events.SignUpEvent;
 import com.example.gleb.deliveryphones.fragments.SignInFragment;
 import com.example.gleb.deliveryphones.fragments.SignUpFragment;
 import com.example.gleb.deliveryphones.helpers.FragmentHelper;
@@ -83,8 +84,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     @Subscribe
-    public void emailPasswordAuthEvent(EmailPasswordAuthEvent event){
-
+    public void signUpEvent(SignUpEvent event){
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override

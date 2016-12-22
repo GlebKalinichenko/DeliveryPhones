@@ -10,13 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.gleb.deliveryphones.R;
+import com.example.gleb.deliveryphones.events.SignUpEvent;
 import com.example.gleb.deliveryphones.mvp.implementations.signup.SignUpPresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.signup.ISignUpView;
 import com.example.gleb.deliveryphones.mvp.interfaces.signup.ISignUpPresenter;
 import com.google.firebase.auth.FirebaseAuth;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class SignUpFragment extends Fragment implements ISignUpView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
@@ -24,8 +28,9 @@ public class SignUpFragment extends Fragment implements ISignUpView {
     private EditText passwordText;
     private EditText confirmPasswordText;
     private Button signUpButton;
+    private ProgressBar progressBar;
     private ISignUpPresenter presenter = new SignUpPresenter(this);
-    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private FirebaseAuth firebaseAuth;
 
     public static SignUpFragment getInstance() {
         SignUpFragment fragment = new SignUpFragment();
@@ -46,14 +51,18 @@ public class SignUpFragment extends Fragment implements ISignUpView {
     public void initWidgets(View view) {
         Log.d(LOG_TAG, "Init widgets in sign in");
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
         emailText = (EditText) view.findViewById(R.id.sign_up_email_text);
         passwordText = (EditText) view.findViewById(R.id.sign_up_password_text);
         confirmPasswordText = (EditText) view.findViewById(R.id.sign_up_confirm_password_text);
         signUpButton = (Button) view.findViewById(R.id.sign_up_button);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         signUpButton.setOnClickListener(i -> {String email = emailText.getText().toString();
             String password = passwordText.getText().toString();
             String confirmPassword = confirmPasswordText.getText().toString();
+            progressBar.setVisibility(View.VISIBLE);
             presenter.signUpUser(firebaseAuth, email, password, confirmPassword);});
     }
 
@@ -61,11 +70,15 @@ public class SignUpFragment extends Fragment implements ISignUpView {
     public void signUpSuccess() {
         Context context = getActivity();
         Toast.makeText(context, "Successful", Toast.LENGTH_LONG).show();
+        progressBar.setVisibility(View.GONE);
+
+        EventBus.getDefault().post(new SignUpEvent());
     }
 
     @Override
     public void signUpUnSuccess() {
         Context context = getActivity();
         Toast.makeText(context, "Unsuccessful", Toast.LENGTH_LONG).show();
+        progressBar.setVisibility(View.GONE);
     }
 }

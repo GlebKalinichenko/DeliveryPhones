@@ -16,6 +16,7 @@ public class PhonePresenter implements IPhonePresenter {
     private IPhoneView view;
 
     public PhonePresenter(IPhoneView view) {
+        this.view = view;
         this.model = model;
     }
 
@@ -23,6 +24,16 @@ public class PhonePresenter implements IPhonePresenter {
         Log.d(LOG_TAG, "load phone presenter");
         List<PhoneEntity> entities = model.getPhones(context);
         return entities;
+    }
+
+    @Override
+    public void sendPhones(List<PhoneEntity> entities) {
+        model.pushPhones(entities);
+    }
+
+    @Override
+    public void responseSync() {
+        view.responseSync();
     }
 
     @Override

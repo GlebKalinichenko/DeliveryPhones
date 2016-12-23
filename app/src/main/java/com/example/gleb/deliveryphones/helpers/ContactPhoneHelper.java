@@ -28,7 +28,6 @@ public class ContactPhoneHelper {
 
     public List<PhoneEntity> rcvCursorPhone(){
         List<PhoneEntity> entites = new ArrayList<>();
-        List<String> phones = new ArrayList<>();
 
         ContentResolver cr = context.getContentResolver();
         Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
@@ -43,6 +42,7 @@ public class ContactPhoneHelper {
                     Cursor phoneCursor = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
                             ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id}, null);
 
+                    List<String> phones = new ArrayList<>();
 
                     while (phoneCursor.moveToNext()){
                         String phone = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));

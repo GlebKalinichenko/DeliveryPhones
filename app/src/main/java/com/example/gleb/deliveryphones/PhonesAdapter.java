@@ -35,6 +35,10 @@ public class PhonesAdapter extends RecyclerView.Adapter<PhonesAdapter.PhonesView
         holder.bindItem(position);
     }
 
+    public List<PhoneEntity> getEntities() {
+        return entities;
+    }
+
     @Override
     public int getItemCount() {
         return entities.size();

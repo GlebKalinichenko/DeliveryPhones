@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface IPhonePresenter {
     List<PhoneEntity> getPhones(Context context);
+    void sendPhones(List<PhoneEntity> entities);
+    void responseSync();
     void onResume();
     void onDestroy();
 }

@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.example.gleb.deliveryphones.events.ReceivePhonesEvent;
 import com.example.gleb.deliveryphones.events.SendPhonesEvent;
-import com.example.gleb.deliveryphones.fragments.PhonesFragment;
+import com.example.gleb.deliveryphones.fragments.SendPhonesFragment;
 import com.example.gleb.deliveryphones.helpers.AlertHelper;
 import com.example.gleb.deliveryphones.helpers.FragmentHelper;
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Subscribe
     public void sendPhonesEvent(SendPhonesEvent event){
-        PhonesFragment fragment = PhonesFragment.getInstance();
+        SendPhonesFragment fragment = SendPhonesFragment.getInstance();
         fragmentHelper.loadFragment(this, R.id.container_phones, fragment);
     }
 

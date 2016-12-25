@@ -1,31 +1,26 @@
-package com.example.gleb.deliveryphones.mvp.implementations.phones;
+package com.example.gleb.deliveryphones.mvp.implementations.sendphones;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.example.gleb.deliveryphones.PhoneEntity;
 import com.example.gleb.deliveryphones.helpers.ContactPhoneHelper;
-import com.example.gleb.deliveryphones.mvp.interfaces.phones.IPhoneModel;
-import com.example.gleb.deliveryphones.mvp.interfaces.phones.IPhonePresenter;
+import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;
+import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class PhoneModel implements IPhoneModel {
+public class SendPhoneModel implements ISendPhoneModel {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private final static String PHONES = "Phones";
-    private IPhonePresenter presenter;
+    private ISendPhonePresenter presenter;
     private ContactPhoneHelper helper;
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
-    public PhoneModel(IPhonePresenter presenter) {
+    public SendPhoneModel(ISendPhonePresenter presenter) {
         this.presenter = presenter;
     }
 
@@ -39,7 +34,10 @@ public class PhoneModel implements IPhoneModel {
 
     @Override
     public void pushPhones(List<PhoneEntity> phones) {
-        Task<Void> res = database.child(PHONES).push().setValue(phones);
+        DatabaseReference res = database.child(PHONES);
+        for (PhoneEntity entity : phones) {
+            res.push().setValue(entity);
+        }
         presenter.responseSync();
     }
 

@@ -12,17 +12,17 @@ import com.example.gleb.deliveryphones.BasePhoneFragment;
 import com.example.gleb.deliveryphones.PhoneEntity;
 import com.example.gleb.deliveryphones.PhonesAdapter;
 import com.example.gleb.deliveryphones.R;
-import com.example.gleb.deliveryphones.mvp.interfaces.phones.IPhonePresenter;
-import com.example.gleb.deliveryphones.mvp.interfaces.phones.IPhoneView;
-import com.example.gleb.deliveryphones.mvp.implementations.phones.PhonePresenter;
+import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
+import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
+import com.example.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;
 
 import java.util.List;
 
 import rx.Observable;
 
-public class SendPhonesFragment extends BasePhoneFragment implements IPhoneView {
+public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
-    private IPhonePresenter presenter = new PhonePresenter(this);
+    private ISendPhonePresenter presenter = new SendPhonePresenter(this);
     private RecyclerView phoneList;
     private Observable<PhoneEntity> phoneObservable;
     private PhonesAdapter adapter;

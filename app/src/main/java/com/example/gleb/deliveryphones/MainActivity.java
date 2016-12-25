@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Subscribe
     public void receivePhoneEvent(ReceivePhonesEvent event){
-
+        ReceivePhonesFragment fragment = ReceivePhonesFragment.getInstance();
+        fragmentHelper.loadFragment(this, R.id.container_phones, fragment);
     }
 }

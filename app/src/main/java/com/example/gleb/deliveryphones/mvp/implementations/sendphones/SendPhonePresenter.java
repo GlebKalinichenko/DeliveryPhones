@@ -1,21 +1,21 @@
-package com.example.gleb.deliveryphones.mvp.implementations.phones;
+package com.example.gleb.deliveryphones.mvp.implementations.sendphones;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.example.gleb.deliveryphones.PhoneEntity;
-import com.example.gleb.deliveryphones.mvp.interfaces.phones.IPhoneView;
-import com.example.gleb.deliveryphones.mvp.interfaces.phones.IPhoneModel;
-import com.example.gleb.deliveryphones.mvp.interfaces.phones.IPhonePresenter;
+import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
+import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;
+import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
 
 import java.util.List;
 
-public class PhonePresenter implements IPhonePresenter {
+public class SendPhonePresenter implements ISendPhonePresenter {
     private final String LOG_TAG = this.getClass().getCanonicalName();
-    private IPhoneModel model = new PhoneModel(this);
-    private IPhoneView view;
+    private ISendPhoneModel model = new SendPhoneModel(this);
+    private ISendPhoneView view;
 
-    public PhonePresenter(IPhoneView view) {
+    public SendPhonePresenter(ISendPhoneView view) {
         this.view = view;
         this.model = model;
     }

@@ -8,9 +8,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.gleb.deliveryphones.adapters.SignInUpFragmentPagerAdapter;
 import com.example.gleb.deliveryphones.events.SignUpEvent;
-import com.example.gleb.deliveryphones.fragments.SignInFragment;
-import com.example.gleb.deliveryphones.fragments.SignUpFragment;
+import com.example.gleb.deliveryphones.fragments.sign.SignInFragment;
+import com.example.gleb.deliveryphones.fragments.sign.SignUpFragment;
 import com.example.gleb.deliveryphones.helpers.FragmentHelper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;

@@ -1,8 +1,8 @@
-package com.example.gleb.deliveryphones;
+package com.example.gleb.deliveryphones.helpers;
 
 import android.util.Log;
 
-import com.example.gleb.deliveryphones.helpers.StringHelper;
+import com.example.gleb.deliveryphones.PhoneEntity;
 import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;

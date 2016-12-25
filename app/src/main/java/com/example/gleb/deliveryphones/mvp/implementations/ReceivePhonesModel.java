@@ -3,7 +3,7 @@ package com.example.gleb.deliveryphones.mvp.implementations;
 import android.util.Log;
 
 import com.example.gleb.deliveryphones.PhoneEntity;
-import com.example.gleb.deliveryphones.ReceivePhoneHelper;
+import com.example.gleb.deliveryphones.helpers.ReceivePhoneHelper;
 import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesModel;
 import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
 import com.google.firebase.database.DataSnapshot;

@@ -1,4 +1,4 @@
-package com.example.gleb.deliveryphones.fragments;
+package com.example.gleb.deliveryphones.fragments.sign;
 
 import android.content.Context;
 import android.os.Bundle;

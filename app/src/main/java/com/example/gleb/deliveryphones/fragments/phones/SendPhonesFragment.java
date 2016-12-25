@@ -1,4 +1,4 @@
-package com.example.gleb.deliveryphones.fragments;
+package com.example.gleb.deliveryphones.fragments.phones;
 
 import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
@@ -8,10 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.gleb.deliveryphones.BasePhoneFragment;
 import com.example.gleb.deliveryphones.PhoneEntity;
-import com.example.gleb.deliveryphones.PhonesAdapter;
+import com.example.gleb.deliveryphones.adapters.PhonesAdapter;
 import com.example.gleb.deliveryphones.R;
+import com.example.gleb.deliveryphones.fragments.base.BasePhoneFragment;
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
 import com.example.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;

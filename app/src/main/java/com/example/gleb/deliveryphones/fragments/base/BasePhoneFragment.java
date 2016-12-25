@@ -1,4 +1,4 @@
-package com.example.gleb.deliveryphones;
+package com.example.gleb.deliveryphones.fragments.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.gleb.deliveryphones.R;
+import com.example.gleb.deliveryphones.mvp.base.IBasePhoneView;
 
 public class BasePhoneFragment extends Fragment implements IBasePhoneView {
 

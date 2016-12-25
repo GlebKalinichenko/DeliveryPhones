@@ -1,4 +1,4 @@
-package com.example.gleb.deliveryphones;
+package com.example.gleb.deliveryphones.fragments.phones;
 
 import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
@@ -6,6 +6,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.example.gleb.deliveryphones.PhoneEntity;
+import com.example.gleb.deliveryphones.R;
+import com.example.gleb.deliveryphones.adapters.PhonesAdapter;
+import com.example.gleb.deliveryphones.fragments.base.BasePhoneFragment;
 import com.example.gleb.deliveryphones.mvp.implementations.ReceivePhonesPresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesView;

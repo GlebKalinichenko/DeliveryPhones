@@ -7,7 +7,8 @@ import android.util.Log;
 
 import com.example.gleb.deliveryphones.events.ReceivePhonesEvent;
 import com.example.gleb.deliveryphones.events.SendPhonesEvent;
-import com.example.gleb.deliveryphones.fragments.SendPhonesFragment;
+import com.example.gleb.deliveryphones.fragments.phones.ReceivePhonesFragment;
+import com.example.gleb.deliveryphones.fragments.phones.SendPhonesFragment;
 import com.example.gleb.deliveryphones.helpers.AlertHelper;
 import com.example.gleb.deliveryphones.helpers.FragmentHelper;
 

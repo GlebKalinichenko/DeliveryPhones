@@ -1,4 +1,4 @@
-package com.example.gleb.deliveryphones;
+package com.example.gleb.deliveryphones.adapters;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.example.gleb.deliveryphones.PhoneEntity;
+import com.example.gleb.deliveryphones.R;
 import com.example.gleb.deliveryphones.databinding.ItemPhoneBinding;
 
 import java.util.List;

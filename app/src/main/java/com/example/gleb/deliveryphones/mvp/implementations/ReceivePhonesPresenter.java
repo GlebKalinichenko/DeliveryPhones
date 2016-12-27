@@ -1,5 +1,7 @@
 package com.example.gleb.deliveryphones.mvp.implementations;
 
+import android.content.Context;
+
 import com.example.gleb.deliveryphones.PhoneEntity;
 import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesModel;
 import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
@@ -29,5 +31,10 @@ public class ReceivePhonesPresenter implements IReceivePhonesPresenter {
     @Override
     public void receivePhonesUnsuccess() {
         view.receivePhoneUnsuccess();
+    }
+
+    @Override
+    public void savePhones(Context context, List<PhoneEntity> entities) {
+        model.savePhones(context, entities);
     }
 }

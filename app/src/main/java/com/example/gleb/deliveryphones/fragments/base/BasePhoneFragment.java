@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.example.gleb.deliveryphones.R;
 import com.example.gleb.deliveryphones.mvp.base.IBasePhoneView;
 
-public class BasePhoneFragment extends Fragment implements IBasePhoneView {
+public abstract class BasePhoneFragment extends Fragment implements IBasePhoneView {
 
     @Nullable
     @Override
@@ -25,4 +25,6 @@ public class BasePhoneFragment extends Fragment implements IBasePhoneView {
     public void initWidgets(View view) {
 
     }
+
+    protected abstract void setButtonDrawable();
 }

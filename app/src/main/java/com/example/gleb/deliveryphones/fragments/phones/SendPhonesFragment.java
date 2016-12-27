@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.gleb.deliveryphones.PhoneEntity;
@@ -27,6 +28,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     private Observable<PhoneEntity> phoneObservable;
     private PhonesAdapter adapter;
     private FloatingActionButton syncButton;
+    private ProgressBar progressBar;
 
     public static SendPhonesFragment getInstance() {
         SendPhonesFragment fragment = new SendPhonesFragment();
@@ -38,9 +40,16 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     public void initWidgets(View view) {
         phoneList = (RecyclerView) view.findViewById(R.id.phone_list);
         syncButton = (FloatingActionButton) view.findViewById(R.id.sync_button);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        setButtonDrawable();
 
         syncButton.setOnClickListener(i -> {List<PhoneEntity> entities = adapter.getEntities();
             presenter.sendPhones(entities);});
+    }
+
+    @Override
+    protected void setButtonDrawable() {
+        syncButton.setImageResource(R.drawable.sync);
     }
 
     @Override
@@ -74,6 +83,8 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
         LinearLayoutManager lm = new LinearLayoutManager(context);
         phoneList.setLayoutManager(lm);
         phoneList.setAdapter(adapter);
+
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

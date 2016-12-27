@@ -1,8 +1,10 @@
 package com.example.gleb.deliveryphones.mvp.implementations;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.gleb.deliveryphones.PhoneEntity;
+import com.example.gleb.deliveryphones.helpers.ContactPhoneHelper;
 import com.example.gleb.deliveryphones.helpers.ReceivePhoneHelper;
 import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesModel;
 import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
@@ -38,5 +40,11 @@ public class ReceivePhonesModel implements IReceivePhonesModel {
                 presenter.receivePhonesUnsuccess();;
             }
         });
+    }
+
+    @Override
+    public void savePhones(Context context, List<PhoneEntity> entities) {
+        ContactPhoneHelper helper = ContactPhoneHelper.getInstance(context);
+        helper.savePhones(context, entities);
     }
 }

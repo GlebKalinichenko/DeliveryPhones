@@ -43,7 +43,7 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
 
     @Override
     protected void setButtonDrawable() {
-        syncButton.setImageResource(R.drawable.save);
+        syncButton.setImageResource(android.R.drawable.ic_menu_save);
     }
 
     @Override

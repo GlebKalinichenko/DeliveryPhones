@@ -25,7 +25,7 @@ public class SignInFragment extends Fragment implements ISignInView {
     private EditText emailText;
     private EditText passwordText;
     private Button signInButton;
-    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private FirebaseAuth firebaseAuth;
     private ISignInPresenter presenter = new SignInPresenter(this);
 
     public static SignInFragment getInstance() {
@@ -48,6 +48,8 @@ public class SignInFragment extends Fragment implements ISignInView {
         emailText = (EditText) view.findViewById(R.id.sign_in_email);
         passwordText = (EditText) view.findViewById(R.id.sign_in_password);
         signInButton = (Button) view.findViewById(R.id.sign_in_button);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         signInButton.setOnClickListener(i -> {String email = emailText.getText().toString();
             String password = passwordText.getText().toString(); presenter.signInUser(firebaseAuth, email, password);});

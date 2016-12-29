@@ -12,11 +12,23 @@ public class StringHelper {
     * @return             Refactor number of phone
     * */
     public static String clearPhonesFromBrackets(String phone){
-        if (phone.startsWith(LEFT_BRACKETS) && phone.endsWith(RIGHT_BRACKETS)) {
+        if (hasBrackets(phone)) {
             int phoneLength = phone.length();
             phone = phone.substring(FIRST_SYMBOL_PHONE, phoneLength - 1);
         }
 
         return phone;
+    }
+
+    /**
+    * Check is string has left of right brackets.
+    * @param entity        String entity
+    * @return              Is string has left or right
+    * */
+    public static boolean hasBrackets(String entity){
+        if (entity.startsWith(LEFT_BRACKETS) && entity.endsWith(RIGHT_BRACKETS))
+            return true;
+        else
+            return false;
     }
 }

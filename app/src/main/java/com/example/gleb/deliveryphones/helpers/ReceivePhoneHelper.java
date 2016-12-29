@@ -26,30 +26,45 @@ public class ReceivePhoneHelper {
 
         List<PhoneEntity> entities = new ArrayList<PhoneEntity>();
 
-        Map<String, Object> objectMap = (HashMap<String, Object>) dataSnapshot.child(ROOT_TAG).getValue();
-        Collection<Object> mapObject = objectMap.values();
+        if (!ApiHelper.checkApiVersionJellyBean()) {
+            Map<String, Object> objectMap = (HashMap<String, Object>) dataSnapshot.child(ROOT_TAG).getValue();
+            Collection<Object> mapObject = objectMap.values();
 
-        Iterator<Object> it = mapObject.iterator();
-        while (it.hasNext()){
-            HashMap obj = (HashMap) it.next();
-            Collection<HashMap> itemsPerson = obj.values();
-            Iterator<HashMap> itemsPersonIter = itemsPerson.iterator();
+            Iterator<Object> it = mapObject.iterator();
+            while (it.hasNext()) {
+                HashMap obj = (HashMap) it.next();
+                Collection<HashMap> itemsPerson = obj.values();
+                Iterator<HashMap> itemsPersonIter = itemsPerson.iterator();
 
-            String name = "";
-            List<String> phones = new ArrayList<String>();
+                String name = "";
+                List<String> phones = new ArrayList<String>();
 
-            for (int i = 0; itemsPersonIter.hasNext(); i++){
-                if (i == 0)
-                    name = String.valueOf(itemsPersonIter.next());
-                else{
-                    String phone = String.valueOf(itemsPersonIter.next());
-                    phone = StringHelper.clearPhonesFromBrackets(phone);
-                    phones.add(phone);
+                if (!ApiHelper.checkApiVersionJellyBean()) {
+                    for (int i = 0; itemsPersonIter.hasNext(); i++) {
+                        if (i == 0)
+                            name = String.valueOf(itemsPersonIter.next());
+                        else {
+                            String phone = String.valueOf(itemsPersonIter.next());
+                            phone = StringHelper.clearPhonesFromBrackets(phone);
+                            phones.add(phone);
+                        }
+                    }
                 }
-            }
+                else{
+                    for (int i = 0; itemsPersonIter.hasNext(); i++) {
+                        String entityString = String.valueOf(itemsPersonIter.next());
+                        if (StringHelper.hasBrackets(entityString)) {
+                            String phone = StringHelper.clearPhonesFromBrackets(entityString);
+                            phones.add(phone);
+                        }
+                        else
+                            name = entityString;
+                    }
+                }
 
-            PhoneEntity entity = new PhoneEntity(name, phones);
-            entities.add(entity);
+                PhoneEntity entity = new PhoneEntity(name, phones);
+                entities.add(entity);
+            }
         }
 
         return entities;

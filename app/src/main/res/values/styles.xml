@@ -11,7 +11,7 @@
     <style name="AlertDialogConfiguration" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/dialog_configuration</item>
         <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item>  
     </style>
 
 </resources>

@@ -1,11 +1,15 @@
-package com.example.gleb.deliveryphones;
+package com.example.gleb.deliveryphones.adapters;
 
 import android.content.Context;
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.example.gleb.deliveryphones.PhoneEntity;
+import com.example.gleb.deliveryphones.R;
 import com.example.gleb.deliveryphones.databinding.ItemPhoneBinding;
 
 import java.util.List;
@@ -35,13 +39,17 @@ public class PhonesAdapter extends RecyclerView.Adapter<PhonesAdapter.PhonesView
         holder.bindItem(position);
     }
 
+    public List<PhoneEntity> getEntities() {
+        return entities;
+    }
+
     @Override
     public int getItemCount() {
         return entities.size();
     }
 
     public class PhonesViewHolder extends RecyclerView.ViewHolder {
-
+        private ImageView deleteButton;
         private ItemPhoneBinding binding;
 
         public PhonesViewHolder(ItemPhoneBinding binding) {
@@ -52,6 +60,9 @@ public class PhonesAdapter extends RecyclerView.Adapter<PhonesAdapter.PhonesView
         public void bindItem(int position){
             PhoneEntity entity = entities.get(position);
             binding.setPhoneEntity(entity);
+
+            deleteButton = (ImageView) binding.getRoot().findViewById(R.id.delete_button);
+            deleteButton.setOnClickListener(i -> {entities.remove(position); notifyDataSetChanged();});
         }
     }
 }

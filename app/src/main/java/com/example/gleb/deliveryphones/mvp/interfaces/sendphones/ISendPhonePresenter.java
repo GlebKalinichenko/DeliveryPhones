@@ -1,4 +1,4 @@
-package com.example.gleb.deliveryphones.mvp.interfaces;
+package com.example.gleb.deliveryphones.mvp.interfaces.sendphones;
 
 import android.content.Context;
 
@@ -6,8 +6,10 @@ import com.example.gleb.deliveryphones.PhoneEntity;
 
 import java.util.List;
 
-public interface IPhonePresenter {
+public interface ISendPhonePresenter {
     List<PhoneEntity> getPhones(Context context);
+    void sendPhones(List<PhoneEntity> entities);
+    void responseSync();
     void onResume();
     void onDestroy();
 }

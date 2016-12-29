@@ -7,6 +7,8 @@ import android.util.Log;
 
 import com.example.gleb.deliveryphones.events.ReceivePhonesEvent;
 import com.example.gleb.deliveryphones.events.SendPhonesEvent;
+import com.example.gleb.deliveryphones.fragments.phones.ReceivePhonesFragment;
+import com.example.gleb.deliveryphones.fragments.phones.SendPhonesFragment;
 import com.example.gleb.deliveryphones.helpers.AlertHelper;
 import com.example.gleb.deliveryphones.helpers.FragmentHelper;
 
@@ -15,7 +17,6 @@ import org.greenrobot.eventbus.Subscribe;
 public class MainActivity extends AppCompatActivity {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private FragmentHelper fragmentHelper = FragmentHelper.getInstance(this);
-    private AlertHelper alertHelper = AlertHelper.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +32,10 @@ public class MainActivity extends AppCompatActivity {
     private void loadAlertConfiguration(){
         Log.d(LOG_TAG, "Alert is displayed");
 
-        AlertDialog dialog = alertHelper.createDialog(R.style.AlertDialogConfiguration);
+        AlertDialog dialog = AlertHelper.createDialog(this, R.style.AlertDialogConfiguration);
         dialog.show();
     }
+
 
     @Override
     protected void onStart() {
@@ -43,18 +45,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         org.greenrobot.eventbus.EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 
     @Subscribe
     public void sendPhonesEvent(SendPhonesEvent event){
-        PhonesFragment fragment = PhonesFragment.getInstance();
+        SendPhonesFragment fragment = SendPhonesFragment.getInstance();
         fragmentHelper.loadFragment(this, R.id.container_phones, fragment);
     }
 
     @Subscribe
     public void receivePhoneEvent(ReceivePhonesEvent event){
-
+        ReceivePhonesFragment fragment = ReceivePhonesFragment.getInstance();
+        fragmentHelper.loadFragment(this, R.id.container_phones, fragment);
     }
 }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "147861917369",
+    "firebase_url": "https://deliveryphones-72012.firebaseio.com",
+    "project_id": "deliveryphones-72012",
+    "storage_bucket": "deliveryphones-72012.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147861917369:android:36ccb4b02a38dd3a",
+        "android_client_info": {
+          "package_name": "com.example.gleb.deliveryphones"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "147861917369-4a3ksjia9812krg2h37iuf27de28619v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gleb.deliveryphones",
+            "certificate_hash": "A012D960061A858A76835370F8B42BED46A19010"
+          }
+        },
+        {
+          "client_id": "147861917369-m6a8qnud8rf4648oggfqs1g26g9313be.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA06tLgrpI89n6_g6BAhiCzbP_UxPhG6Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "147861917369-m6a8qnud8rf4648oggfqs1g26g9313be.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

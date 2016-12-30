@@ -24,4 +24,18 @@
 
     <!--Phones fragment-->
     <dimen name="action_button_margin_top">16dp</dimen>
+
+    <!--Item phone fragment-->
+    <dimen name="container_min_height">72dp</dimen>
+    <dimen name="item_user_image_size">40dp</dimen>
+    <dimen name="item_user_image_margin_left">16dp</dimen>
+    <dimen name="item_user_image_margin_top">16dp</dimen>
+    <dimen name="item_phone_text_container_margin_left">16dp</dimen>
+    <dimen name="item_phone_text_container_margin_right">16dp</dimen>
+    <dimen name="item_phone_text_container_padding_bottom">16dp</dimen>
+    <dimen name="item_phone_text_container_padding_top">16dp</dimen>
+    <dimen name="user_name_text_size">16sp</dimen>
+    <dimen name="phone_number_text_size">13sp</dimen>
+    <dimen name="delete_button_margin_right">16sp</dimen>
+    <dimen name="delete_button_margin_top">16sp</dimen>
 </resources>

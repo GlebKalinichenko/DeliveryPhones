@@ -109,4 +109,45 @@
         <item name="android:text">@string/google_dismiss_text</item>
     </style>
 
+    <!--Item phone fragment-->
+    <style name="ItemPhoneFragment"></style>
+
+    <style name="ContainerItemPhone" parent="ItemPhoneFragment">
+        <item name="android:minHeight">@dimen/container_min_height</item>
+    </style>
+
+    <style name="UserImage" parent="ItemPhoneFragment">
+        <item name="android:layout_width">@dimen/item_user_image_size</item>
+        <item name="android:layout_height">@dimen/item_user_image_size</item>
+        <item name="android:src">@drawable/email</item>
+        <item name="android:layout_marginLeft">@dimen/item_user_image_margin_left</item>
+        <item name="android:layout_marginTop">@dimen/item_user_image_margin_top</item>
+    </style>
+
+    <style name="TextContainer" parent="ItemPhoneFragment">
+        <item name="android:layout_alignWithParentIfMissing">true</item>
+        <item name="android:layout_marginLeft">@dimen/item_phone_text_container_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/item_phone_text_container_margin_right</item>
+        <item name="android:paddingBottom">@dimen/item_phone_text_container_padding_bottom</item>
+        <item name="android:paddingTop">@dimen/item_phone_text_container_padding_top</item>
+    </style>
+
+    <style name="UserNameText" parent="ItemPhoneFragment">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
+        <item name="android:textSize">@dimen/user_name_text_size</item>
+    </style>
+
+    <style name="PhoneNumberText" parent="ItemPhoneFragment">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
+        <item name="android:textSize">@dimen/phone_number_text_size</item>
+    </style>
+
+    <style name="DeleteButton" parent="ItemPhoneFragment">
+        <item name="android:layout_marginRight">@dimen/delete_button_margin_right</item>
+        <item name="android:layout_marginTop">@dimen/delete_button_margin_top</item>
+        <item name="android:src">@android:drawable/ic_delete</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+
 </resources>

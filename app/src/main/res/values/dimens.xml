@@ -15,6 +15,7 @@
     <dimen name="password_edit_margin_top">16dp</dimen>
     <dimen name="forgot_password_padding_top">5dp</dimen>
     <dimen name="sign_in_button_margin">22dp</dimen>
+    <dimen name="sign_in_button_margin_bottom">22dp</dimen>
     <dimen name="sign_in_button_text_size">18sp</dimen>
     <dimen name="logo_image_size">100dp</dimen>
     <dimen name="logo_image_margin_top">16dp</dimen>

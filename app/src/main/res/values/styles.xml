@@ -57,7 +57,10 @@
     </style>
 
     <style name="SignButton" parent="CommonSign">
-        <item name="android:layout_margin">@dimen/sign_in_button_margin</item>
+        <item name="android:layout_marginLeft">@dimen/sign_in_button_margin</item>
+        <item name="android:layout_marginRight">@dimen/sign_in_button_margin</item>
+        <item name="android:layout_marginTop">@dimen/sign_in_button_margin</item>
+        <item name="android:layout_marginBottom">@dimen/sign_in_button_margin_bottom</item>
         <item name="android:background">@color/colorOrange</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">@dimen/sign_in_button_text_size</item>

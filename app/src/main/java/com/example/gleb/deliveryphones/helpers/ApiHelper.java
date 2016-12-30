@@ -17,4 +17,12 @@ public class ApiHelper {
             return false;
     }
 
+    public static boolean checkApiVersionOlderMarshmallow(){
+        int currentApiVersion = Build.VERSION.SDK_INT;
+        if (currentApiVersion >= Build.VERSION_CODES.M)
+            return true;
+        else
+            return false;
+    }
+
 }

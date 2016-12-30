@@ -11,8 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Account Login"
-        android:textStyle="bold"
+        android:text="@string/account_login"
         style="@style/LoginText"/>
 
     <ScrollView
@@ -26,7 +25,7 @@
             android:layout_below="@+id/login_title"
             android:elevation="4dp"
             android:orientation="vertical"
-            style="@style/SignInContainer">
+            style="@style/SignContainer">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -71,7 +70,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAllCaps="false"
-                    style="@style/SignInButton"/>
+                    android:text="@string/sign_in_text"
+                    style="@style/SignButton"/>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

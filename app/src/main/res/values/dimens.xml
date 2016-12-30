@@ -7,10 +7,10 @@
     <dimen name="login_text_margin_bottom">16dp</dimen>
     <dimen name="login_text_margin_top">22dp</dimen>
     <dimen name="login_text_size">26sp</dimen>
-    <dimen name="sign_in_container_margin_left">30dp</dimen>
-    <dimen name="sign_in_container_margin_right">30dp</dimen>
-    <dimen name="sign_in_container_margin_top">70dp</dimen>
-    <dimen name="sign_in_container_padding">20dp</dimen>
+    <dimen name="sign_container_margin_left">30dp</dimen>
+    <dimen name="sign_container_margin_right">30dp</dimen>
+    <dimen name="sign_container_margin_top">70dp</dimen>
+    <dimen name="sign_container_padding">20dp</dimen>
     <dimen name="email_password_container_padding_top">30dp</dimen>
     <dimen name="password_edit_margin_top">16dp</dimen>
     <dimen name="forgot_password_padding_top">5dp</dimen>
@@ -19,4 +19,6 @@
     <dimen name="logo_image_size">100dp</dimen>
     <dimen name="logo_image_margin_top">16dp</dimen>
 
+    <!--Sign up fragment-->
+    <dimen name="confirm_password_text_margin_top">16dp</dimen>
 </resources>

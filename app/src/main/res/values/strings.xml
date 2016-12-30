@@ -8,4 +8,8 @@
     <string name="password_hint">Password</string>
     <string name="forgot_password_text">Forgot Password?</string>
     <string name="sign_in_text">Sign in</string>
+    <string name="account_login">Account Login</string>
+    <string name="registration_login">Registration Login</string>
+    <string name="confirm_password_hint">Confirm password</string>
+    <string name="sign_up_text">Sign up</string>
 </resources>

@@ -16,26 +16,29 @@
 
     <style name="SignInFragment"></style>
 
-    <style name="LoginText" parent="SignInFragment">
+    <style name="CommonSign"></style>
+
+    <style name="LoginText" parent="CommonSign">
         <item name="android:layout_marginBottom">@dimen/login_text_margin_bottom</item>
         <item name="android:layout_marginTop">@dimen/login_text_margin_top</item>
         <item name="android:textSize">@dimen/login_text_size</item>
         <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="SignInContainer" parent="SignInFragment">
-        <item name="android:layout_marginLeft">@dimen/sign_in_container_margin_left</item>
-        <item name="android:layout_marginRight">@dimen/sign_in_container_margin_right</item>
-        <item name="android:layout_marginTop">@dimen/sign_in_container_margin_top</item>
+    <style name="SignContainer" parent="CommonSign">
+        <item name="android:layout_marginLeft">@dimen/sign_container_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/sign_container_margin_right</item>
+        <item name="android:layout_marginTop">@dimen/sign_container_margin_top</item>
         <item name="android:background">@color/colorWhite</item>
-        <item name="android:padding">@dimen/sign_in_container_padding</item>
+        <item name="android:padding">@dimen/sign_container_padding</item>
     </style>
 
-    <style name="EmailPasswordContainer" parent="SignInFragment">
+    <style name="EmailPasswordContainer" parent="CommonSign">
         <item name="android:paddingTop">@dimen/email_password_container_padding_top</item>
     </style>
 
-    <style name="EmailEditText" parent="SignInFragment">
+    <style name="EmailEditText" parent="CommonSign">
         <item name="android:drawableLeft">@drawable/email</item>
         <item name="android:inputType">textEmailAddress</item>
         <item name="android:hint">@string/email_hint</item>
@@ -53,10 +56,9 @@
         <item name="android:text">@string/forgot_password_text</item>
     </style>
 
-    <style name="SignInButton" parent="SignInFragment">
+    <style name="SignButton" parent="CommonSign">
         <item name="android:layout_margin">@dimen/sign_in_button_margin</item>
         <item name="android:background">@color/colorOrange</item>
-        <item name="android:text">@string/sign_in_text</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">@dimen/sign_in_button_text_size</item>
     </style>
@@ -67,6 +69,23 @@
         <item name="android:layout_marginTop">@dimen/logo_image_margin_top</item>
         <item name="android:background">@drawable/logo_background</item>
         <item name="android:src">@drawable/sync</item>
+    </style>
+
+    <!--Sign up fragment-->
+
+    <style name="SignUpFragment"></style>
+
+    <style name="SignUpContainer" parent="SignUpFragment">
+        <item name="android:background">@color/colorBlue</item>
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+
+    </style>
+
+    <style name="ConfirmPassword" parent="SignUpFragment">
+        <item name="android:layout_marginTop">@dimen/confirm_password_text_margin_top</item>
+        <item name="android:drawableLeft">@drawable/lock</item>
+        <item name="android:hint">@string/confirm_password_hint</item>
+        <item name="android:inputType">numberPassword</item>
     </style>
 
 </resources>

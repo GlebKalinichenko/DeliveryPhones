@@ -21,7 +21,7 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private IReceivePhonesPresenter presenter = new ReceivePhonesPresenter(this);
     private RecyclerView phoneList;
-    private FloatingActionButton syncButton;
+    private FloatingActionButton actionButton;
     private ProgressBar progressBar;
     private PhonesAdapter adapter;
 
@@ -33,17 +33,17 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     @Override
     public void initWidgets(View view) {
         phoneList = (RecyclerView) view.findViewById(R.id.phone_list);
-        syncButton = (FloatingActionButton) view.findViewById(R.id.sync_button);
+        actionButton = (FloatingActionButton) view.findViewById(R.id.action_button);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         setButtonDrawable();
 
-        syncButton.setOnClickListener(i -> {List<PhoneEntity> entities = adapter.getEntities();
+        actionButton.setOnClickListener(i -> {List<PhoneEntity> entities = adapter.getEntities();
             Context context = getActivity(); presenter.savePhones(context, entities);});
     }
 
     @Override
     protected void setButtonDrawable() {
-        syncButton.setImageResource(android.R.drawable.ic_menu_save);
+        actionButton.setImageResource(android.R.drawable.ic_menu_save);
     }
 
     @Override

@@ -88,4 +88,11 @@
         <item name="android:inputType">numberPassword</item>
     </style>
 
+    <!--Phones fragment-->
+    <style name="PhonesFragment"></style>
+
+    <style name="ActionButton" parent="PhonesFragment">
+        <item name="android:layout_margin">@dimen/action_button_margin_top</item>
+    </style>
+
 </resources>

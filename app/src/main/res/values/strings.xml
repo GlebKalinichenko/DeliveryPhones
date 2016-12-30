@@ -12,4 +12,5 @@
     <string name="registration_login">Registration Login</string>
     <string name="confirm_password_hint">Confirm password</string>
     <string name="sign_up_text">Sign up</string>
+    <string name="google_dismiss_text">No, thanks</string>
 </resources>

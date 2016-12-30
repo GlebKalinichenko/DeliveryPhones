@@ -7,21 +7,16 @@
         android:id="@+id/auth_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
         android:layout_gravity="right"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        style="@style/GoogleSignInButton" />
 
     <Button
         android:id="@+id/dismiss_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
-        android:textColor="@android:color/white"
-        android:text="No, thanks"
-        />
+        style="@style/GoogleDismissButton" />
 
 </RelativeLayout>

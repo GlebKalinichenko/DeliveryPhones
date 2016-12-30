@@ -94,5 +94,19 @@
     <style name="ActionButton" parent="PhonesFragment">
         <item name="android:layout_margin">@dimen/action_button_margin_top</item>
     </style>
+    
+    <style name="DialogLogin"></style>
+
+    <style name="GoogleSignInButton" parent="DialogLogin">
+        <item name="android:visibility">visible</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+    <style name="GoogleDismissButton" parent="DialogLogin">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/google_dismiss_text</item>
+    </style>
 
 </resources>

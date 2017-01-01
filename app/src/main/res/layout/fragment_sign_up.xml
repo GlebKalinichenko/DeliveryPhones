@@ -92,11 +92,11 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!--<ImageButton
+    <ImageButton
         android:id="@+id/user_profile_photo"
         android:layout_below="@+id/login_title"
         android:layout_centerHorizontal="true"
         android:elevation="4dp"
-        style="@style/ImageLogo"/>-->
+        style="@style/ImageLogo"/>
 </RelativeLayout>
 </FrameLayout>

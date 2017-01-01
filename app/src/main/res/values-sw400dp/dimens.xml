@@ -24,7 +24,7 @@
     <dimen name="confirm_password_text_margin_top">16dp</dimen>
     <dimen name="sign_up_container_margin_left">30dp</dimen>
     <dimen name="sign_up_container_margin_right">30dp</dimen>
-    <dimen name="sign_up_container_margin_top">70dp</dimen>
+    <dimen name="sign_up_container_margin_top">50dp</dimen>
     <dimen name="sign_up_container_padding">20dp</dimen>
     <dimen name="sign_up_email_password_container_padding_top">10dp</dimen>
     <dimen name="sign_up_password_edit_margin_top">16dp</dimen>

@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="@string/registration_login"
-        style="@style/LoginText" />
+        style="@style/SignLoginText" />
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -33,13 +33,13 @@
         android:layout_below="@+id/login_title"
         android:elevation="4dp"
         android:orientation="vertical"
-        style="@style/SignContainer">
+        style="@style/SignUpContainerFields">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            style="@style/EmailPasswordContainer">
+            style="@style/SignUpEmailPasswordContainer">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:drawableTint="@color/colorAccent"
                     android:singleLine="true"
-                    style="@style/EmailEditText" />
+                    style="@style/SignUpEmailEditText" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:drawableTint="@android:color/black"
-                    style="@style/PasswordEditText" />
+                    style="@style/SignUpPasswordEditText" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -92,15 +92,11 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <ImageButton
+    <!--<ImageButton
         android:id="@+id/user_profile_photo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
         android:layout_below="@+id/login_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/logo_background"
         android:elevation="4dp"
-        android:src="@drawable/sync" />
+        style="@style/ImageLogo"/>-->
 </RelativeLayout>
 </FrameLayout>

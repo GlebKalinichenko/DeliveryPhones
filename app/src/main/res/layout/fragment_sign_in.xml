@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="@string/account_login"
-        style="@style/LoginText"/>
+        style="@style/SignLoginText"/>
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -25,13 +25,13 @@
             android:layout_below="@+id/login_title"
             android:elevation="4dp"
             android:orientation="vertical"
-            style="@style/SignContainer">
+            style="@style/SignInContainer">
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                style="@style/EmailPasswordContainer">
+                style="@style/SignInEmailPasswordContainer">
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                         android:layout_height="wrap_content"
                         android:drawableTint="@color/colorAccent"
                         android:singleLine="true"
-                        style="@style/EmailEditText"/>
+                        style="@style/SignInEmailEditText"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:drawableTint="@android:color/black"
-                        style="@style/PasswordEditText"/>
+                        style="@style/SignInPasswordEditText"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <TextView

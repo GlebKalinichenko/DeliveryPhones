@@ -27,7 +27,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     private RecyclerView phoneList;
     private Observable<PhoneEntity> phoneObservable;
     private PhonesAdapter adapter;
-    private FloatingActionButton syncButton;
+    private FloatingActionButton actionButton;
     private ProgressBar progressBar;
 
     public static SendPhonesFragment getInstance() {
@@ -39,17 +39,17 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     @Override
     public void initWidgets(View view) {
         phoneList = (RecyclerView) view.findViewById(R.id.phone_list);
-        syncButton = (FloatingActionButton) view.findViewById(R.id.sync_button);
+        actionButton = (FloatingActionButton) view.findViewById(R.id.action_button);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         setButtonDrawable();
 
-        syncButton.setOnClickListener(i -> {List<PhoneEntity> entities = adapter.getEntities();
+        actionButton.setOnClickListener(i -> {List<PhoneEntity> entities = adapter.getEntities();
             presenter.sendPhones(entities);});
     }
 
     @Override
     protected void setButtonDrawable() {
-        syncButton.setImageResource(R.drawable.sync);
+        actionButton.setImageResource(R.drawable.sync);
     }
 
     @Override

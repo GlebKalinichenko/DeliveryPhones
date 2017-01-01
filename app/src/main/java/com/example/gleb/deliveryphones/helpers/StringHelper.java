@@ -1,5 +1,7 @@
 package com.example.gleb.deliveryphones.helpers;
 
+import android.content.Context;
+
 public class StringHelper {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private static final String LEFT_BRACKETS = "[";
@@ -30,5 +32,10 @@ public class StringHelper {
             return true;
         else
             return false;
+    }
+
+    public static String getString(Context context, int resId){
+        String res = context.getString(resId);
+        return res;
     }
 }

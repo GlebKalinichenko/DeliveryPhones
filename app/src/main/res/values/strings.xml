@@ -4,4 +4,16 @@
     <string name="alert_conf_content">You need to choose, what mode do you prefer. There are saved you phones on cloud and synchonized or receive numbers from cloud and save to your contacts</string>
     <string name="confirm_send_contacts">Send</string>
     <string name="receive_contacts">Receive</string>
+    <string name="email_hint">User Name</string>
+    <string name="password_hint">Password</string>
+    <string name="forgot_password_text">Forgot Password?</string>
+    <string name="sign_in_text">Sign in</string>
+    <string name="account_login">Account Login</string>
+    <string name="registration_login">Registration Login</string>
+    <string name="confirm_password_hint">Confirm password</string>
+    <string name="sign_up_text">Sign up</string>
+    <string name="google_dismiss_text">No, thanks</string>
+    <string name="ok_dialog">Ok</string>
+    <string name="cancel_dialog">Cancel</string>
+    <string name="permission_message">Are you want allow read and write contacts permission</string>
 </resources>

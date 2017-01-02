@@ -9,9 +9,9 @@ public class ApiHelper {
     * Check is api version is 17.
     * @return        Is api version equals 17
     * */
-    public static boolean checkApiVersionJellyBean(){
+    public static boolean checkApiVersionYoungerJellyBean(){
         int currentApiVersion = Build.VERSION.SDK_INT;
-        if (currentApiVersion == Build.VERSION_CODES.JELLY_BEAN_MR1)
+        if (currentApiVersion <= Build.VERSION_CODES.JELLY_BEAN_MR1)
             return true;
         else
             return false;

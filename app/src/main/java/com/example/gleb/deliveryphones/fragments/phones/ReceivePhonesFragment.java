@@ -38,7 +38,7 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         setButtonDrawable();
 
-        actionButton.setOnClickListener(i -> {List<PhoneEntity> entities = adapter.getEntities();
+        actionButton.setOnClickListener(i -> {progressBar.setVisibility(View.VISIBLE); List<PhoneEntity> entities = adapter.getEntities();
             Context context = getActivity(); presenter.savePhones(context, entities);});
     }
 
@@ -72,6 +72,7 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
 
     @Override
     public void savePhonesFinish() {
+        /*progressBar.setVisibility(View.GONE);*/
         Context context = getActivity();
         Toast.makeText(context, "Saved was finished", Toast.LENGTH_SHORT).show();
     }

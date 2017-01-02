@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +20,8 @@
                 android:layout_below="@+id/login_title"
                 android:elevation="4dp"
                 android:orientation="vertical"
-                style="@style/SignInContainer">
+                style="@style/SignInContainer"
+                android:layout_marginBottom="10dp">
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -81,4 +78,3 @@
             android:elevation="4dp"
             style="@style/LogoImage"/>
     </RelativeLayout>
-</ScrollView>

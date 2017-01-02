@@ -37,4 +37,9 @@ public class ReceivePhonesPresenter implements IReceivePhonesPresenter {
     public void savePhones(Context context, List<PhoneEntity> entities) {
         model.savePhones(context, entities);
     }
+
+    @Override
+    public void savePhonesFinish() {
+        view.savePhonesFinish();
+    }
 }

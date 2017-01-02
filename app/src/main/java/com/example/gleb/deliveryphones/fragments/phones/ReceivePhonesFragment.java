@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.gleb.deliveryphones.PhoneEntity;
 import com.example.gleb.deliveryphones.R;
@@ -67,5 +68,11 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     @Override
     public void receivePhoneUnsuccess() {
 
+    }
+
+    @Override
+    public void savePhonesFinish() {
+        Context context = getActivity();
+        Toast.makeText(context, "Saved was finished", Toast.LENGTH_SHORT).show();
     }
 }

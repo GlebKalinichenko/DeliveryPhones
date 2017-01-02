@@ -26,7 +26,6 @@ public class ReceivePhoneHelper {
 
         List<PhoneEntity> entities = new ArrayList<PhoneEntity>();
 
-        if (!ApiHelper.checkApiVersionJellyBean()) {
             Map<String, Object> objectMap = (HashMap<String, Object>) dataSnapshot.child(ROOT_TAG).getValue();
             Collection<Object> mapObject = objectMap.values();
 
@@ -65,7 +64,6 @@ public class ReceivePhoneHelper {
                 PhoneEntity entity = new PhoneEntity(name, phones);
                 entities.add(entity);
             }
-        }
 
         return entities;
     }

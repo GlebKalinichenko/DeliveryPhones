@@ -1,79 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5fb0c9"
-    android:orientation="vertical"
-    android:scrollbarAlwaysDrawVerticalTrack="true">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/login_title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/account_login"
-        style="@style/SignLoginText"/>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#5fb0c9"
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/login_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/login_title"
-            android:elevation="4dp"
-            android:orientation="vertical"
-            style="@style/SignInContainer">
+            android:gravity="center_horizontal"
+            android:text="@string/account_login"
+            style="@style/SignLoginText"/>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/login_title"
+                android:elevation="4dp"
                 android:orientation="vertical"
-                style="@style/SignInEmailPasswordContainer">
+                style="@style/SignInContainer">
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/sign_in_email"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableTint="@color/colorAccent"
-                        android:singleLine="true"
-                        style="@style/SignInEmailEditText"/>
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/sign_in_password"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:drawableTint="@android:color/black"
-                        style="@style/SignInPasswordEditText"/>
-                </android.support.design.widget.TextInputLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    style="@style/ForgotPasswordText" />
-
-                <Button
-                    android:id="@+id/sign_in_button"
+                <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textAllCaps="false"
-                    android:text="@string/sign_in_text"
-                    style="@style/SignButton"/>
-            </LinearLayout>
-        </RelativeLayout>
+                    android:orientation="vertical"
+                    style="@style/SignInEmailPasswordContainer">
 
-    <ImageButton
-        android:id="@+id/user_profile_photo"
-        android:layout_below="@+id/login_title"
-        android:layout_centerHorizontal="true"
-        android:elevation="4dp"
-        style="@style/LogoImage"/>
-</RelativeLayout>
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/sign_in_email"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableTint="@color/colorAccent"
+                            android:singleLine="true"
+                            style="@style/SignInEmailEditText"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/sign_in_password"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:drawableTint="@android:color/black"
+                            style="@style/SignInPasswordEditText"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        style="@style/ForgotPasswordText" />
+
+                    <Button
+                        android:id="@+id/sign_in_button"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:text="@string/sign_in_text"
+                        style="@style/SignButton"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/user_profile_photo"
+            android:layout_below="@+id/login_title"
+            android:layout_centerHorizontal="true"
+            android:elevation="4dp"
+            style="@style/LogoImage"/>
+    </RelativeLayout>
+</ScrollView>

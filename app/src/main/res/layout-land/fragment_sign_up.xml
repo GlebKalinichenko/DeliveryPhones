@@ -1,102 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ProgressBar
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        android:indeterminate="true"/>
+    <FrameLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    style="@style/SignUpContainer">
+        <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:indeterminate="true"/>
 
-    <TextView
-        android:id="@+id/login_title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/registration_login"
-        style="@style/SignLoginText" />
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login_title"
-        android:elevation="4dp"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        style="@style/SignUpContainerFields">
+        style="@style/SignUpContainer">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/login_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/registration_login"
+            style="@style/SignLoginText" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_title"
+            android:elevation="4dp"
             android:orientation="vertical"
-            style="@style/SignUpEmailPasswordContainer">
+            style="@style/SignUpContainerFields">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/sign_up_email_text"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableTint="@color/colorAccent"
-                    android:singleLine="true"
-                    style="@style/SignUpEmailEditText" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/sign_up_password_text"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:drawableTint="@android:color/black"
-                    style="@style/SignUpPasswordEditText" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/sign_up_confirm_password_text"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:drawableTint="@android:color/black"
-                    style="@style/ConfirmPassword"/>
-            </android.support.design.widget.TextInputLayout>
-
-
-            <Button
-                android:id="@+id/sign_up_button"
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/sign_up_text"
-                android:textAllCaps="false"
-                style="@style/SignButton"/>
-        </LinearLayout>
-    </RelativeLayout>
+                android:orientation="vertical"
+                style="@style/SignUpEmailPasswordContainer">
 
-    <ImageButton
-        android:id="@+id/user_profile_photo"
-        android:layout_below="@+id/login_title"
-        android:layout_centerHorizontal="true"
-        android:elevation="4dp"
-        style="@style/ImageLogo"/>
-</RelativeLayout>
-</FrameLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/sign_up_email_text"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableTint="@color/colorAccent"
+                        android:singleLine="true"
+                        style="@style/SignUpEmailEditText" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/sign_up_password_text"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:drawableTint="@android:color/black"
+                        style="@style/SignUpPasswordEditText" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/sign_up_confirm_password_text"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:drawableTint="@android:color/black"
+                        style="@style/ConfirmPassword"/>
+                </android.support.design.widget.TextInputLayout>
+
+
+                <Button
+                    android:id="@+id/sign_up_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_up_text"
+                    android:textAllCaps="false"
+                    style="@style/SignButton"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/user_profile_photo"
+            android:layout_below="@+id/login_title"
+            android:layout_centerHorizontal="true"
+            android:elevation="4dp"
+            style="@style/ImageLogo"/>
+    </RelativeLayout>
+    </FrameLayout>
+</ScrollView>

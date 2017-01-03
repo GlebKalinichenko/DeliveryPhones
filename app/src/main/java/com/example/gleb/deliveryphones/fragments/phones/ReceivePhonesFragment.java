@@ -1,6 +1,7 @@
 package com.example.gleb.deliveryphones.fragments.phones;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,7 +24,7 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     private IReceivePhonesPresenter presenter = new ReceivePhonesPresenter(this);
     private RecyclerView phoneList;
     private FloatingActionButton actionButton;
-    private ProgressBar progressBar;
+    private ProgressBar progressBarReceive;
     private PhonesAdapter adapter;
 
     public static ReceivePhonesFragment getInstance() {
@@ -35,10 +36,11 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     public void initWidgets(View view) {
         phoneList = (RecyclerView) view.findViewById(R.id.phone_list);
         actionButton = (FloatingActionButton) view.findViewById(R.id.action_button);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        progressBarReceive = (ProgressBar) view.findViewById(R.id.progressBarReceive);
         setButtonDrawable();
 
-        actionButton.setOnClickListener(i -> {progressBar.setVisibility(View.VISIBLE); List<PhoneEntity> entities = adapter.getEntities();
+        actionButton.setOnClickListener(i -> {
+            List<PhoneEntity> entities = adapter.getEntities();
             Context context = getActivity(); presenter.savePhones(context, entities);});
     }
 
@@ -62,7 +64,7 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
         adapter = new PhonesAdapter(context, entityList);
         phoneList.setAdapter(adapter);
 
-        progressBar.setVisibility(View.GONE);
+        progressBarReceive.setVisibility(View.GONE);
     }
 
     @Override
@@ -72,7 +74,6 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
 
     @Override
     public void savePhonesFinish() {
-        /*progressBar.setVisibility(View.GONE);*/
         Context context = getActivity();
         Toast.makeText(context, "Saved was finished", Toast.LENGTH_SHORT).show();
     }

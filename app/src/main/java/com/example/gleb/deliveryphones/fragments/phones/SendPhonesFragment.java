@@ -40,7 +40,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     public void initWidgets(View view) {
         phoneList = (RecyclerView) view.findViewById(R.id.phone_list);
         actionButton = (FloatingActionButton) view.findViewById(R.id.action_button);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBarReceive);
         setButtonDrawable();
 
         actionButton.setOnClickListener(i -> {List<PhoneEntity> entities = adapter.getEntities();

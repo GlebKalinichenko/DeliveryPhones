@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -53,6 +54,18 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     public void onResume() {
         super.onResume();
         presenter.receivePhones();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(LOG_TAG, "Receive phones on pause is called");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(LOG_TAG, "Receive phones on destroy view is called");
     }
 
     @Override

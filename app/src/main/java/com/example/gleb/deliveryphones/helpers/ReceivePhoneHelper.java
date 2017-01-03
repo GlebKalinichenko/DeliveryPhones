@@ -38,7 +38,7 @@ public class ReceivePhoneHelper {
                 String name = "";
                 List<String> phones = new ArrayList<String>();
 
-                if (!ApiHelper.checkApiVersionYoungerJellyBean()) {
+                if (!ApiHelper.checkApiVersionYoungerLollipop()) {
                     for (int i = 0; itemsPersonIter.hasNext(); i++) {
                         if (i == 0)
                             name = String.valueOf(itemsPersonIter.next());

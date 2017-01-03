@@ -45,13 +45,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         EventBus.getDefault().register(this);
         viewPager = (ViewPager) findViewById(R.id.container_login);
         checkPermissions();
-        clearFragmentDialogId();
+        clearChooseDialog();
     }
 
-    private void clearFragmentDialogId(){
+    private void clearChooseDialog(){
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.IS_FRAGMENT_DIALOG, MODE_PRIVATE);
         SharedPreferencesHelper helper = SharedPreferencesHelper.getInstance(sharedPreferences);
-        helper.saveFragmentIndex(true);
+        helper.saveDisplayDialogOnChangeOrientation(true);
     }
 
     private void checkPermissions(){

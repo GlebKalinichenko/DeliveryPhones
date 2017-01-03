@@ -83,7 +83,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     @Override
     public void onPause() {
         super.onPause();
-        sharedPreferencesHelper.saveFragmentIndex(false);
+        sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(false);
     }
 
     private void initAdapter(List<PhoneEntity> entities){
@@ -101,6 +101,6 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     public void onDestroy() {
         super.onDestroy();
         presenter.onDestroy();
-        sharedPreferencesHelper.saveFragmentIndex(true);
+        sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
     }
 }

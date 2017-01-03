@@ -25,13 +25,20 @@ public class SharedPreferencesHelper {
         this.sharedPref = sharedPreferences;
     }
 
-    public void saveFragmentIndex(boolean value){
+    /**
+    * Save is needed display choose dialog when screen is changed orientation
+    * @param value        Is changed orientation
+    * */
+    public void saveDisplayDialogOnChangeOrientation(boolean value){
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(MainActivity.IS_FRAGMENT_DIALOG, value);
         editor.commit();
     }
 
-    public boolean getFragmentIndex(){
+    /**
+     * Retrieve saved value that need to display choose dialog when screen is changed orientation
+     * */
+    public boolean isDisplayChooseDialog(){
         boolean value = sharedPref.getBoolean(MainActivity.IS_FRAGMENT_DIALOG, true);
         return value;
     }

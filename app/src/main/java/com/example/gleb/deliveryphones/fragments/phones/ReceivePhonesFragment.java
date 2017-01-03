@@ -1,7 +1,6 @@
 package com.example.gleb.deliveryphones.fragments.phones;
 
 import android.content.Context;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -63,13 +62,13 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     @Override
     public void onPause() {
         super.onPause();
-        sharedPreferencesHelper.saveFragmentIndex(false);
+        sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(false);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        sharedPreferencesHelper.saveFragmentIndex(true);
+        sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences(IS_FRAGMENT_DIALOG, MODE_PRIVATE);
         sharedPreferencesHelper = SharedPreferencesHelper.getInstance(sharedPreferences);
-        if (sharedPreferencesHelper.getFragmentIndex())
+        if (sharedPreferencesHelper.isDisplayChooseDialog())
             loadAlertConfiguration();
     }
 

@@ -57,7 +57,7 @@ public class SignUpFragment extends Fragment implements ISignUpView {
         passwordText = (EditText) view.findViewById(R.id.sign_up_password_text);
         confirmPasswordText = (EditText) view.findViewById(R.id.sign_up_confirm_password_text);
         signUpButton = (Button) view.findViewById(R.id.sign_up_button);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBarReceive);
 
         signUpButton.setOnClickListener(i -> {String email = emailText.getText().toString();
             String password = passwordText.getText().toString();

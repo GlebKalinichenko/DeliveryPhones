@@ -10,47 +10,36 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="72dp">
+        style="@style/ContainerItemPhone">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/email"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"/>
+            style="@style/UserImage"/>
 
         <LinearLayout
             android:id="@+id/textview_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignWithParentIfMissing="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_toLeftOf="@+id/icon_imageview"
             android:layout_toRightOf="@+id/profile_image"
             android:orientation="vertical"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp">
+            style="@style/TextContainer">
 
             <TextView
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{phoneEntity.name}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textSize="16sp"/>
+                style="@style/UserNameText"/>
 
             <TextView
                 android:id="@+id/phone_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{phoneEntity.toString()}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="13sp"/>
+                style="@style/PhoneNumberText"/>
 
         </LinearLayout>
 
@@ -58,12 +47,9 @@
             android:id="@+id/delete_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@android:drawable/ic_delete"
-            android:contentDescription="Image"/>
+            android:contentDescription="Image"
+            style="@style/DeleteButton"/>
 
     </RelativeLayout>
 </layout>

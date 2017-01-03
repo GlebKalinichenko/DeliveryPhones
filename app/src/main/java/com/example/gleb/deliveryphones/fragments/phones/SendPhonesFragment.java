@@ -13,6 +13,7 @@ import com.example.gleb.deliveryphones.PhoneEntity;
 import com.example.gleb.deliveryphones.adapters.PhonesAdapter;
 import com.example.gleb.deliveryphones.R;
 import com.example.gleb.deliveryphones.fragments.base.BasePhoneFragment;
+import com.example.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
 import com.example.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;
@@ -27,8 +28,9 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     private RecyclerView phoneList;
     private Observable<PhoneEntity> phoneObservable;
     private PhonesAdapter adapter;
-    private FloatingActionButton syncButton;
+    private FloatingActionButton actionButton;
     private ProgressBar progressBar;
+    private SharedPreferencesHelper sharedPreferencesHelper;
 
     public static SendPhonesFragment getInstance() {
         SendPhonesFragment fragment = new SendPhonesFragment();
@@ -39,17 +41,19 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     @Override
     public void initWidgets(View view) {
         phoneList = (RecyclerView) view.findViewById(R.id.phone_list);
-        syncButton = (FloatingActionButton) view.findViewById(R.id.sync_button);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        actionButton = (FloatingActionButton) view.findViewById(R.id.action_button);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBarReceive);
+        sharedPreferencesHelper = SharedPreferencesHelper.getInstance(null);
+
         setButtonDrawable();
 
-        syncButton.setOnClickListener(i -> {List<PhoneEntity> entities = adapter.getEntities();
+        actionButton.setOnClickListener(i -> {List<PhoneEntity> entities = adapter.getEntities();
             presenter.sendPhones(entities);});
     }
 
     @Override
     protected void setButtonDrawable() {
-        syncButton.setImageResource(R.drawable.sync);
+        actionButton.setImageResource(R.drawable.sync);
     }
 
     @Override
@@ -76,6 +80,12 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
         phoneObservable.toList().filter(i -> i.size() > 0) .subscribe(i -> initAdapter(i));
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        sharedPreferencesHelper.saveFragmentIndex(false);
+    }
+
     private void initAdapter(List<PhoneEntity> entities){
         Context context = getActivity();
         adapter = new PhonesAdapter(context, entities);
@@ -91,5 +101,6 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     public void onDestroy() {
         super.onDestroy();
         presenter.onDestroy();
+        sharedPreferencesHelper.saveFragmentIndex(true);
     }
 }

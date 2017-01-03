@@ -14,4 +14,175 @@
         <item name="colorAccent">@color/colorAccent</item>  
     </style>
 
+    <style name="SignInFragment"></style>
+
+    <style name="CommonSign"></style>
+
+    <style name="SignLoginText" parent="CommonSign">
+        <item name="android:layout_marginBottom">@dimen/login_text_margin_bottom</item>
+        <item name="android:layout_marginTop">@dimen/login_text_margin_top</item>
+        <item name="android:textSize">@dimen/login_text_size</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SignInContainer" parent="CommonSign">
+        <item name="android:layout_marginLeft">@dimen/sign_in_container_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/sign_in_container_margin_right</item>
+        <item name="android:layout_marginTop">@dimen/sign_in_container_margin_top</item>
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:padding">@dimen/sign_in_container_padding</item>
+    </style>
+
+    <style name="SignInEmailPasswordContainer" parent="CommonSign">
+        <item name="android:paddingTop">@dimen/sign_in_email_password_container_padding_top</item>
+    </style>
+
+    <style name="SignInEmailEditText" parent="CommonSign">
+        <item name="android:drawableLeft">@drawable/email</item>
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:hint">@string/email_hint</item>
+    </style>
+
+    <style name="SignInPasswordEditText" parent="SignInFragment">
+        <item name="android:layout_marginTop">@dimen/sign_in_password_edit_margin_top</item>
+        <item name="android:drawableLeft">@drawable/lock</item>
+        <item name="android:hint">@string/password_hint</item>
+        <item name="android:inputType">numberPassword</item>
+    </style>
+
+    <style name="ForgotPasswordText" parent="SignInFragment">
+        <item name="android:paddingTop">@dimen/sign_in_forgot_password_padding_top</item>
+        <item name="android:text">@string/forgot_password_text</item>
+    </style>
+
+    <style name="SignButton" parent="CommonSign">
+        <item name="android:layout_marginLeft">@dimen/sign_in_button_margin</item>
+        <item name="android:layout_marginRight">@dimen/sign_in_button_margin</item>
+        <item name="android:layout_marginTop">@dimen/sign_in_button_margin</item>
+        <item name="android:layout_marginBottom">@dimen/sign_in_button_margin_bottom</item>
+        <item name="android:background">@color/colorOrange</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/sign_in_button_text_size</item>
+    </style>
+
+    <style name="LogoImage" parent="SignInFragment">
+        <item name="android:layout_width">@dimen/logo_image_size</item>
+        <item name="android:layout_height">@dimen/logo_image_size</item>
+        <item name="android:layout_marginTop">@dimen/logo_image_margin_top</item>
+        <item name="android:background">@drawable/logo_background</item>
+        <item name="android:src">@drawable/sync</item>
+    </style>
+
+    <!--Sign up fragment-->
+
+    <style name="SignUpFragment"></style>
+
+    <style name="SignUpContainer" parent="SignUpFragment">
+        <item name="android:background">@color/colorBlue</item>
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+    </style>
+
+    <style name="SignUpContainerFields" parent="CommonSign">
+        <item name="android:layout_marginLeft">@dimen/sign_up_container_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/sign_up_container_margin_right</item>
+        <item name="android:layout_marginTop">@dimen/sign_up_container_margin_top</item>
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:padding">@dimen/sign_up_container_padding</item>
+    </style>
+
+    <style name="SignUpEmailPasswordContainer" parent="CommonSign">
+        <item name="android:paddingTop">@dimen/sign_up_email_password_container_padding_top</item>
+    </style>
+
+    <style name="SignUpEmailEditText" parent="CommonSign">
+        <item name="android:drawableLeft">@drawable/email</item>
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:hint">@string/email_hint</item>
+    </style>
+
+    <style name="SignUpPasswordEditText" parent="SignInFragment">
+        <item name="android:layout_marginTop">@dimen/sign_up_password_edit_margin_top</item>
+        <item name="android:drawableLeft">@drawable/lock</item>
+        <item name="android:hint">@string/password_hint</item>
+        <item name="android:inputType">numberPassword</item>
+    </style>
+
+    <style name="ConfirmPassword" parent="SignUpFragment">
+        <item name="android:layout_marginTop">@dimen/confirm_password_text_margin_top</item>
+        <item name="android:drawableLeft">@drawable/lock</item>
+        <item name="android:hint">@string/confirm_password_hint</item>
+        <item name="android:inputType">numberPassword</item>
+    </style>
+
+    <style name="ImageLogo" parent="SignUpFragment">
+        <item name="android:layout_width">@dimen/sign_up_image_logo_size</item>
+        <item name="android:layout_height">@dimen/sign_up_image_logo_size</item>
+        <item name="android:layout_marginTop">@dimen/sign_up_image_logo_margin_top</item>
+        <item name="android:background">@drawable/logo_background</item>
+        <item name="android:src">@drawable/sync</item>
+    </style>
+
+    <!--Phones fragment-->
+    <style name="PhonesFragment"></style>
+
+    <style name="ActionButton" parent="PhonesFragment">
+        <item name="android:layout_margin">@dimen/action_button_margin_top</item>
+    </style>
+    
+    <style name="DialogLogin"></style>
+
+    <style name="GoogleSignInButton" parent="DialogLogin">
+        <item name="android:visibility">visible</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+    <style name="GoogleDismissButton" parent="DialogLogin">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/google_dismiss_text</item>
+    </style>
+
+    <!--Item phone fragment-->
+    <style name="ItemPhoneFragment"></style>
+
+    <style name="ContainerItemPhone" parent="ItemPhoneFragment">
+        <item name="android:minHeight">@dimen/container_min_height</item>
+    </style>
+
+    <style name="UserImage" parent="ItemPhoneFragment">
+        <item name="android:layout_width">@dimen/item_user_image_size</item>
+        <item name="android:layout_height">@dimen/item_user_image_size</item>
+        <item name="android:src">@drawable/email</item>
+        <item name="android:layout_marginLeft">@dimen/item_user_image_margin_left</item>
+        <item name="android:layout_marginTop">@dimen/item_user_image_margin_top</item>
+    </style>
+
+    <style name="TextContainer" parent="ItemPhoneFragment">
+        <item name="android:layout_alignWithParentIfMissing">true</item>
+        <item name="android:layout_marginLeft">@dimen/item_phone_text_container_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/item_phone_text_container_margin_right</item>
+        <item name="android:paddingBottom">@dimen/item_phone_text_container_padding_bottom</item>
+        <item name="android:paddingTop">@dimen/item_phone_text_container_padding_top</item>
+    </style>
+
+    <style name="UserNameText" parent="ItemPhoneFragment">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
+        <item name="android:textSize">@dimen/user_name_text_size</item>
+    </style>
+
+    <style name="PhoneNumberText" parent="ItemPhoneFragment">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
+        <item name="android:textSize">@dimen/phone_number_text_size</item>
+    </style>
+
+    <style name="DeleteButton" parent="ItemPhoneFragment">
+        <item name="android:layout_marginRight">@dimen/delete_button_margin_right</item>
+        <item name="android:layout_marginTop">@dimen/delete_button_margin_top</item>
+        <item name="android:src">@android:drawable/ic_delete</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+
 </resources>

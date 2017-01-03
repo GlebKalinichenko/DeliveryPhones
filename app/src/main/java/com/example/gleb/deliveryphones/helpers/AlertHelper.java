@@ -2,6 +2,7 @@ package com.example.gleb.deliveryphones.helpers;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,4 +64,10 @@ public class AlertHelper {
         return dialog;
     }
 
+    public static AlertDialog createDialogOnlyMessage(Context context, int textResId){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(textResId);
+
+        return builder.create();
+    }
 }

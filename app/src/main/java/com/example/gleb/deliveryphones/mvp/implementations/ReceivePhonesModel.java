@@ -46,5 +46,8 @@ public class ReceivePhonesModel implements IReceivePhonesModel {
     public void savePhones(Context context, List<PhoneEntity> entities) {
         ContactPhoneHelper helper = ContactPhoneHelper.getInstance(context);
         helper.savePhones(context, entities);
+
+        presenter.savePhonesFinish();
+
     }
 }

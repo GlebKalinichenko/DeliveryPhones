@@ -7,4 +7,5 @@ import java.util.List;
 public interface IReceivePhonesView {
     void receivePhoneSuccess(List<PhoneEntity> entities);
     void receivePhoneUnsuccess();
+    void savePhonesFinish();
 }

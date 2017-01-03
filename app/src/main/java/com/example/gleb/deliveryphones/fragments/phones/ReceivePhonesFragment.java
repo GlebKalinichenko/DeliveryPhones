@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -14,6 +13,7 @@ import com.example.gleb.deliveryphones.PhoneEntity;
 import com.example.gleb.deliveryphones.R;
 import com.example.gleb.deliveryphones.adapters.PhonesAdapter;
 import com.example.gleb.deliveryphones.fragments.base.BasePhoneFragment;
+import com.example.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.example.gleb.deliveryphones.mvp.implementations.ReceivePhonesPresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesView;
@@ -27,6 +27,7 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     private FloatingActionButton actionButton;
     private ProgressBar progressBarReceive;
     private PhonesAdapter adapter;
+    private SharedPreferencesHelper sharedPreferencesHelper;
 
     public static ReceivePhonesFragment getInstance() {
         ReceivePhonesFragment fragment = new ReceivePhonesFragment();
@@ -38,6 +39,9 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
         phoneList = (RecyclerView) view.findViewById(R.id.phone_list);
         actionButton = (FloatingActionButton) view.findViewById(R.id.action_button);
         progressBarReceive = (ProgressBar) view.findViewById(R.id.progressBarReceive);
+
+        sharedPreferencesHelper = SharedPreferencesHelper.getInstance(null);
+
         setButtonDrawable();
 
         actionButton.setOnClickListener(i -> {
@@ -59,13 +63,13 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(LOG_TAG, "Receive phones on pause is called");
+        sharedPreferencesHelper.saveFragmentIndex(false);
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d(LOG_TAG, "Receive phones on destroy view is called");
+    public void onDestroy() {
+        super.onDestroy();
+        sharedPreferencesHelper.saveFragmentIndex(true);
     }
 
     @Override

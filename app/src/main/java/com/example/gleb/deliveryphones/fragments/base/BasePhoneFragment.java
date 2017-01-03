@@ -18,6 +18,7 @@ public abstract class BasePhoneFragment extends Fragment implements IBasePhoneVi
         View view = inflater.inflate(R.layout.fragment_phones, container, false);
         initWidgets(view);
 
+        setRetainInstance(true);
         return view;
     }
 

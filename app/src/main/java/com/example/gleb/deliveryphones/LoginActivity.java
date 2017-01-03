@@ -1,6 +1,7 @@
 package com.example.gleb.deliveryphones;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.example.gleb.deliveryphones.fragments.sign.SignUpFragment;
 import com.example.gleb.deliveryphones.helpers.ApiHelper;
 import com.example.gleb.deliveryphones.helpers.FragmentHelper;
 import com.example.gleb.deliveryphones.helpers.PermissionHelper;
+import com.example.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,6 +45,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         EventBus.getDefault().register(this);
         viewPager = (ViewPager) findViewById(R.id.container_login);
         checkPermissions();
+        clearFragmentDialogId();
+    }
+
+    private void clearFragmentDialogId(){
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.IS_FRAGMENT_DIALOG, MODE_PRIVATE);
+        SharedPreferencesHelper helper = SharedPreferencesHelper.getInstance(sharedPreferences);
+        helper.saveFragmentIndex(true);
     }
 
     private void checkPermissions(){

@@ -18,6 +18,7 @@ import com.example.gleb.deliveryphones.fragments.sign.SignInFragment;
 import com.example.gleb.deliveryphones.fragments.sign.SignUpFragment;
 import com.example.gleb.deliveryphones.helpers.ApiHelper;
 import com.example.gleb.deliveryphones.helpers.FragmentHelper;
+import com.example.gleb.deliveryphones.helpers.IdHelper;
 import com.example.gleb.deliveryphones.helpers.PermissionHelper;
 import com.example.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.google.android.gms.common.ConnectionResult;
@@ -32,8 +33,6 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private final String LOG_TAG = this.getClass().getCanonicalName();
-    private FirebaseAuth firebaseAuth;
-    private FragmentHelper fragmentHelper = FragmentHelper.getInstance(this);
     private ViewPager viewPager;
     private SignInUpFragmentPagerAdapter adapter;
 
@@ -80,7 +79,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onStart() {
         super.onStart();
-        //initGoogleSignIn();
     }
 
     @Override
@@ -89,27 +87,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         EventBus.getDefault().unregister(this);
     }
 
-    private void initGoogleSignIn(){
-        firebaseAuth = FirebaseAuth.getInstance();
-
-//        String email = "Glebjn@gmail.com";
-//        String password = "Gleb80507078620";
-//
-//        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if (task.isSuccessful()) {
-//                    Toast.makeText(LoginActivity.this, "Successful", Toast.LENGTH_LONG).show();
-//                }
-//                else {
-//                    Toast.makeText(LoginActivity.this, "Unsuccessful", Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
-    }
-
     @Subscribe
     public void signUpEvent(SignUpEvent event){
+        String emailHash = event.getEmailHash();
+        IdHelper idHelper = IdHelper.getInstance();
+        idHelper.setEmailHash(emailHash);
+
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
     }

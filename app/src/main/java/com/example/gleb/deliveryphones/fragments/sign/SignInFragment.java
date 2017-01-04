@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.gleb.deliveryphones.R;
 import com.example.gleb.deliveryphones.events.SignUpEvent;
+import com.example.gleb.deliveryphones.helpers.SHA1Helper;
 import com.example.gleb.deliveryphones.mvp.interfaces.signin.ISignInPresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.signin.ISignInView;
 import com.example.gleb.deliveryphones.mvp.implementations.signin.SignInPresenter;
@@ -60,7 +61,10 @@ public class SignInFragment extends Fragment implements ISignInView {
         Context context = getActivity();
         Toast.makeText(context, "Successful", Toast.LENGTH_LONG).show();
 
-        EventBus.getDefault().post(new SignUpEvent());
+        String email = emailText.getText().toString();
+        email = SHA1Helper.hashSHA1(email);
+
+        EventBus.getDefault().post(new SignUpEvent(email));
     }
 
     @Override

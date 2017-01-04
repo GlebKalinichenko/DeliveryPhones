@@ -24,9 +24,12 @@ public class ReceivePhoneHelper {
     public static List<PhoneEntity> convertPhones(DataSnapshot dataSnapshot){
         Log.d(LOG_TAG, "Convert list of phones from database");
 
+        IdHelper idHelper = IdHelper.getInstance();
+        String emailHash = idHelper.getEmailHash();
+
         List<PhoneEntity> entities = new ArrayList<PhoneEntity>();
 
-            Map<String, Object> objectMap = (HashMap<String, Object>) dataSnapshot.child(ROOT_TAG).getValue();
+            Map<String, Object> objectMap = (HashMap<String, Object>) dataSnapshot.child(emailHash).child(ROOT_TAG).getValue();
             Collection<Object> mapObject = objectMap.values();
 
             Iterator<Object> it = mapObject.iterator();

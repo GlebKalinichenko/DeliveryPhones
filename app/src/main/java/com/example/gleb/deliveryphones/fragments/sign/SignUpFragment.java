@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.gleb.deliveryphones.R;
 import com.example.gleb.deliveryphones.events.SignUpEvent;
+import com.example.gleb.deliveryphones.helpers.SHA1Helper;
 import com.example.gleb.deliveryphones.mvp.implementations.signup.SignUpPresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.signup.ISignUpView;
 import com.example.gleb.deliveryphones.mvp.interfaces.signup.ISignUpPresenter;
@@ -72,7 +73,10 @@ public class SignUpFragment extends Fragment implements ISignUpView {
         Toast.makeText(context, "Successful", Toast.LENGTH_LONG).show();
         progressBar.setVisibility(View.GONE);
 
-        EventBus.getDefault().post(new SignUpEvent());
+        String email = emailText.getText().toString();
+        email = SHA1Helper.hashSHA1(email);
+
+        EventBus.getDefault().post(new SignUpEvent(email));
     }
 
     @Override

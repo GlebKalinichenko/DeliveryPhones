@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.gleb.deliveryphones.PhoneEntity;
 import com.example.gleb.deliveryphones.helpers.ContactPhoneHelper;
+import com.example.gleb.deliveryphones.helpers.IdHelper;
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
 import com.google.android.gms.tasks.Task;
@@ -34,7 +35,10 @@ public class SendPhoneModel implements ISendPhoneModel {
 
     @Override
     public void pushPhones(List<PhoneEntity> phones) {
-        DatabaseReference res = database.child(PHONES);
+        IdHelper idHelper = IdHelper.getInstance();
+        String emailHash = idHelper.getEmailHash();
+
+        DatabaseReference res = database.child(emailHash).child(PHONES);
         for (PhoneEntity entity : phones) {
             res.push().setValue(entity);
         }

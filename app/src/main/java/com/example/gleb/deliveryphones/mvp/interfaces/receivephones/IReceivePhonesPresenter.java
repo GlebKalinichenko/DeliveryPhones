@@ -12,4 +12,6 @@ public interface IReceivePhonesPresenter {
     void receivePhonesUnsuccess();
     void savePhones(Context context, List<PhoneEntity> entities);
     void savePhonesFinish();
+    void clearPhones();
+    void clearSuccess();
 }

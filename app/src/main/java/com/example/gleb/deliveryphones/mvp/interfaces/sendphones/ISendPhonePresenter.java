@@ -10,6 +10,8 @@ public interface ISendPhonePresenter {
     List<PhoneEntity> getPhones(Context context);
     void sendPhones(List<PhoneEntity> entities);
     void responseSync();
+    void clearPhones();
+    void clearSuccess();
     void onResume();
     void onDestroy();
 }

@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.gleb.deliveryphones.PhoneEntity;
 import com.example.gleb.deliveryphones.helpers.ContactPhoneHelper;
+import com.example.gleb.deliveryphones.helpers.IdHelper;
 import com.example.gleb.deliveryphones.helpers.ReceivePhoneHelper;
 import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesModel;
 import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
@@ -49,5 +50,14 @@ public class ReceivePhonesModel implements IReceivePhonesModel {
 
         presenter.savePhonesFinish();
 
+    }
+
+    @Override
+    public void clearPhones() {
+        IdHelper idHelper = IdHelper.getInstance();
+        String emailHash = idHelper.getEmailHash();
+
+        database.child(emailHash).removeValue();
+        presenter.clearSuccess();
     }
 }

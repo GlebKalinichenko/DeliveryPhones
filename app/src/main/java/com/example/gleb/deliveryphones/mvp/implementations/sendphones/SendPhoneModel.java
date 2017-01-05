@@ -49,4 +49,13 @@ public class SendPhoneModel implements ISendPhoneModel {
     public List<PhoneEntity> getDatabasePhones() {
         return null;
     }
+
+    @Override
+    public void clearPhones() {
+        IdHelper idHelper = IdHelper.getInstance();
+        String emailHash = idHelper.getEmailHash();
+
+        database.child(emailHash).removeValue();
+        presenter.clearSuccess();
+    }
 }

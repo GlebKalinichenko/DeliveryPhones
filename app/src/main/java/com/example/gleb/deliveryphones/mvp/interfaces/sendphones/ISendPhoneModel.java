@@ -10,4 +10,5 @@ public interface ISendPhoneModel {
     List<PhoneEntity> getPhones(Context context);
     void pushPhones(List<PhoneEntity> phones);
     List<PhoneEntity> getDatabasePhones();
+    void clearPhones();
 }

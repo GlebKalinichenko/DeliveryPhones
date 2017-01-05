@@ -5,6 +5,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -65,6 +68,14 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     }
 
     @Override
+    public void clearSuccess() {
+        Log.d(LOG_TAG, "Clear phones is finished");
+
+        Context context = getActivity();
+        Toast.makeText(context, "Clear phones is finished", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         Context context = getActivity();
@@ -102,5 +113,17 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
         super.onDestroy();
         presenter.onDestroy();
         sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.clear_phones:
+                Log.d(LOG_TAG, "Clear phones button is clicked");
+                presenter.clearPhones();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

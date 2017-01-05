@@ -37,6 +37,16 @@ public class SendPhonePresenter implements ISendPhonePresenter {
     }
 
     @Override
+    public void clearPhones() {
+        model.clearPhones();
+    }
+
+    @Override
+    public void clearSuccess() {
+        view.clearSuccess();
+    }
+
+    @Override
     public void onResume() {
 
     }

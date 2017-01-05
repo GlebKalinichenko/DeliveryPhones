@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -69,6 +71,8 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     public void onDestroy() {
         super.onDestroy();
         sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
+
+        presenter = null;
     }
 
     @Override
@@ -92,5 +96,23 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     public void savePhonesFinish() {
         Context context = getActivity();
         Toast.makeText(context, "Saved was finished", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void clearSuccess() {
+        Context context = getActivity();
+        Toast.makeText(context, "Clear phones is finished", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.clear_phones:
+                Log.d(LOG_TAG, "Clear phones button is clicked");
+                presenter.clearPhones();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -16,4 +16,5 @@
     <string name="ok_dialog">Ok</string>
     <string name="cancel_dialog">Cancel</string>
     <string name="permission_message">Are you want allow read and write contacts permission</string>
+    <string name="clear_phones">Clear phones</string>
 </resources>

@@ -42,4 +42,14 @@ public class ReceivePhonesPresenter implements IReceivePhonesPresenter {
     public void savePhonesFinish() {
         view.savePhonesFinish();
     }
+
+    @Override
+    public void clearPhones() {
+        model.clearPhones();
+    }
+
+    @Override
+    public void clearSuccess() {
+        view.clearSuccess();
+    }
 }

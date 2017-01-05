@@ -8,4 +8,5 @@ public interface IReceivePhonesView {
     void receivePhoneSuccess(List<PhoneEntity> entities);
     void receivePhoneUnsuccess();
     void savePhonesFinish();
+    void clearSuccess();
 }

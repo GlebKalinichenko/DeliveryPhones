@@ -14,12 +14,20 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
+import rx.Observable;
+import rx.Observer;
+import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 public class SendPhoneModel implements ISendPhoneModel {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private final static String PHONES = "Phones";
     private ISendPhonePresenter presenter;
     private ContactPhoneHelper helper;
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+    private IdHelper idHelper = IdHelper.getInstance();
+    private String emailHash = idHelper.getEmailHash();
 
     public SendPhoneModel(ISendPhonePresenter presenter) {
         this.presenter = presenter;
@@ -35,14 +43,24 @@ public class SendPhoneModel implements ISendPhoneModel {
 
     @Override
     public void pushPhones(List<PhoneEntity> phones) {
-        IdHelper idHelper = IdHelper.getInstance();
-        String emailHash = idHelper.getEmailHash();
-
         DatabaseReference res = database.child(emailHash).child(PHONES);
-        for (PhoneEntity entity : phones) {
-            res.push().setValue(entity);
-        }
-        presenter.responseSync();
+        Observable.from(phones).doOnNext(i -> res.push().setValue(i)).subscribeOn(Schedulers.newThread()).
+                observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<PhoneEntity>() {
+            @Override
+            public void onCompleted() {
+                presenter.responseSync();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(PhoneEntity phoneEntity) {
+
+            }
+        });
     }
 
     @Override
@@ -52,10 +70,7 @@ public class SendPhoneModel implements ISendPhoneModel {
 
     @Override
     public void clearPhones() {
-        IdHelper idHelper = IdHelper.getInstance();
-        String emailHash = idHelper.getEmailHash();
-
-        database.child(emailHash).removeValue();
-        presenter.clearSuccess();
+        Observable.just(database).map(i -> i.child(emailHash).removeValue())
+            .observeOn(AndroidSchedulers.mainThread()).subscribe(i -> presenter.clearSuccess());
     }
 }

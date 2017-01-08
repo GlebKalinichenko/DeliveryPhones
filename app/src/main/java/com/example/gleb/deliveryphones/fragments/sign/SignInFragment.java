@@ -45,6 +45,12 @@ public class SignInFragment extends Fragment implements ISignInView {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        firebaseAuth = null;
+    }
+
+    @Override
     public void initWidgets(View view) {
         emailText = (EditText) view.findViewById(R.id.sign_in_email);
         passwordText = (EditText) view.findViewById(R.id.sign_in_password);

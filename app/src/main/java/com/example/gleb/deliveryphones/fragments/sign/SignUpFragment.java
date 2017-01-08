@@ -68,6 +68,12 @@ public class SignUpFragment extends Fragment implements ISignUpView {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        firebaseAuth = null;
+    }
+
+    @Override
     public void signUpSuccess() {
         Context context = getActivity();
         Toast.makeText(context, "Successful", Toast.LENGTH_LONG).show();

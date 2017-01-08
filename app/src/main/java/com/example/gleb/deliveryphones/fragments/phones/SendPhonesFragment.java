@@ -21,9 +21,13 @@ import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePrese
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
 import com.example.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
@@ -34,6 +38,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     private FloatingActionButton actionButton;
     private ProgressBar progressBar;
     private SharedPreferencesHelper sharedPreferencesHelper;
+    private Subscription phoneSubscription;
 
     public static SendPhonesFragment getInstance() {
         SendPhonesFragment fragment = new SendPhonesFragment();
@@ -50,8 +55,15 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
 
         setButtonDrawable();
 
-        actionButton.setOnClickListener(i -> {List<PhoneEntity> entities = adapter.getEntities();
-            presenter.sendPhones(entities);});
+        actionButton.setOnClickListener(i -> {
+            progressBar.setVisibility(View.VISIBLE);
+            progressBar.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    List<PhoneEntity> entities = adapter.getEntities();
+                    presenter.sendPhones(entities);
+                }
+            }, 3000);});
     }
 
     @Override
@@ -63,6 +75,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     public void responseSync() {
         Log.d(LOG_TAG, "Sync is finished");
 
+        progressBar.setVisibility(View.GONE);
         Context context = getActivity();
         Toast.makeText(context, "Sync is finished", Toast.LENGTH_SHORT).show();
     }
@@ -88,13 +101,15 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
         super.onResume();
         presenter.onResume();
 
-        phoneObservable.toList().filter(i -> i.size() > 0) .subscribe(i -> initAdapter(i));
+        phoneSubscription = phoneObservable.toList().filter(i -> i.size() > 0).subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(i -> initAdapter(i));
     }
 
     @Override
     public void onPause() {
         super.onPause();
         sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(false);
+        phoneSubscription.unsubscribe();
     }
 
     private void initAdapter(List<PhoneEntity> entities){
@@ -113,6 +128,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
         super.onDestroy();
         presenter.onDestroy();
         sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
+        phoneSubscription.unsubscribe();
     }
 
     @Override

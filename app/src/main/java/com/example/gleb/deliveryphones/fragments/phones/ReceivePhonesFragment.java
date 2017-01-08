@@ -45,9 +45,18 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
 
         setButtonDrawable();
 
-        actionButton.setOnClickListener(i -> {
-            List<PhoneEntity> entities = adapter.getEntities();
-            Context context = getActivity(); presenter.savePhones(context, entities);});
+        actionButton.setOnClickListener(i -> savePhones());
+    }
+
+    private void savePhones(){
+        progressBarReceive.setVisibility(View.VISIBLE);
+        progressBarReceive.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                List<PhoneEntity> entities = adapter.getEntities();
+                Context context = getActivity(); presenter.savePhones(context, entities);
+            }
+        }, 3000);
     }
 
     @Override
@@ -71,20 +80,19 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     public void onDestroy() {
         super.onDestroy();
         sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
-
-        presenter = null;
     }
 
     @Override
     public void receivePhoneSuccess(List<PhoneEntity> entityList) {
+        progressBarReceive.setVisibility(View.GONE);
         Context context = getActivity();
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
-        phoneList.setLayoutManager(layoutManager);
-        adapter = new PhonesAdapter(context, entityList);
-        phoneList.setAdapter(adapter);
-
-        progressBarReceive.setVisibility(View.GONE);
+        if (entityList.size() > 0) {
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
+            phoneList.setLayoutManager(layoutManager);
+            adapter = new PhonesAdapter(context, entityList);
+            phoneList.setAdapter(adapter);
+        }
     }
 
     @Override
@@ -96,6 +104,8 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     public void savePhonesFinish() {
         Context context = getActivity();
         Toast.makeText(context, "Saved was finished", Toast.LENGTH_SHORT).show();
+
+        progressBarReceive.setVisibility(View.GONE);
     }
 
     @Override

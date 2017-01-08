@@ -16,6 +16,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 
+import rx.Observable;
+import rx.Observer;
+
 public class ReceivePhonesModel implements IReceivePhonesModel {
     private final String LOG_TAG =  this.getClass().getCanonicalName();
     private IReceivePhonesPresenter presenter;
@@ -46,10 +49,23 @@ public class ReceivePhonesModel implements IReceivePhonesModel {
     @Override
     public void savePhones(Context context, List<PhoneEntity> entities) {
         ContactPhoneHelper helper = ContactPhoneHelper.getInstance(context);
-        helper.savePhones(context, entities);
+        Observable<String> values = helper.savePhones(context, entities, presenter);
+        values.subscribe(new Observer<String>() {
+            @Override
+            public void onCompleted() {
+                presenter.savePhonesFinish();
+            }
 
-        presenter.savePhonesFinish();
+            @Override
+            public void onError(Throwable e) {
 
+            }
+
+            @Override
+            public void onNext(String s) {
+
+            }
+        });
     }
 
     @Override

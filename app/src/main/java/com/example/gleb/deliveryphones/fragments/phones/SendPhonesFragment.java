@@ -55,15 +55,18 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
 
         setButtonDrawable();
 
-        actionButton.setOnClickListener(i -> {
-            progressBar.setVisibility(View.VISIBLE);
-            progressBar.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    List<PhoneEntity> entities = adapter.getEntities();
-                    presenter.sendPhones(entities);
-                }
-            }, 3000);});
+        actionButton.setOnClickListener(i -> sendPhone());
+    }
+
+    private void sendPhone(){
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                List<PhoneEntity> entities = adapter.getEntities();
+                presenter.sendPhones(entities);
+            }
+        }, 3000);
     }
 
     @Override

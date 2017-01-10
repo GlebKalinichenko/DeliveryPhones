@@ -9,6 +9,8 @@ import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhon
 
 import java.util.List;
 
+import rx.subscriptions.CompositeSubscription;
+
 public class ReceivePhonesPresenter implements IReceivePhonesPresenter {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private IReceivePhonesView view;
@@ -51,5 +53,17 @@ public class ReceivePhonesPresenter implements IReceivePhonesPresenter {
     @Override
     public void clearSuccess() {
         view.clearSuccess();
+    }
+
+    @Override
+    public void onPause() {
+        CompositeSubscription subscriptions =((ReceivePhonesModel) model).getSubscriptions();
+        subscriptions.unsubscribe();
+    }
+
+    @Override
+    public void onDestroy() {
+        CompositeSubscription subscriptions =((ReceivePhonesModel) model).getSubscriptions();
+        subscriptions.unsubscribe();
     }
 }

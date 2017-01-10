@@ -13,5 +13,6 @@ public interface ISendPhonePresenter {
     void clearPhones();
     void clearSuccess();
     void onResume();
+    void onPause();
     void onDestroy();
 }

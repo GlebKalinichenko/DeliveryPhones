@@ -14,4 +14,6 @@ public interface IReceivePhonesPresenter {
     void savePhonesFinish();
     void clearPhones();
     void clearSuccess();
+    void onPause();
+    void onDestroy();
 }

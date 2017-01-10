@@ -18,11 +18,19 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Observer;
+import rx.Scheduler;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 
 public class ReceivePhonesModel implements IReceivePhonesModel {
     private final String LOG_TAG =  this.getClass().getCanonicalName();
     private IReceivePhonesPresenter presenter;
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+    private CompositeSubscription subscriptions = new CompositeSubscription();
+    private IdHelper idHelper = IdHelper.getInstance();
+    private String emailHash = idHelper.getEmailHash();
 
     public ReceivePhonesModel(IReceivePhonesPresenter presenter) {
         this.presenter = presenter;
@@ -35,8 +43,10 @@ public class ReceivePhonesModel implements IReceivePhonesModel {
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<PhoneEntity> entities = ReceivePhoneHelper.convertPhones(dataSnapshot);
-                presenter.receivePhonesSuccess(entities);
+                Subscription subscription = Observable.just(ReceivePhoneHelper.getInstance()).map(i -> i.convertPhones(dataSnapshot))
+                        .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(i -> presenter.receivePhonesSuccess(i));
+                subscriptions.add(subscription);
             }
 
             @Override
@@ -50,7 +60,8 @@ public class ReceivePhonesModel implements IReceivePhonesModel {
     public void savePhones(Context context, List<PhoneEntity> entities) {
         ContactPhoneHelper helper = ContactPhoneHelper.getInstance(context);
         Observable<String> values = helper.savePhones(context, entities, presenter);
-        values.subscribe(new Observer<String>() {
+        Subscription subscription = values.subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<String>() {
             @Override
             public void onCompleted() {
                 presenter.savePhonesFinish();
@@ -66,14 +77,17 @@ public class ReceivePhonesModel implements IReceivePhonesModel {
 
             }
         });
+        subscriptions.add(subscription);
     }
 
     @Override
     public void clearPhones() {
-        IdHelper idHelper = IdHelper.getInstance();
-        String emailHash = idHelper.getEmailHash();
+        Subscription subscription = Observable.just(database).map(i -> i.child(emailHash).removeValue())
+                .subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(i -> presenter.clearSuccess());
+        subscriptions.add(subscription);
+    }
 
-        database.child(emailHash).removeValue();
-        presenter.clearSuccess();
+    public CompositeSubscription getSubscriptions() {
+        return subscriptions;
     }
 }

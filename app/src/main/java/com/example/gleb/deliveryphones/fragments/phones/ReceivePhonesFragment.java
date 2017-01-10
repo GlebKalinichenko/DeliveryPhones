@@ -74,12 +74,14 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     public void onPause() {
         super.onPause();
         sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(false);
+        presenter.onPause();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
+        presenter.onDestroy();
     }
 
     @Override

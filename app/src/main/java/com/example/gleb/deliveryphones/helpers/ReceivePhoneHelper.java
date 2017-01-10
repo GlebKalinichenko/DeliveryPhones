@@ -17,13 +17,23 @@ import rx.Observable;
 public class ReceivePhoneHelper {
     private static final String LOG_TAG = ReceivePhoneHelper.class.getCanonicalName();
     private static final String ROOT_TAG = "Phones";
+    private static ReceivePhoneHelper instance = null;
+
+    public static ReceivePhoneHelper getInstance() {
+        if (instance == null)
+            instance = new ReceivePhoneHelper();
+        return instance;
+    }
+
+    private ReceivePhoneHelper() {
+    }
 
     /**
      * Receive list of phones from database.
      * @param dataSnapshot        Object of database
      * @return                    List of phones
      * */
-    public static List<PhoneEntity> convertPhones(DataSnapshot dataSnapshot){
+    public List<PhoneEntity> convertPhones(DataSnapshot dataSnapshot){
         Log.d(LOG_TAG, "Convert list of phones from database");
 
         IdHelper idHelper = IdHelper.getInstance();
@@ -31,7 +41,9 @@ public class ReceivePhoneHelper {
 
         List<PhoneEntity> entities = new ArrayList<PhoneEntity>();
 
-            Map<String, Object> objectMap = (HashMap<String, Object>) dataSnapshot.child(emailHash).child(ROOT_TAG).getValue();
+        Map<String, Object> objectMap = (HashMap<String, Object>) dataSnapshot.child(emailHash).child(ROOT_TAG).getValue();
+
+        if (objectMap != null) {
             Collection<Object> mapObject = objectMap.values();
 
             Iterator<Object> it = mapObject.iterator();
@@ -53,15 +65,13 @@ public class ReceivePhoneHelper {
                             phones.add(phone);
                         }
                     }
-                }
-                else{
+                } else {
                     for (int i = 0; itemsPersonIter.hasNext(); i++) {
                         String entityString = String.valueOf(itemsPersonIter.next());
                         if (StringHelper.hasBrackets(entityString)) {
                             String phone = StringHelper.clearPhonesFromBrackets(entityString);
                             phones.add(phone);
-                        }
-                        else
+                        } else
                             name = entityString;
                     }
                 }
@@ -69,6 +79,7 @@ public class ReceivePhoneHelper {
                 PhoneEntity entity = new PhoneEntity(name, phones);
                 entities.add(entity);
             }
+        }
 
         return entities;
     }

@@ -10,6 +10,8 @@ import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePrese
 
 import java.util.List;
 
+import rx.subscriptions.CompositeSubscription;
+
 public class SendPhonePresenter implements ISendPhonePresenter {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private ISendPhoneModel model = new SendPhoneModel(this);
@@ -52,7 +54,14 @@ public class SendPhonePresenter implements ISendPhonePresenter {
     }
 
     @Override
-    public void onDestroy() {
+    public void onPause() {
+        CompositeSubscription subscriptions =((SendPhoneModel) model).getSubscriptions();
+        subscriptions.unsubscribe();
+    }
 
+    @Override
+    public void onDestroy() {
+        CompositeSubscription subscriptions =((SendPhoneModel) model).getSubscriptions();
+        subscriptions.unsubscribe();
     }
 }

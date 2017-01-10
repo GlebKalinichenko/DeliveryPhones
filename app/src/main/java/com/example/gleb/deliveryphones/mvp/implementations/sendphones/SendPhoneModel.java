@@ -17,8 +17,10 @@ import java.util.List;
 import rx.Observable;
 import rx.Observer;
 import rx.Scheduler;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 
 public class SendPhoneModel implements ISendPhoneModel {
     private final String LOG_TAG = this.getClass().getCanonicalName();
@@ -28,6 +30,7 @@ public class SendPhoneModel implements ISendPhoneModel {
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     private IdHelper idHelper = IdHelper.getInstance();
     private String emailHash = idHelper.getEmailHash();
+    private CompositeSubscription subscriptions = new CompositeSubscription();
 
     public SendPhoneModel(ISendPhonePresenter presenter) {
         this.presenter = presenter;
@@ -44,7 +47,7 @@ public class SendPhoneModel implements ISendPhoneModel {
     @Override
     public void pushPhones(List<PhoneEntity> phones) {
         DatabaseReference res = database.child(emailHash).child(PHONES);
-        Observable.from(phones).doOnNext(i -> res.push().setValue(i)).subscribeOn(Schedulers.newThread()).
+        Subscription subscription = Observable.from(phones).doOnNext(i -> res.push().setValue(i)).subscribeOn(Schedulers.newThread()).
                 observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<PhoneEntity>() {
             @Override
             public void onCompleted() {
@@ -61,6 +64,7 @@ public class SendPhoneModel implements ISendPhoneModel {
 
             }
         });
+        subscriptions.add(subscription);
     }
 
     @Override
@@ -70,7 +74,12 @@ public class SendPhoneModel implements ISendPhoneModel {
 
     @Override
     public void clearPhones() {
-        Observable.just(database).map(i -> i.child(emailHash).removeValue())
+        Subscription subscription = Observable.just(database).map(i -> i.child(emailHash).removeValue()).subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread()).subscribe(i -> presenter.clearSuccess());
+        subscriptions.add(subscription);
+    }
+
+    public CompositeSubscription getSubscriptions() {
+        return subscriptions;
     }
 }

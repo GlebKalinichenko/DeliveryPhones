@@ -113,6 +113,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
         super.onPause();
         sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(false);
         phoneSubscription.unsubscribe();
+        presenter.onPause();
     }
 
     private void initAdapter(List<PhoneEntity> entities){
@@ -132,6 +133,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
         presenter.onDestroy();
         sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
         phoneSubscription.unsubscribe();
+        presenter.onDestroy();
     }
 
     @Override

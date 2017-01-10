@@ -76,7 +76,7 @@ public class SignUpFragment extends Fragment implements ISignUpView {
     @Override
     public void signUpSuccess() {
         Context context = getActivity();
-        Toast.makeText(context, "Successful", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.successful, Toast.LENGTH_LONG).show();
         progressBar.setVisibility(View.GONE);
 
         String email = emailText.getText().toString();
@@ -88,7 +88,7 @@ public class SignUpFragment extends Fragment implements ISignUpView {
     @Override
     public void signUpUnSuccess() {
         Context context = getActivity();
-        Toast.makeText(context, "Unsuccessful", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.unsuccessful, Toast.LENGTH_LONG).show();
         progressBar.setVisibility(View.GONE);
     }
 }

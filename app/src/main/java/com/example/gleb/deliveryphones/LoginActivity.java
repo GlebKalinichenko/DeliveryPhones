@@ -47,6 +47,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         clearChooseDialog();
     }
 
+    /**
+     * Clear identifier for show choosing dialog
+     * */
     private void clearChooseDialog(){
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.IS_FRAGMENT_DIALOG, MODE_PRIVATE);
         SharedPreferencesHelper helper = SharedPreferencesHelper.getInstance(sharedPreferences);

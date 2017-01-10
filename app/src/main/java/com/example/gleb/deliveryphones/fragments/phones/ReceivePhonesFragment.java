@@ -111,7 +111,7 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     @Override
     public void savePhonesFinish() {
         Context context = getActivity();
-        Toast.makeText(context, "Saved was finished", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.save_finish, Toast.LENGTH_SHORT).show();
 
         progressBarReceive.setVisibility(View.GONE);
     }
@@ -119,7 +119,7 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     @Override
     public void clearSuccess() {
         Context context = getActivity();
-        Toast.makeText(context, "Clear phones is finished", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.clean_finish, Toast.LENGTH_SHORT).show();
     }
 
     @Override

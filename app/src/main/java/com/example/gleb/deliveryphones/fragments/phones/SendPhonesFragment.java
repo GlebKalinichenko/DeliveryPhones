@@ -70,7 +70,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
 
         progressBar.setVisibility(View.GONE);
         Context context = getActivity();
-        Toast.makeText(context, "Sync is finished", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.sync_finish, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -78,7 +78,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
         Log.d(LOG_TAG, "Clear phones is finished");
 
         Context context = getActivity();
-        Toast.makeText(context, "Clear phones is finished", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.clean_finish, Toast.LENGTH_SHORT).show();
     }
 
     @Override

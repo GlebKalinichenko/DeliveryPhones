@@ -17,4 +17,9 @@
     <string name="cancel_dialog">Cancel</string>
     <string name="permission_message">Are you want allow read and write contacts permission</string>
     <string name="clear_phones">Clear phones</string>
+    <string name="sync_finish">Sync is finished</string>
+    <string name="clean_finish">Clear phones is finished</string>
+    <string name="save_finish">Saved was finished</string>
+    <string name="successful">Successful</string>
+    <string name="unsuccessful">Unsuccessful</string>
 </resources>

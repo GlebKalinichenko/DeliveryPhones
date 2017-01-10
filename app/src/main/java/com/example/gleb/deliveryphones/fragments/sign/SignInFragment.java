@@ -65,7 +65,7 @@ public class SignInFragment extends Fragment implements ISignInView {
     @Override
     public void signInSuccess() {
         Context context = getActivity();
-        Toast.makeText(context, "Successful", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.successful, Toast.LENGTH_LONG).show();
 
         String email = emailText.getText().toString();
         email = SHA1Helper.hashSHA1(email);
@@ -76,6 +76,6 @@ public class SignInFragment extends Fragment implements ISignInView {
     @Override
     public void signInUnsuccess() {
         Context context = getActivity();
-        Toast.makeText(context, "Unsuccessful", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.unsuccessful, Toast.LENGTH_LONG).show();
     }
 }

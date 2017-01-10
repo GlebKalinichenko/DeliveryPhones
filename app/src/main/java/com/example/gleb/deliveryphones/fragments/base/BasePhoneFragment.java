@@ -3,7 +3,11 @@ package com.example.gleb.deliveryphones.fragments.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -18,6 +22,8 @@ public abstract class BasePhoneFragment extends Fragment implements IBasePhoneVi
         View view = inflater.inflate(R.layout.fragment_phones, container, false);
         initWidgets(view);
 
+        setRetainInstance(true);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -27,4 +33,10 @@ public abstract class BasePhoneFragment extends Fragment implements IBasePhoneVi
     }
 
     protected abstract void setButtonDrawable();
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+    }
 }

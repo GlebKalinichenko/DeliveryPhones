@@ -6,12 +6,12 @@ public class ApiHelper {
     private final String LOG_TAG = this.getClass().getCanonicalName();
 
     /**
-    * Check is api version is 17.
-    * @return        Is api version equals 17
+    * Check is api version is 19.
+    * @return        Is api version equals 19
     * */
-    public static boolean checkApiVersionJellyBean(){
+    public static boolean checkApiVersionYoungerLollipop(){
         int currentApiVersion = Build.VERSION.SDK_INT;
-        if (currentApiVersion == Build.VERSION_CODES.JELLY_BEAN_MR1)
+        if (currentApiVersion <= Build.VERSION_CODES.LOLLIPOP)
             return true;
         else
             return false;

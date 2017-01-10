@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.gleb.deliveryphones.R;
 import com.example.gleb.deliveryphones.events.SignUpEvent;
+import com.example.gleb.deliveryphones.helpers.SHA1Helper;
 import com.example.gleb.deliveryphones.mvp.implementations.signup.SignUpPresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.signup.ISignUpView;
 import com.example.gleb.deliveryphones.mvp.interfaces.signup.ISignUpPresenter;
@@ -57,7 +58,7 @@ public class SignUpFragment extends Fragment implements ISignUpView {
         passwordText = (EditText) view.findViewById(R.id.sign_up_password_text);
         confirmPasswordText = (EditText) view.findViewById(R.id.sign_up_confirm_password_text);
         signUpButton = (Button) view.findViewById(R.id.sign_up_button);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBarReceive);
 
         signUpButton.setOnClickListener(i -> {String email = emailText.getText().toString();
             String password = passwordText.getText().toString();
@@ -67,18 +68,27 @@ public class SignUpFragment extends Fragment implements ISignUpView {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        firebaseAuth = null;
+    }
+
+    @Override
     public void signUpSuccess() {
         Context context = getActivity();
-        Toast.makeText(context, "Successful", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.successful, Toast.LENGTH_LONG).show();
         progressBar.setVisibility(View.GONE);
 
-        EventBus.getDefault().post(new SignUpEvent());
+        String email = emailText.getText().toString();
+        email = SHA1Helper.hashSHA1(email);
+
+        EventBus.getDefault().post(new SignUpEvent(email));
     }
 
     @Override
     public void signUpUnSuccess() {
         Context context = getActivity();
-        Toast.makeText(context, "Unsuccessful", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.unsuccessful, Toast.LENGTH_LONG).show();
         progressBar.setVisibility(View.GONE);
     }
 }

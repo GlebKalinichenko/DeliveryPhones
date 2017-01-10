@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.gleb.deliveryphones.R;
 import com.example.gleb.deliveryphones.events.SignUpEvent;
+import com.example.gleb.deliveryphones.helpers.SHA1Helper;
 import com.example.gleb.deliveryphones.mvp.interfaces.signin.ISignInPresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.signin.ISignInView;
 import com.example.gleb.deliveryphones.mvp.implementations.signin.SignInPresenter;
@@ -44,6 +45,12 @@ public class SignInFragment extends Fragment implements ISignInView {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        firebaseAuth = null;
+    }
+
+    @Override
     public void initWidgets(View view) {
         emailText = (EditText) view.findViewById(R.id.sign_in_email);
         passwordText = (EditText) view.findViewById(R.id.sign_in_password);
@@ -58,14 +65,17 @@ public class SignInFragment extends Fragment implements ISignInView {
     @Override
     public void signInSuccess() {
         Context context = getActivity();
-        Toast.makeText(context, "Successful", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.successful, Toast.LENGTH_LONG).show();
 
-        EventBus.getDefault().post(new SignUpEvent());
+        String email = emailText.getText().toString();
+        email = SHA1Helper.hashSHA1(email);
+
+        EventBus.getDefault().post(new SignUpEvent(email));
     }
 
     @Override
     public void signInUnsuccess() {
         Context context = getActivity();
-        Toast.makeText(context, "Unsuccessful", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.unsuccessful, Toast.LENGTH_LONG).show();
     }
 }

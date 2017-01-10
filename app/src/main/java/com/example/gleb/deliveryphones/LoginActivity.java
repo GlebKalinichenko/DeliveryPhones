@@ -1,6 +1,7 @@
 package com.example.gleb.deliveryphones;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,7 +18,9 @@ import com.example.gleb.deliveryphones.fragments.sign.SignInFragment;
 import com.example.gleb.deliveryphones.fragments.sign.SignUpFragment;
 import com.example.gleb.deliveryphones.helpers.ApiHelper;
 import com.example.gleb.deliveryphones.helpers.FragmentHelper;
+import com.example.gleb.deliveryphones.helpers.IdHelper;
 import com.example.gleb.deliveryphones.helpers.PermissionHelper;
+import com.example.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,8 +33,6 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private final String LOG_TAG = this.getClass().getCanonicalName();
-    private FirebaseAuth firebaseAuth;
-    private FragmentHelper fragmentHelper = FragmentHelper.getInstance(this);
     private ViewPager viewPager;
     private SignInUpFragmentPagerAdapter adapter;
 
@@ -43,6 +44,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         EventBus.getDefault().register(this);
         viewPager = (ViewPager) findViewById(R.id.container_login);
         checkPermissions();
+        clearChooseDialog();
+    }
+
+    /**
+     * Clear identifier for show choosing dialog
+     * */
+    private void clearChooseDialog(){
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.IS_FRAGMENT_DIALOG, MODE_PRIVATE);
+        SharedPreferencesHelper helper = SharedPreferencesHelper.getInstance(sharedPreferences);
+        helper.saveDisplayDialogOnChangeOrientation(true);
     }
 
     private void checkPermissions(){
@@ -71,7 +82,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onStart() {
         super.onStart();
-        //initGoogleSignIn();
     }
 
     @Override
@@ -80,27 +90,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         EventBus.getDefault().unregister(this);
     }
 
-    private void initGoogleSignIn(){
-        firebaseAuth = FirebaseAuth.getInstance();
-
-//        String email = "Glebjn@gmail.com";
-//        String password = "Gleb80507078620";
-//
-//        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if (task.isSuccessful()) {
-//                    Toast.makeText(LoginActivity.this, "Successful", Toast.LENGTH_LONG).show();
-//                }
-//                else {
-//                    Toast.makeText(LoginActivity.this, "Unsuccessful", Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
-    }
-
     @Subscribe
     public void signUpEvent(SignUpEvent event){
+        String emailHash = event.getEmailHash();
+        IdHelper idHelper = IdHelper.getInstance();
+        idHelper.setEmailHash(emailHash);
+
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
     }

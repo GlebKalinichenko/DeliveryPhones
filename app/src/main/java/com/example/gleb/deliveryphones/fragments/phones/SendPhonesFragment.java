@@ -5,13 +5,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.gleb.deliveryphones.PhoneEntity;
 import com.example.gleb.deliveryphones.adapters.PhonesAdapter;
 import com.example.gleb.deliveryphones.R;
@@ -20,14 +17,8 @@ import com.example.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
 import com.example.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import rx.Observable;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
@@ -38,7 +29,6 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     private FloatingActionButton actionButton;
     private ProgressBar progressBar;
     private SharedPreferencesHelper sharedPreferencesHelper;
-    private Subscription phoneSubscription;
 
     public static SendPhonesFragment getInstance() {
         SendPhonesFragment fragment = new SendPhonesFragment();
@@ -94,6 +84,8 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     @Override
     public void onStart() {
         super.onStart();
+
+        Log.d(LOG_TAG, "On start");
         Context context = getActivity();
         List<PhoneEntity> entities = presenter.getPhones(context);
         phoneObservable = Observable.from(entities);
@@ -102,21 +94,21 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     @Override
     public void onResume() {
         super.onResume();
-        presenter.onResume();
 
-        phoneSubscription = phoneObservable.toList().filter(i -> i.size() > 0).subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(i -> initAdapter(i));
+        Log.d(LOG_TAG, "On resume");
+        presenter.onResume(phoneObservable);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(false);
-        phoneSubscription.unsubscribe();
-        presenter.onPause();
+
+        Log.d(LOG_TAG, "On pause");
+        presenter.onPause(sharedPreferencesHelper);
     }
 
-    private void initAdapter(List<PhoneEntity> entities){
+    @Override
+    public void initAdapter(List<PhoneEntity> entities){
         Context context = getActivity();
         adapter = new PhonesAdapter(context, entities);
 
@@ -130,10 +122,9 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     @Override
     public void onDestroy() {
         super.onDestroy();
-        presenter.onDestroy();
-        sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
-        phoneSubscription.unsubscribe();
-        presenter.onDestroy();
+
+        Log.d(LOG_TAG, "On destroy");
+        presenter.onDestroy(sharedPreferencesHelper);
     }
 
     @Override

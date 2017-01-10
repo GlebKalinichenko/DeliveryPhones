@@ -8,15 +8,11 @@ import com.example.gleb.deliveryphones.helpers.ContactPhoneHelper;
 import com.example.gleb.deliveryphones.helpers.IdHelper;
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.List;
-
 import rx.Observable;
 import rx.Observer;
-import rx.Scheduler;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -46,6 +42,7 @@ public class SendPhoneModel implements ISendPhoneModel {
 
     @Override
     public void pushPhones(List<PhoneEntity> phones) {
+        Log.d(LOG_TAG, "Push phones");
         DatabaseReference res = database.child(emailHash).child(PHONES);
         Subscription subscription = Observable.from(phones).doOnNext(i -> res.push().setValue(i)).subscribeOn(Schedulers.newThread()).
                 observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<PhoneEntity>() {
@@ -74,6 +71,7 @@ public class SendPhoneModel implements ISendPhoneModel {
 
     @Override
     public void clearPhones() {
+        Log.d(LOG_TAG, "Clean phones");
         Subscription subscription = Observable.just(database).map(i -> i.child(emailHash).removeValue()).subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread()).subscribe(i -> presenter.clearSuccess());
         subscriptions.add(subscription);

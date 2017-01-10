@@ -67,21 +67,19 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
     @Override
     public void onResume() {
         super.onResume();
-        presenter.receivePhones();
+        presenter.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(false);
-        presenter.onPause();
+        presenter.onPause(sharedPreferencesHelper);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
-        presenter.onDestroy();
+        presenter.onDestroy(sharedPreferencesHelper);
     }
 
     @Override
@@ -89,12 +87,20 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
         progressBarReceive.setVisibility(View.GONE);
         Context context = getActivity();
 
-        if (entityList.size() > 0) {
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
-            phoneList.setLayoutManager(layoutManager);
-            adapter = new PhonesAdapter(context, entityList);
-            phoneList.setAdapter(adapter);
-        }
+        if (entityList.size() > 0)
+            initializeAdapter(context, entityList);
+    }
+
+    /**
+     * Initializing adapter for display contacts
+     * @param context            Context of activity
+     * @param entityList         List of phones
+     * */
+    private void initializeAdapter(Context context, List<PhoneEntity> entityList){
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
+        phoneList.setLayoutManager(layoutManager);
+        adapter = new PhonesAdapter(context, entityList);
+        phoneList.setAdapter(adapter);
     }
 
     @Override

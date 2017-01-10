@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">DeliveryPhones</string>
+    <string name="alert_conf_title">Ce que tu veux?</string>
+    <string name="alert_conf_content">Vous devez choisir, quel mode préférez-vous. Vous avez sauvegardé vos téléphones sur le cloud et synchronisé ou recevez des numéros de cloud et enregistrez vos contacts</string>
+    <string name="confirm_send_contacts">Envoyer</string>
+    <string name="receive_contacts">Recevoir</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Mot de passe</string>
+    <string name="forgot_password_text">Mot de passe oublié?</string>
+    <string name="sign_in_text">Se connecter</string>
+    <string name="account_login">Account Login</string>
+    <string name="registration_login">Connexion au compte</string>
+    <string name="confirm_password_hint">Confirmez le mot de passe</string>
+    <string name="sign_up_text">S\'inscrire</string>
+    <string name="google_dismiss_text">Non, merci</string>
+    <string name="ok_dialog">Ok</string>
+    <string name="cancel_dialog">Annuler</string>
+    <string name="permission_message">Voulez-vous autoriser la permission de lecture et d\'écriture des contacts</string>
+    <string name="clear_phones">Effacer les téléphones</string>
+    <string name="sync_finish">La synchronisation est terminée</string>
+    <string name="clean_finish">Les téléphones clairs sont terminés</string>
+    <string name="save_finish">Enregistré a été terminé</string>
+    <string name="successful">Réussi</string>
+    <string name="unsuccessful">Infructueux</string>
+</resources>

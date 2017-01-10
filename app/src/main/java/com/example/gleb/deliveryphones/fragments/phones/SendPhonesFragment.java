@@ -5,10 +5,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.gleb.deliveryphones.PhoneEntity;
 import com.example.gleb.deliveryphones.adapters.PhonesAdapter;
 import com.example.gleb.deliveryphones.R;
@@ -17,9 +17,7 @@ import com.example.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
 import com.example.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;
-
 import java.util.List;
-
 import rx.Observable;
 
 public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneView {
@@ -47,8 +45,18 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
 
         setButtonDrawable();
 
-        actionButton.setOnClickListener(i -> {List<PhoneEntity> entities = adapter.getEntities();
-            presenter.sendPhones(entities);});
+        actionButton.setOnClickListener(i -> sendPhone());
+    }
+
+    private void sendPhone(){
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                List<PhoneEntity> entities = adapter.getEntities();
+                presenter.sendPhones(entities);
+            }
+        }, 3000);
     }
 
     @Override
@@ -60,13 +68,24 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     public void responseSync() {
         Log.d(LOG_TAG, "Sync is finished");
 
+        progressBar.setVisibility(View.GONE);
         Context context = getActivity();
-        Toast.makeText(context, "Sync is finished", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.sync_finish, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void clearSuccess() {
+        Log.d(LOG_TAG, "Clear phones is finished");
+
+        Context context = getActivity();
+        Toast.makeText(context, R.string.clean_finish, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
+        Log.d(LOG_TAG, "On start");
         Context context = getActivity();
         List<PhoneEntity> entities = presenter.getPhones(context);
         phoneObservable = Observable.from(entities);
@@ -75,18 +94,21 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     @Override
     public void onResume() {
         super.onResume();
-        presenter.onResume();
 
-        phoneObservable.toList().filter(i -> i.size() > 0) .subscribe(i -> initAdapter(i));
+        Log.d(LOG_TAG, "On resume");
+        presenter.onResume(phoneObservable);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(false);
+
+        Log.d(LOG_TAG, "On pause");
+        presenter.onPause(sharedPreferencesHelper);
     }
 
-    private void initAdapter(List<PhoneEntity> entities){
+    @Override
+    public void initAdapter(List<PhoneEntity> entities){
         Context context = getActivity();
         adapter = new PhonesAdapter(context, entities);
 
@@ -100,7 +122,20 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     @Override
     public void onDestroy() {
         super.onDestroy();
-        presenter.onDestroy();
-        sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
+
+        Log.d(LOG_TAG, "On destroy");
+        presenter.onDestroy(sharedPreferencesHelper);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.clear_phones:
+                Log.d(LOG_TAG, "Clear phones button is clicked");
+                presenter.clearPhones();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

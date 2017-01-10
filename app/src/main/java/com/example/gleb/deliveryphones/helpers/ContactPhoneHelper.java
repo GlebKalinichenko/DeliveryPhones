@@ -1,24 +1,23 @@
 package com.example.gleb.deliveryphones.helpers;
 
-import android.Manifest;
 import android.accounts.AccountManager;
 import android.content.ContentProviderOperation;
-import android.content.ContentProviderResult;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.OperationApplicationException;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
-import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 
 import com.example.gleb.deliveryphones.PhoneEntity;
+import com.example.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class ContactPhoneHelper {
     private final String LOG_TAG = this.getClass().getCanonicalName();
@@ -41,6 +40,8 @@ public class ContactPhoneHelper {
      * @return        List of phones from device
      * */
     public List<PhoneEntity> rcvCursorPhone(){
+        Log.d(LOG_TAG, "Receive contact's cursor");
+
         List<PhoneEntity> entites = new ArrayList<>();
 
         ContentResolver cr = context.getContentResolver();
@@ -50,7 +51,7 @@ public class ContactPhoneHelper {
             while (cursor.moveToNext()){
                 String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
                 String contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                boolean hasPhone = (cursor.getInt(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) ? true : false ;
+                boolean hasPhone = (cursor.getInt(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) ? true : false;
 
                 if (hasPhone){
                     Cursor phoneCursor = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
@@ -78,42 +79,50 @@ public class ContactPhoneHelper {
 
     /**
     * Save phones that was received from backend database.
-    * @param entities        List of received phones
+     * @param entities        List of received phones
+     * */
+    public Observable<String> savePhones(Context activity, List<PhoneEntity> entities, IReceivePhonesPresenter presenter){
+        Log.d(LOG_TAG, "Save phones to storage");
+
+        final String[] name = {""};
+        return Observable.from(entities).doOnNext(i -> name[0] = i.getName()).flatMap(i -> Observable.from(i.getPhones()))
+                .doOnNext(i -> formatPhoneSave(name[0], i, activity));
+    }
+
+    /**
+    * Formatting phone to save to storage
+    * @param name        User name
+    * @param phone       Phone number
+    * @param activity    Context of activity
     * */
-    public void savePhones(Context activity, List<PhoneEntity> entities){
-        for (PhoneEntity entity : entities) {
-            String name = entity.getName();
-            for (String phone : entity.getPhones()) {
-                ArrayList<ContentProviderOperation> ops = new ArrayList<ContentProviderOperation>();
-                int rawContactInsertIndex = ops.size();
+    private void formatPhoneSave(String name, String phone, Context activity){
+        ArrayList<ContentProviderOperation> ops = new ArrayList<ContentProviderOperation>();
+        int rawContactInsertIndex = ops.size();
 
-                ops.add(ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
-                        .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, AccountManager.KEY_ACCOUNT_TYPE)
-                        .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, AccountManager.KEY_ACCOUNT_NAME)
-                        .build());
+        ops.add(ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
+                .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, AccountManager.KEY_ACCOUNT_TYPE)
+                .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, AccountManager.KEY_ACCOUNT_NAME)
+                .build());
 
-                ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
-                        .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, rawContactInsertIndex)
-                        .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
-                        .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, name)
-                        .build());
+        ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, rawContactInsertIndex)
+                .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+                .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, name)
+                .build());
 
-                ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
-                        .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, rawContactInsertIndex)
-                        .withValue(ContactsContract.Data.MIMETYPE,
-                                ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
-                        .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, phone)
-                        .build());
+        ops.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, rawContactInsertIndex)
+                .withValue(ContactsContract.Data.MIMETYPE,
+                        ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+                .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, phone)
+                .build());
 
-
-                try {
-                    activity.getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                } catch (OperationApplicationException e) {
-                    e.printStackTrace();
-                }
-            }
+        try {
+            activity.getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (OperationApplicationException e) {
+            e.printStackTrace();
         }
     }
 }

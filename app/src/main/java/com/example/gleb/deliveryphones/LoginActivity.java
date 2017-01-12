@@ -1,7 +1,6 @@
 package com.example.gleb.deliveryphones;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,18 +11,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.gleb.deliveryphones.adapters.SignInUpFragmentPagerAdapter;
+import com.example.gleb.deliveryphones.dependencyinjection.LoginMainActivityComponent;
 import com.example.gleb.deliveryphones.events.AllowPermissionEvent;
 import com.example.gleb.deliveryphones.events.SignUpEvent;
 import com.example.gleb.deliveryphones.fragments.sign.SignInFragment;
 import com.example.gleb.deliveryphones.fragments.sign.SignUpFragment;
 import com.example.gleb.deliveryphones.helpers.ApiHelper;
-import com.example.gleb.deliveryphones.helpers.FragmentHelper;
 import com.example.gleb.deliveryphones.helpers.IdHelper;
 import com.example.gleb.deliveryphones.helpers.PermissionHelper;
 import com.example.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.firebase.auth.FirebaseAuth;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -31,35 +29,45 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+import javax.inject.Inject;
+
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, IBaseActivity {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private ViewPager viewPager;
     private SignInUpFragmentPagerAdapter adapter;
+    @Inject
+    public PermissionHelper permissionHelper;
+    @Inject
+    public SharedPreferencesHelper sharedPreferencesHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        initInject();
         EventBus.getDefault().register(this);
         viewPager = (ViewPager) findViewById(R.id.container_login);
         checkPermissions();
         clearChooseDialog();
     }
 
+    @Override
+    public void initInject(){
+        LoginMainActivityComponent component =((BaseApplication) getApplication()).returnLoginMainActivityComponent(this);
+        component.inject(this);
+    }
+
     /**
      * Clear identifier for show choosing dialog
      * */
     private void clearChooseDialog(){
-        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.IS_FRAGMENT_DIALOG, MODE_PRIVATE);
-        SharedPreferencesHelper helper = SharedPreferencesHelper.getInstance(sharedPreferences);
-        helper.saveDisplayDialogOnChangeOrientation(true);
+        sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
     }
 
     private void checkPermissions(){
         if (ApiHelper.checkApiVersionOlderMarshmallow()){
-            PermissionHelper helper = PermissionHelper.getInstance(this);
-            helper.checkPermissions();
+            permissionHelper.checkPermissions();
         }
         else {
             initializeSign();

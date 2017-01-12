@@ -1,12 +1,11 @@
 package com.example.gleb.deliveryphones;
 
-import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.gleb.deliveryphones.dependencyinjection.MainActivityComponent;
+import com.example.gleb.deliveryphones.dependencyinjection.LoginMainActivityComponent;
 import com.example.gleb.deliveryphones.events.ReceivePhonesEvent;
 import com.example.gleb.deliveryphones.events.SendPhonesEvent;
 import com.example.gleb.deliveryphones.fragments.phones.ReceivePhonesFragment;
@@ -19,7 +18,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IBaseActivity {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     @Inject
     public FragmentHelper fragmentHelper;
@@ -38,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
             loadAlertConfiguration();
     }
 
-    private void initInject(){
-        MainActivityComponent component =((BaseApplication) getApplication()).returnMainActivityComponent(this);
+    @Override
+    public void initInject(){
+        LoginMainActivityComponent component =((BaseApplication) getApplication()).returnLoginMainActivityComponent(this);
         component.inject(this);
     }
 

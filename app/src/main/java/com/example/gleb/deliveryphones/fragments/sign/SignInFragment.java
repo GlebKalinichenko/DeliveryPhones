@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gleb.deliveryphones.R;
 import com.example.gleb.deliveryphones.events.SignUpEvent;
+import com.example.gleb.deliveryphones.events.SwitchToSignUpEvent;
 import com.example.gleb.deliveryphones.helpers.SHA1Helper;
 import com.example.gleb.deliveryphones.mvp.interfaces.signin.ISignInPresenter;
 import com.example.gleb.deliveryphones.mvp.interfaces.signin.ISignInView;
@@ -26,6 +28,7 @@ public class SignInFragment extends Fragment implements ISignInView {
     private EditText emailText;
     private EditText passwordText;
     private Button signInButton;
+    private TextView signUpText;
     private FirebaseAuth firebaseAuth;
     private ISignInPresenter presenter = new SignInPresenter(this);
 
@@ -55,11 +58,14 @@ public class SignInFragment extends Fragment implements ISignInView {
         emailText = (EditText) view.findViewById(R.id.sign_in_email);
         passwordText = (EditText) view.findViewById(R.id.sign_in_password);
         signInButton = (Button) view.findViewById(R.id.sign_in_button);
+        signUpText = (TextView) view.findViewById(R.id.sign_up_text);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
         signInButton.setOnClickListener(i -> {String email = emailText.getText().toString();
             String password = passwordText.getText().toString(); presenter.signInUser(firebaseAuth, email, password);});
+
+        signUpText.setOnClickListener(i -> EventBus.getDefault().post(new SwitchToSignUpEvent()));
     }
 
     @Override

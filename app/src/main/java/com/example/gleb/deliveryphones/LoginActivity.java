@@ -14,6 +14,7 @@ import android.util.Log;
 import com.example.gleb.deliveryphones.adapters.SignInUpFragmentPagerAdapter;
 import com.example.gleb.deliveryphones.events.AllowPermissionEvent;
 import com.example.gleb.deliveryphones.events.SignUpEvent;
+import com.example.gleb.deliveryphones.events.SwitchToSignUpEvent;
 import com.example.gleb.deliveryphones.fragments.sign.SignInFragment;
 import com.example.gleb.deliveryphones.fragments.sign.SignUpFragment;
 import com.example.gleb.deliveryphones.helpers.ApiHelper;
@@ -108,6 +109,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Subscribe
     public void allowPermissionEvent(AllowPermissionEvent event){
         initializeSign();
+    }
+
+    @Subscribe
+    public void switchSignUpFragment(SwitchToSignUpEvent event){
+        viewPager.setCurrentItem(1);
     }
 
     @Override

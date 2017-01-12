@@ -39,7 +39,7 @@
                         android:id="@+id/sign_in_email"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:drawableTint="@color/colorAccent"
+                        android:drawableTint="@android:color/black"
                         android:singleLine="true"
                         style="@style/SignInEmailEditText"/>
                 </android.support.design.widget.TextInputLayout>

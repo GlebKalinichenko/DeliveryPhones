@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.gleb.deliveryphones.dependencyinjection.MainActivityComponent;
 import com.example.gleb.deliveryphones.events.ReceivePhonesEvent;
 import com.example.gleb.deliveryphones.events.SendPhonesEvent;
 import com.example.gleb.deliveryphones.fragments.phones.ReceivePhonesFragment;
@@ -16,10 +17,14 @@ import com.example.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
     private final String LOG_TAG = this.getClass().getCanonicalName();
-    private FragmentHelper fragmentHelper = FragmentHelper.getInstance(this);
-    private SharedPreferencesHelper sharedPreferencesHelper;
+    @Inject
+    public FragmentHelper fragmentHelper;
+    @Inject
+    public SharedPreferencesHelper sharedPreferencesHelper;
     public static final String IS_FRAGMENT_DIALOG = "IsFragmentDialog";
 
     @Override
@@ -27,10 +32,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(IS_FRAGMENT_DIALOG, MODE_PRIVATE);
-        sharedPreferencesHelper = SharedPreferencesHelper.getInstance(sharedPreferences);
+        initInject();
+
         if (sharedPreferencesHelper.isDisplayChooseDialog())
             loadAlertConfiguration();
+    }
+
+    private void initInject(){
+        MainActivityComponent component =((BaseApplication) getApplication()).returnMainActivityComponent(this);
+        component.inject(this);
     }
 
     /*

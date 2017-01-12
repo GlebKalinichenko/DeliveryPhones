@@ -6,7 +6,7 @@
     <string name="receive_contacts">受信する</string>
     <string name="email_hint">Eメール</string>
     <string name="password_hint">パスワード</string>
-    <string name="forgot_password_text">パスワードをお忘れですか?</string>
+    <string name="hint_sign_up_text">サインアップ?</string>
     <string name="sign_in_text">サインイン</string>
     <string name="account_login">アカウントのログイン</string>
     <string name="registration_login">登録ログイン</string>

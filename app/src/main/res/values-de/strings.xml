@@ -6,7 +6,7 @@
     <string name="receive_contacts">Erhalten</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Passwort</string>
-    <string name="forgot_password_text">Passwort vergessen?</string>
+    <string name="hint_sign_up_text">Anmelden?</string>
     <string name="sign_in_text">Anmelden</string>
     <string name="account_login">Account Login</string>
     <string name="registration_login">Registrierung Login</string>

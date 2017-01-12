@@ -6,7 +6,7 @@
     <string name="receive_contacts">Получить</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Пароль</string>
-    <string name="forgot_password_text">Забыли пароль?</string>
+    <string name="hint_sign_up_text">Зарегистрироваться?</string>
     <string name="sign_in_text">Войти</string>
     <string name="account_login">Вход в аккаунт</string>
     <string name="registration_login">Регистрация аккаунта</string>

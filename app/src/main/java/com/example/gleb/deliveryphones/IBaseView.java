@@ -1,5 +1,5 @@
 package com.example.gleb.deliveryphones;
 
-public interface IBaseActivity {
+public interface IBaseView {
     void initInject();
 }

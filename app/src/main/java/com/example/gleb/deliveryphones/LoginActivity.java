@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.gleb.deliveryphones.adapters.SignInUpFragmentPagerAdapter;
-import com.example.gleb.deliveryphones.dependencyinjection.LoginMainActivityComponent;
+import com.example.gleb.deliveryphones.dependencyinjection.activity.component.LoginMainActivityComponent;
 import com.example.gleb.deliveryphones.events.AllowPermissionEvent;
 import com.example.gleb.deliveryphones.events.SignUpEvent;
 import com.example.gleb.deliveryphones.fragments.sign.SignInFragment;
@@ -31,7 +31,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, IBaseActivity {
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, IBaseView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private ViewPager viewPager;
     private SignInUpFragmentPagerAdapter adapter;

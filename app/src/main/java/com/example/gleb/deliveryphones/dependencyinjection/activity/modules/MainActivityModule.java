@@ -1,4 +1,4 @@
-package com.example.gleb.deliveryphones.dependencyinjection;
+package com.example.gleb.deliveryphones.dependencyinjection.activity.modules;
 
 import android.content.Context;
 import android.content.SharedPreferences;

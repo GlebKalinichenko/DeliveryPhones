@@ -1,4 +1,4 @@
-package com.example.gleb.deliveryphones.dependencyinjection;
+package com.example.gleb.deliveryphones.dependencyinjection.activity.modules;
 
 import android.app.Activity;
 import android.content.Context;

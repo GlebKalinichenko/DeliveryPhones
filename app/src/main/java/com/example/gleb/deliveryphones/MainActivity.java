@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.gleb.deliveryphones.dependencyinjection.LoginMainActivityComponent;
+import com.example.gleb.deliveryphones.dependencyinjection.activity.component.LoginMainActivityComponent;
 import com.example.gleb.deliveryphones.events.ReceivePhonesEvent;
 import com.example.gleb.deliveryphones.events.SendPhonesEvent;
 import com.example.gleb.deliveryphones.fragments.phones.ReceivePhonesFragment;
@@ -18,7 +18,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity implements IBaseActivity {
+public class MainActivity extends AppCompatActivity implements IBaseView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     @Inject
     public FragmentHelper fragmentHelper;

@@ -1,4 +1,4 @@
-package com.develop.gleb.deliveryphones.di;
+package com.develop.gleb.deliveryphones.di.module;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

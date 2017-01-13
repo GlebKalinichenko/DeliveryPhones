@@ -1,7 +1,6 @@
 package com.develop.gleb.deliveryphones;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.develop.gleb.deliveryphones.adapters.SignInUpFragmentPagerAdapter;
-import com.develop.gleb.deliveryphones.di.LoginActivityComponent;
+import com.develop.gleb.deliveryphones.di.component.LoginActivityComponent;
 import com.develop.gleb.deliveryphones.events.AllowPermissionEvent;
 import com.develop.gleb.deliveryphones.events.SignUpEvent;
 import com.develop.gleb.deliveryphones.events.SwitchToSignUpEvent;

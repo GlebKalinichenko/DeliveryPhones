@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.develop.gleb.deliveryphones.adapters.SignInUpFragmentPagerAdapter;
+import com.develop.gleb.deliveryphones.di.LoginActivityComponent;
 import com.develop.gleb.deliveryphones.events.AllowPermissionEvent;
 import com.develop.gleb.deliveryphones.events.SignUpEvent;
 import com.develop.gleb.deliveryphones.events.SwitchToSignUpEvent;
@@ -30,10 +31,17 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+import javax.inject.Inject;
+
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,
+        IBaseView{
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private ViewPager viewPager;
     private SignInUpFragmentPagerAdapter adapter;
+    @Inject
+    public SharedPreferencesHelper sharedPreferencesHelper;
+    @Inject
+    public PermissionHelper permissionHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         EventBus.getDefault().register(this);
         viewPager = (ViewPager) findViewById(R.id.container_login);
+        initInject();
         checkPermissions();
         clearChooseDialog();
     }
@@ -50,15 +59,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
      * Clear identifier for show choosing dialog
      * */
     private void clearChooseDialog(){
-        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.IS_FRAGMENT_DIALOG, MODE_PRIVATE);
-        SharedPreferencesHelper helper = SharedPreferencesHelper.getInstance(sharedPreferences);
-        helper.saveDisplayDialogOnChangeOrientation(true);
+        sharedPreferencesHelper.saveDisplayDialogOnChangeOrientation(true);
     }
 
     private void checkPermissions(){
         if (ApiHelper.checkApiVersionOlderMarshmallow()){
-            PermissionHelper helper = PermissionHelper.getInstance(this);
-            helper.checkPermissions();
+            permissionHelper.checkPermissions();
         }
         else {
             initializeSign();
@@ -129,5 +135,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         }
 
+    }
+
+    @Override
+    public void initInject() {
+        LoginActivityComponent component =((BaseApplication) getApplication()).getLoginActivityComponent(this);
+        component.inject(this);
     }
 }

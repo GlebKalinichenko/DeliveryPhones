@@ -4,10 +4,13 @@ import android.app.Application;
 
 import com.develop.gleb.deliveryphones.di.component.DaggerLoginActivityComponent;
 import com.develop.gleb.deliveryphones.di.component.LoginActivityComponent;
+import com.develop.gleb.deliveryphones.di.component.SignUpFragmentComponent;
 import com.develop.gleb.deliveryphones.di.module.LoginActivityModule;
 import com.develop.gleb.deliveryphones.di.component.SignInFragmentComponent;
 import com.develop.gleb.deliveryphones.di.module.SignInFragmentModule;
+import com.develop.gleb.deliveryphones.di.module.SignUpFragmentModule;
 import com.develop.gleb.deliveryphones.mvp.interfaces.signin.ISignInView;
+import com.develop.gleb.deliveryphones.mvp.interfaces.signup.ISignUpView;
 
 public class BaseApplication extends Application {
 
@@ -24,6 +27,11 @@ public class BaseApplication extends Application {
 
     public SignInFragmentComponent getSignInFragmentComponent(LoginActivity activity, ISignInView view){
         SignInFragmentComponent component = getLoginActivityComponent(activity).plus(new SignInFragmentModule(view));
+        return component;
+    }
+
+    public SignUpFragmentComponent getSignUpFragmentComponent(LoginActivity activity, ISignUpView view){
+        SignUpFragmentComponent component = getLoginActivityComponent(activity).plus(new SignUpFragmentModule(view));
         return component;
     }
 

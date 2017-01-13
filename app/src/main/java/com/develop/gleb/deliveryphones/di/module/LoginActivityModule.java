@@ -3,9 +3,10 @@ package com.develop.gleb.deliveryphones.di.module;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import com.develop.gleb.deliveryphones.MainActivity;
-import com.develop.gleb.deliveryphones.di.scopes.UserScope;
 import com.develop.gleb.deliveryphones.helpers.PermissionHelper;
 import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
+import com.google.firebase.auth.FirebaseAuth;
+import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import static android.content.Context.MODE_PRIVATE;
@@ -19,7 +20,7 @@ public class LoginActivityModule {
     }
 
     @Provides
-    @UserScope
+    @Singleton
     public SharedPreferencesHelper createSharedPreferencesHelper(){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MainActivity.IS_FRAGMENT_DIALOG, MODE_PRIVATE);
         SharedPreferencesHelper helper = SharedPreferencesHelper.getInstance(sharedPreferences);
@@ -27,9 +28,16 @@ public class LoginActivityModule {
     }
 
     @Provides
-    @UserScope
+    @Singleton
     public PermissionHelper createPermissionHelper(){
         PermissionHelper permissionHelper = PermissionHelper.getInstance(context);
         return permissionHelper;
+    }
+
+    @Provides
+    @Singleton
+    public FirebaseAuth createFirebaseAuth(){
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        return firebaseAuth;
     }
 }

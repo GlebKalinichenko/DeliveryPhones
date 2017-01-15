@@ -1,6 +1,6 @@
-package com.example.gleb.deliveryphones.java;
+package com.develop.gleb.deliveryphones.java;
 
-import com.example.gleb.deliveryphones.helpers.StringHelper;
+import com.develop.gleb.deliveryphones.helpers.StringHelper;
 
 import org.junit.Assert;
 import org.junit.Test;

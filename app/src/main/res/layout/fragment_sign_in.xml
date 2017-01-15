@@ -14,11 +14,6 @@
         android:text="@string/account_login"
         style="@style/SignLoginText"/>
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login_title">
-
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -31,7 +26,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                style="@style/SignInEmailPasswordContainer">
+                style="@style/SignInEmailPasswordContainer"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -41,7 +39,7 @@
                         android:id="@+id/sign_in_email"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:drawableTint="@color/colorAccent"
+                        android:drawableTint="@android:color/black"
                         android:singleLine="true"
                         style="@style/SignInEmailEditText"/>
                 </android.support.design.widget.TextInputLayout>
@@ -60,6 +58,7 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <TextView
+                    android:id="@+id/sign_up_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -74,7 +73,6 @@
                     style="@style/SignButton"/>
             </LinearLayout>
         </RelativeLayout>
-    </ScrollView>
 
     <ImageButton
         android:id="@+id/user_profile_photo"

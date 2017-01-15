@@ -1,24 +1,20 @@
-package com.example.gleb.deliveryphones.java;
+package com.develop.gleb.deliveryphones.java;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
-import com.example.gleb.deliveryphones.BuildConfig;
-import com.example.gleb.deliveryphones.LoginActivity;
-import com.example.gleb.deliveryphones.R;
-import com.example.gleb.deliveryphones.fragments.sign.SignInFragment;
-import com.google.firebase.auth.FirebaseAuth;
+import com.develop.gleb.deliveryphones.BuildConfig;
+import com.develop.gleb.deliveryphones.LoginActivity;
+import com.develop.gleb.deliveryphones.R;
+import com.develop.gleb.deliveryphones.fragments.sign.SignInFragment;
 
 import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.support.v4.SupportFragmentTestUtil;
-
-import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)

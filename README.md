@@ -1,5 +1,10 @@
 # DeliveryPhones
-Platform for sync phone's numbers between devices
+
+# Description
+This program is intended for synchronization of contacts in case of change of the mobile device. You need to choose only necessary contacts and to confirm their sending for a google cloud. After change of the mobile device you can receive your contacts and keep them in the smartphone.
+
+# Tecnologies
+This application using Android SDK + RxJava + Dagger2 + MVP + Firebase (as a backend). 
 
 # Login
 ![alt-text-1](https://cloud.githubusercontent.com/assets/12956780/21648829/488fba0c-d297-11e6-9b56-8b151da305b1.PNG "title1")

@@ -3,7 +3,7 @@
 # Description
 This program is intended for synchronization of contacts in case of change of the mobile device. You need to choose only necessary contacts and to confirm their sending for a google cloud. After change of the mobile device you can receive your contacts and keep them in the smartphone.
 
-# Tecnologies
+# Technologies
 This application using Android SDK + RxJava + Dagger2 + MVP + Firebase (as a backend). 
 
 # Login

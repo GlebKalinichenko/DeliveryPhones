@@ -17,5 +17,5 @@ This application using Android SDK + RxJava + Dagger2 + MVP + Firebase (as a bac
 ![alt-text-4](https://cloud.githubusercontent.com/assets/12956780/21960818/ef75cf14-daee-11e6-87c2-f445ca060ac3.PNG)
 
 # Link on Google Play
-[Delivery phones](https://play.google.com/store/apps/details?id=com.develop.gleb.deliveryphones)
+[https://play.google.com/store/apps/details?id=com.develop.gleb.deliveryphones](https://play.google.com/store/apps/details?id=com.develop.gleb.deliveryphones)
 

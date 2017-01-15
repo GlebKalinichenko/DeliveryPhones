@@ -1,11 +1,13 @@
 package com.develop.gleb.deliveryphones;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.develop.gleb.deliveryphones.di.component.MainActivityComponent;
 import com.develop.gleb.deliveryphones.events.ReceivePhonesEvent;
 import com.develop.gleb.deliveryphones.events.SendPhonesEvent;
 import com.develop.gleb.deliveryphones.fragments.phones.ReceivePhonesFragment;
@@ -16,10 +18,14 @@ import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 
 import org.greenrobot.eventbus.Subscribe;
 
-public class MainActivity extends AppCompatActivity {
+import javax.inject.Inject;
+
+public class MainActivity extends AppCompatActivity implements IBaseView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
-    private FragmentHelper fragmentHelper = FragmentHelper.getInstance(this);
-    private SharedPreferencesHelper sharedPreferencesHelper;
+    @Inject
+    public FragmentHelper fragmentHelper;
+    @Inject
+    public SharedPreferencesHelper sharedPreferencesHelper;
     public static final String IS_FRAGMENT_DIALOG = "IsFragmentDialog";
 
     @Override
@@ -27,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(IS_FRAGMENT_DIALOG, MODE_PRIVATE);
-        sharedPreferencesHelper = SharedPreferencesHelper.getInstance(sharedPreferences);
+        initInject();
         if (sharedPreferencesHelper.isDisplayChooseDialog())
             loadAlertConfiguration();
     }
@@ -66,5 +71,12 @@ public class MainActivity extends AppCompatActivity {
     public void receivePhoneEvent(ReceivePhonesEvent event){
         ReceivePhonesFragment fragment = ReceivePhonesFragment.getInstance();
         fragmentHelper.loadFragment(this, R.id.container_phones, fragment);
+    }
+
+    @Override
+    public void initInject() {
+        MainActivityComponent component = ((BaseApplication) getApplication())
+                .getMainActivityComponent(this);
+        component.inject(this);
     }
 }

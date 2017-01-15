@@ -2,6 +2,7 @@ package com.develop.gleb.deliveryphones.mvp.implementations.signup;
 
 import android.support.annotation.NonNull;
 
+import com.develop.gleb.deliveryphones.callbacks.ILoginCallback;
 import com.develop.gleb.deliveryphones.mvp.interfaces.signup.ISignUpModel;
 import com.develop.gleb.deliveryphones.mvp.interfaces.signup.ISignUpPresenter;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -9,22 +10,24 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SignUpModel implements ISignUpModel {
-    private ISignUpPresenter presenter;
+import javax.inject.Inject;
 
-    public SignUpModel(ISignUpPresenter presenter) {
-        this.presenter = presenter;
+public class SignUpModel implements ISignUpModel {
+
+    @Inject
+    public SignUpModel() {
     }
 
     @Override
-    public void signUpUser(FirebaseAuth firebaseAuth, String email, String password) {
+    public void signUpUser(FirebaseAuth firebaseAuth, String email, String password, ILoginCallback
+                           callback) {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
-                    presenter.signUpSuccess();
+                    callback.onSuccess();
                 else
-                    presenter.signUpUnSuccess();
+                    callback.onUnsuccess();
             }
         });
     }

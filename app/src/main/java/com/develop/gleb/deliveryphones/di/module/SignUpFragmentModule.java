@@ -1,6 +1,7 @@
 package com.develop.gleb.deliveryphones.di.module;
 
 import com.develop.gleb.deliveryphones.di.scopes.ActivityScope;
+import com.develop.gleb.deliveryphones.di.scopes.FragmentScope;
 import com.develop.gleb.deliveryphones.mvp.implementations.signup.SignUpModel;
 import com.develop.gleb.deliveryphones.mvp.implementations.signup.SignUpPresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.signup.ISignUpModel;
@@ -19,14 +20,14 @@ public class SignUpFragmentModule {
     }
 
     @Provides
-    @ActivityScope
+    @FragmentScope
     public ISignUpPresenter createSignUpPresenter(ISignUpModel model){
         ISignUpPresenter presenter = new SignUpPresenter(view, model);
         return presenter;
     }
 
     @Provides
-    @ActivityScope
+    @FragmentScope
     public ISignUpModel createSignUpModel(){
         SignUpModel model = new SignUpModel();
         return model;

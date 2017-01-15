@@ -1,10 +1,13 @@
 package com.develop.gleb.deliveryphones;
 
+import android.app.Activity;
 import android.app.Application;
 
-import com.develop.gleb.deliveryphones.di.component.DaggerLoginActivityComponent;
+import com.develop.gleb.deliveryphones.di.component.BaseActivityComponent;
+import com.develop.gleb.deliveryphones.di.component.DaggerBaseActivityComponent;
 import com.develop.gleb.deliveryphones.di.component.LoginActivityComponent;
 import com.develop.gleb.deliveryphones.di.component.SignUpFragmentComponent;
+import com.develop.gleb.deliveryphones.di.module.BaseActivityModule;
 import com.develop.gleb.deliveryphones.di.module.LoginActivityModule;
 import com.develop.gleb.deliveryphones.di.component.SignInFragmentComponent;
 import com.develop.gleb.deliveryphones.di.module.SignInFragmentModule;
@@ -19,9 +22,13 @@ public class BaseApplication extends Application {
         super.onCreate();
     }
 
+    public BaseActivityComponent getBaseActivityComponent(Activity activity){
+        BaseActivityComponent component = initBaseComponent().baseActivityModule(new BaseActivityModule(activity)).build();
+        return component;
+    }
+
     public LoginActivityComponent getLoginActivityComponent(LoginActivity activity){
-        LoginActivityComponent component = initBaseComponent()
-                .loginActivityModule(new LoginActivityModule(activity)).build();
+        LoginActivityComponent component = getBaseActivityComponent(activity).plus(new LoginActivityModule(activity));
         return component;
     }
 
@@ -35,7 +42,7 @@ public class BaseApplication extends Application {
         return component;
     }
 
-    private DaggerLoginActivityComponent.Builder initBaseComponent(){
-        return DaggerLoginActivityComponent.builder();
+    private DaggerBaseActivityComponent.Builder initBaseComponent(){
+        return DaggerBaseActivityComponent.builder();
     }
 }

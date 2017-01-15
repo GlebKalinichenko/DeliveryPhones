@@ -4,11 +4,14 @@ import com.develop.gleb.deliveryphones.LoginActivity;
 import com.develop.gleb.deliveryphones.di.module.LoginActivityModule;
 import com.develop.gleb.deliveryphones.di.module.SignInFragmentModule;
 import com.develop.gleb.deliveryphones.di.module.SignUpFragmentModule;
+import com.develop.gleb.deliveryphones.di.scopes.ActivityScope;
+
 import javax.inject.Singleton;
 import dagger.Component;
+import dagger.Subcomponent;
 
-@Singleton
-@Component(modules = LoginActivityModule.class)
+@ActivityScope
+@Subcomponent(modules = LoginActivityModule.class)
 public interface LoginActivityComponent {
     void inject(LoginActivity activity);
     SignInFragmentComponent plus(SignInFragmentModule module);

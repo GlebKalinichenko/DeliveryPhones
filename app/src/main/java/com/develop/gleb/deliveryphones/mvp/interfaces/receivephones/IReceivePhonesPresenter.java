@@ -2,19 +2,16 @@ package com.develop.gleb.deliveryphones.mvp.interfaces.receivephones;
 
 import android.content.Context;
 
+import com.develop.gleb.deliveryphones.IReceivePhoneCallback;
 import com.develop.gleb.deliveryphones.PhoneEntity;
 import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 
 import java.util.List;
 
-public interface IReceivePhonesPresenter {
+public interface IReceivePhonesPresenter extends IReceivePhoneCallback {
     void receivePhones();
-    void receivePhonesSuccess(List<PhoneEntity> entities);
-    void receivePhonesUnsuccess();
     void savePhones(Context context, List<PhoneEntity> entities);
-    void savePhonesFinish();
     void clearPhones();
-    void clearSuccess();
     void onResume();
     void onPause(SharedPreferencesHelper helper);
     void onDestroy(SharedPreferencesHelper helper);

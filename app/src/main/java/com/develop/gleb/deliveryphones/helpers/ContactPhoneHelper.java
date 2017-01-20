@@ -79,7 +79,7 @@ public class ContactPhoneHelper {
     * Save phones that was received from backend database.
      * @param entities        List of received phones
      * */
-    public Observable<String> savePhones(Context activity, List<PhoneEntity> entities, IReceivePhonesPresenter presenter){
+    public Observable<String> savePhones(Context activity, List<PhoneEntity> entities){
         Log.d(LOG_TAG, "Save phones to storage");
 
         final String[] name = {""};

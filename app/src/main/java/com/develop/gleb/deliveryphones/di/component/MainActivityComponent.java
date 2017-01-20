@@ -2,6 +2,7 @@ package com.develop.gleb.deliveryphones.di.component;
 
 import com.develop.gleb.deliveryphones.MainActivity;
 import com.develop.gleb.deliveryphones.di.module.MainActivityModule;
+import com.develop.gleb.deliveryphones.di.module.ReceivePhoneFragmentModule;
 import com.develop.gleb.deliveryphones.di.module.SendPhoneFragmentModule;
 import com.develop.gleb.deliveryphones.di.scopes.ActivityScope;
 
@@ -12,5 +13,6 @@ import dagger.Subcomponent;
 @Subcomponent(modules = MainActivityModule.class)
 public interface MainActivityComponent {
     SendPhoneFragmentComponent plus(SendPhoneFragmentModule module);
+    ReceivePhoneFragmentComponent plus(ReceivePhoneFragmentModule module);
     void inject(MainActivity activity);
 }

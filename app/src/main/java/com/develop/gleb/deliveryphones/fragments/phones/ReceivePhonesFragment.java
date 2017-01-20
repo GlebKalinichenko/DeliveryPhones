@@ -1,5 +1,6 @@
 package com.develop.gleb.deliveryphones.fragments.phones;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,25 +11,34 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.develop.gleb.deliveryphones.BaseApplication;
 import com.develop.gleb.deliveryphones.PhoneEntity;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.adapters.PhonesAdapter;
+import com.develop.gleb.deliveryphones.di.component.ReceivePhoneFragmentComponent;
 import com.develop.gleb.deliveryphones.fragments.base.BasePhoneFragment;
 import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.develop.gleb.deliveryphones.mvp.implementations.ReceivePhonesPresenter;
+import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesModel;
 import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesView;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class ReceivePhonesFragment extends BasePhoneFragment implements IReceivePhonesView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
-    private IReceivePhonesPresenter presenter = new ReceivePhonesPresenter(this);
+    @Inject
+    public IReceivePhonesPresenter presenter;
+    @Inject
+    public IReceivePhonesModel model;
+    @Inject
+    public SharedPreferencesHelper sharedPreferencesHelper;
     private RecyclerView phoneList;
     private FloatingActionButton actionButton;
     private ProgressBar progressBarReceive;
     private PhonesAdapter adapter;
-    private SharedPreferencesHelper sharedPreferencesHelper;
 
     public static ReceivePhonesFragment getInstance() {
         ReceivePhonesFragment fragment = new ReceivePhonesFragment();
@@ -40,8 +50,6 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
         phoneList = (RecyclerView) view.findViewById(R.id.phone_list);
         actionButton = (FloatingActionButton) view.findViewById(R.id.action_button);
         progressBarReceive = (ProgressBar) view.findViewById(R.id.progressBarReceive);
-
-        sharedPreferencesHelper = SharedPreferencesHelper.getInstance(null);
 
         setButtonDrawable();
 
@@ -132,5 +140,13 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void initInject() {
+        Activity context = getActivity();
+        ReceivePhoneFragmentComponent component = ((BaseApplication) getActivity()
+                .getApplication()).getReceivePhoneFragmentComponent(context, this);
+        component.inject(this);
     }
 }

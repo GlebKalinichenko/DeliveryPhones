@@ -12,26 +12,30 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
+import com.develop.gleb.deliveryphones.BaseApplication;
+import com.develop.gleb.deliveryphones.IBaseView;
+import com.develop.gleb.deliveryphones.LoginActivity;
 import com.develop.gleb.deliveryphones.R;
+import com.develop.gleb.deliveryphones.di.component.SignUpFragmentComponent;
 import com.develop.gleb.deliveryphones.events.SignUpEvent;
 import com.develop.gleb.deliveryphones.helpers.SHA1Helper;
-import com.develop.gleb.deliveryphones.mvp.implementations.signup.SignUpPresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.signup.ISignUpView;
 import com.develop.gleb.deliveryphones.mvp.interfaces.signup.ISignUpPresenter;
 import com.google.firebase.auth.FirebaseAuth;
-
 import org.greenrobot.eventbus.EventBus;
+import javax.inject.Inject;
 
-public class SignUpFragment extends Fragment implements ISignUpView {
+public class SignUpFragment extends Fragment implements ISignUpView, IBaseView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private EditText emailText;
     private EditText passwordText;
     private EditText confirmPasswordText;
     private Button signUpButton;
     private ProgressBar progressBar;
-    private ISignUpPresenter presenter = new SignUpPresenter(this);
-    private FirebaseAuth firebaseAuth;
+    @Inject
+    public ISignUpPresenter presenter;
+    @Inject
+    public FirebaseAuth firebaseAuth;
 
     public static SignUpFragment getInstance() {
         SignUpFragment fragment = new SignUpFragment();
@@ -45,14 +49,13 @@ public class SignUpFragment extends Fragment implements ISignUpView {
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
 
         initWidgets(view);
+        initInject();
         return view;
     }
 
     @Override
     public void initWidgets(View view) {
         Log.d(LOG_TAG, "Init widgets in sign in");
-
-        firebaseAuth = FirebaseAuth.getInstance();
 
         emailText = (EditText) view.findViewById(R.id.sign_up_email_text);
         passwordText = (EditText) view.findViewById(R.id.sign_up_password_text);
@@ -90,5 +93,13 @@ public class SignUpFragment extends Fragment implements ISignUpView {
         Context context = getActivity();
         Toast.makeText(context, R.string.unsuccessful, Toast.LENGTH_LONG).show();
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void initInject() {
+        LoginActivity activity = (LoginActivity) getActivity();
+        SignUpFragmentComponent component =((BaseApplication) getActivity().getApplication())
+                .getSignUpFragmentComponent(activity, this);
+        component.inject(this);
     }
 }

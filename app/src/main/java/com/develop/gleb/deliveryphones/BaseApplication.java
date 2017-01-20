@@ -7,15 +7,18 @@ import com.develop.gleb.deliveryphones.di.component.BaseActivityComponent;
 import com.develop.gleb.deliveryphones.di.component.DaggerBaseActivityComponent;
 import com.develop.gleb.deliveryphones.di.component.LoginActivityComponent;
 import com.develop.gleb.deliveryphones.di.component.MainActivityComponent;
+import com.develop.gleb.deliveryphones.di.component.ReceivePhoneFragmentComponent;
 import com.develop.gleb.deliveryphones.di.component.SendPhoneFragmentComponent;
 import com.develop.gleb.deliveryphones.di.component.SignUpFragmentComponent;
 import com.develop.gleb.deliveryphones.di.module.BaseActivityModule;
 import com.develop.gleb.deliveryphones.di.module.LoginActivityModule;
 import com.develop.gleb.deliveryphones.di.component.SignInFragmentComponent;
 import com.develop.gleb.deliveryphones.di.module.MainActivityModule;
+import com.develop.gleb.deliveryphones.di.module.ReceivePhoneFragmentModule;
 import com.develop.gleb.deliveryphones.di.module.SendPhoneFragmentModule;
 import com.develop.gleb.deliveryphones.di.module.SignInFragmentModule;
 import com.develop.gleb.deliveryphones.di.module.SignUpFragmentModule;
+import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesView;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
 import com.develop.gleb.deliveryphones.mvp.interfaces.signin.ISignInView;
 import com.develop.gleb.deliveryphones.mvp.interfaces.signup.ISignUpView;
@@ -29,6 +32,11 @@ public class BaseApplication extends Application {
 
     public BaseActivityComponent getBaseActivityComponent(Activity activity){
         BaseActivityComponent component = initBaseComponent().baseActivityModule(new BaseActivityModule(activity)).build();
+        return component;
+    }
+
+    public ReceivePhoneFragmentComponent getReceivePhoneFragmentComponent(Activity activity, IReceivePhonesView view){
+        ReceivePhoneFragmentComponent component = getMainActivityComponent(activity).plus(new ReceivePhoneFragmentModule(view));
         return component;
     }
 

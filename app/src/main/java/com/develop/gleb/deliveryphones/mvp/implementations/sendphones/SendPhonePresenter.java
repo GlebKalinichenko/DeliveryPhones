@@ -8,6 +8,12 @@ import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
 import java.util.List;
+<<<<<<< HEAD
+=======
+
+import javax.inject.Inject;
+
+>>>>>>> c4ad6015c7df6bb0b5066e9e23a1c90028930779
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -16,12 +22,23 @@ import rx.subscriptions.CompositeSubscription;
 
 public class SendPhonePresenter implements ISendPhonePresenter {
     private final String LOG_TAG = this.getClass().getCanonicalName();
+<<<<<<< HEAD
     private ISendPhoneModel model = new SendPhoneModel(this);
     private ISendPhoneView view;
     private Subscription phoneSubscription;
 
     public SendPhonePresenter(ISendPhoneView view) {
         this.view = view;
+=======
+    private ISendPhoneModel model;
+    private ISendPhoneView view;
+    private Subscription phoneSubscription;
+
+    @Inject
+    public SendPhonePresenter(ISendPhoneView view, ISendPhoneModel model) {
+        this.view = view;
+        this.model = model;
+>>>>>>> c4ad6015c7df6bb0b5066e9e23a1c90028930779
     }
 
     public List<PhoneEntity> getPhones(Context context) {
@@ -33,6 +50,7 @@ public class SendPhonePresenter implements ISendPhonePresenter {
     @Override
     public void sendPhones(List<PhoneEntity> entities) {
         Log.d(LOG_TAG, "Send phones");
+<<<<<<< HEAD
         model.pushPhones(entities);
     }
 
@@ -41,11 +59,25 @@ public class SendPhonePresenter implements ISendPhonePresenter {
         Log.d(LOG_TAG, "Sync phones");
         view.responseSync();
     }
+=======
+        model.pushPhones(entities, this);
+    }
+
+    /*@Override
+    public void finishSync() {
+        Log.d(LOG_TAG, "Sync phones");
+        view.finishSync();
+    }*/
+>>>>>>> c4ad6015c7df6bb0b5066e9e23a1c90028930779
 
     @Override
     public void clearPhones() {
         Log.d(LOG_TAG, "Clean phones");
+<<<<<<< HEAD
         model.clearPhones();
+=======
+        model.clearPhones(this);
+>>>>>>> c4ad6015c7df6bb0b5066e9e23a1c90028930779
     }
 
     @Override
@@ -81,4 +113,12 @@ public class SendPhonePresenter implements ISendPhonePresenter {
         CompositeSubscription subscriptions =((SendPhoneModel) model).getSubscriptions();
         subscriptions.unsubscribe();
     }
+<<<<<<< HEAD
+=======
+
+    @Override
+    public void saveSuccess() {
+        view.finishSync();
+    }
+>>>>>>> c4ad6015c7df6bb0b5066e9e23a1c90028930779
 }

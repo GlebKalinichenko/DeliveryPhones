@@ -8,21 +8,40 @@ import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhon
 import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesView;
 import java.util.List;
+<<<<<<< HEAD
+=======
+
+import javax.inject.Inject;
+
+>>>>>>> c4ad6015c7df6bb0b5066e9e23a1c90028930779
 import rx.subscriptions.CompositeSubscription;
 
 public class ReceivePhonesPresenter implements IReceivePhonesPresenter {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private IReceivePhonesView view;
+<<<<<<< HEAD
     private IReceivePhonesModel model = new ReceivePhonesModel(this);
 
     public ReceivePhonesPresenter(IReceivePhonesView view) {
         this.view = view;
+=======
+    private IReceivePhonesModel model;
+
+    @Inject
+    public ReceivePhonesPresenter(IReceivePhonesView view, IReceivePhonesModel model) {
+        this.view = view;
+        this.model = model;
+>>>>>>> c4ad6015c7df6bb0b5066e9e23a1c90028930779
     }
 
     @Override
     public void receivePhones() {
         Log.d(LOG_TAG, "Receive phones");
+<<<<<<< HEAD
         model.receivePhones();
+=======
+        model.receivePhones(this);
+>>>>>>> c4ad6015c7df6bb0b5066e9e23a1c90028930779
     }
 
     @Override
@@ -40,7 +59,11 @@ public class ReceivePhonesPresenter implements IReceivePhonesPresenter {
     @Override
     public void savePhones(Context context, List<PhoneEntity> entities) {
         Log.d(LOG_TAG, "Save phones");
+<<<<<<< HEAD
         model.savePhones(context, entities);
+=======
+        model.savePhones(context, entities, this);
+>>>>>>> c4ad6015c7df6bb0b5066e9e23a1c90028930779
     }
 
     @Override
@@ -52,7 +75,11 @@ public class ReceivePhonesPresenter implements IReceivePhonesPresenter {
     @Override
     public void clearPhones() {
         Log.d(LOG_TAG, "Clean phones");
+<<<<<<< HEAD
         model.clearPhones();
+=======
+        model.clearPhones(this);
+>>>>>>> c4ad6015c7df6bb0b5066e9e23a1c90028930779
     }
 
     @Override

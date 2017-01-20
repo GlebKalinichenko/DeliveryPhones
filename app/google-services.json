@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:147861917369:android:36ccb4b02a38dd3a",
         "android_client_info": {
-          "package_name": "com.develop.gleb.deliveryphones"
+          "package_name": "com.example.gleb.deliveryphones"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "147861917369-4a3ksjia9812krg2h37iuf27de28619v.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.develop.gleb.deliveryphones",
+            "package_name": "com.example.gleb.deliveryphones",
             "certificate_hash": "A012D960061A858A76835370F8B42BED46A19010"
           }
         },

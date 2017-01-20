@@ -1,5 +1,6 @@
 package com.develop.gleb.deliveryphones.fragments.phones;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+<<<<<<< HEAD:app/src/main/java/com/develop/gleb/deliveryphones/fragments/phones/SendPhonesFragment.java
 import com.develop.gleb.deliveryphones.PhoneEntity;
 import com.develop.gleb.deliveryphones.adapters.PhonesAdapter;
 import com.develop.gleb.deliveryphones.R;
@@ -18,11 +20,48 @@ import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePrese
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
 import com.develop.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;
 import java.util.List;
+=======
+
+<<<<<<< HEAD:app/src/main/java/com/example/gleb/deliveryphones/fragments/phones/SendPhonesFragment.java
+import com.example.gleb.deliveryphones.PhoneEntity;
+import com.example.gleb.deliveryphones.adapters.PhonesAdapter;
+import com.example.gleb.deliveryphones.R;
+import com.example.gleb.deliveryphones.fragments.base.BasePhoneFragment;
+import com.example.gleb.deliveryphones.helpers.SharedPreferencesHelper;
+import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
+import com.example.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
+import com.example.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;
+
+import java.util.List;
+
+=======
+import com.develop.gleb.deliveryphones.BaseApplication;
+import com.develop.gleb.deliveryphones.PhoneEntity;
+import com.develop.gleb.deliveryphones.adapters.PhonesAdapter;
+import com.develop.gleb.deliveryphones.R;
+import com.develop.gleb.deliveryphones.di.component.SendPhoneFragmentComponent;
+import com.develop.gleb.deliveryphones.fragments.base.BasePhoneFragment;
+import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
+import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;
+import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
+import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
+import com.develop.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;
+import java.util.List;
+
+import javax.inject.Inject;
+
+>>>>>>> 509e1eb... Refactor send screen by using injections:app/src/main/java/com/develop/gleb/deliveryphones/fragments/phones/SendPhonesFragment.java
+>>>>>>> c4ad6015c7df6bb0b5066e9e23a1c90028930779:app/src/main/java/com/example/gleb/deliveryphones/fragments/phones/SendPhonesFragment.java
 import rx.Observable;
 
 public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
-    private ISendPhonePresenter presenter = new SendPhonePresenter(this);
+    @Inject
+    public ISendPhonePresenter presenter;
+    @Inject
+    public ISendPhoneModel model;
+    @Inject
+    public SharedPreferencesHelper sharedPreferencesHelper;
     private RecyclerView phoneList;
     private Observable<PhoneEntity> phoneObservable;
     private PhonesAdapter adapter;
@@ -40,9 +79,18 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     public void initWidgets(View view) {
         phoneList = (RecyclerView) view.findViewById(R.id.phone_list);
         actionButton = (FloatingActionButton) view.findViewById(R.id.action_button);
+<<<<<<< HEAD
         progressBar = (ProgressBar) view.findViewById(R.id.progressBarReceive);
         sharedPreferencesHelper = SharedPreferencesHelper.getInstance(null);
 
+=======
+<<<<<<< HEAD:app/src/main/java/com/example/gleb/deliveryphones/fragments/phones/SendPhonesFragment.java
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+=======
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBarReceive);
+
+>>>>>>> 509e1eb... Refactor send screen by using injections:app/src/main/java/com/develop/gleb/deliveryphones/fragments/phones/SendPhonesFragment.java
+>>>>>>> 41472d7abb6b32b33e291841c49b24a1b48e9637
         setButtonDrawable();
 
         actionButton.setOnClickListener(i -> sendPhone());
@@ -65,7 +113,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     }
 
     @Override
-    public void responseSync() {
+    public void finishSync() {
         Log.d(LOG_TAG, "Sync is finished");
 
         progressBar.setVisibility(View.GONE);
@@ -137,5 +185,13 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void initInject() {
+        Activity context = getActivity();
+        SendPhoneFragmentComponent component = ((BaseApplication) getActivity().getApplication())
+                .getSendPhoneFragmentComponent(context, this);
+        component.inject(this);
     }
 }

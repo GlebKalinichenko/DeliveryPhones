@@ -133,4 +133,9 @@ public class ReceivePhonesFragment extends BasePhoneFragment implements IReceive
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void initInject() {
+
+    }
 }

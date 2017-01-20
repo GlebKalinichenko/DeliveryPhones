@@ -1,5 +1,6 @@
 package com.develop.gleb.deliveryphones.fragments.phones;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,26 +10,37 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.develop.gleb.deliveryphones.BaseApplication;
 import com.develop.gleb.deliveryphones.PhoneEntity;
 import com.develop.gleb.deliveryphones.adapters.PhonesAdapter;
 import com.develop.gleb.deliveryphones.R;
+import com.develop.gleb.deliveryphones.di.component.SendPhoneFragmentComponent;
 import com.develop.gleb.deliveryphones.fragments.base.BasePhoneFragment;
 import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
+import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
 import com.develop.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;
 import java.util.List;
+
+import javax.inject.Inject;
+
 import rx.Observable;
 
 public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
-    private ISendPhonePresenter presenter = new SendPhonePresenter(this);
+    @Inject
+    public ISendPhonePresenter presenter;
+    @Inject
+    public ISendPhoneModel model;
+    @Inject
+    public SharedPreferencesHelper sharedPreferencesHelper;
     private RecyclerView phoneList;
     private Observable<PhoneEntity> phoneObservable;
     private PhonesAdapter adapter;
     private FloatingActionButton actionButton;
     private ProgressBar progressBar;
-    private SharedPreferencesHelper sharedPreferencesHelper;
 
     public static SendPhonesFragment getInstance() {
         SendPhonesFragment fragment = new SendPhonesFragment();
@@ -41,7 +53,6 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
         phoneList = (RecyclerView) view.findViewById(R.id.phone_list);
         actionButton = (FloatingActionButton) view.findViewById(R.id.action_button);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBarReceive);
-        sharedPreferencesHelper = SharedPreferencesHelper.getInstance(null);
 
         setButtonDrawable();
 
@@ -65,7 +76,7 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     }
 
     @Override
-    public void responseSync() {
+    public void finishSync() {
         Log.d(LOG_TAG, "Sync is finished");
 
         progressBar.setVisibility(View.GONE);
@@ -137,5 +148,13 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void initInject() {
+        Activity context = getActivity();
+        SendPhoneFragmentComponent component = ((BaseApplication) getActivity().getApplication())
+                .getSendPhoneFragmentComponent(context, this);
+        component.inject(this);
     }
 }

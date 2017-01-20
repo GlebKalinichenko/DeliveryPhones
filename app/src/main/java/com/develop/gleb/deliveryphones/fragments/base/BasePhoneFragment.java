@@ -9,10 +9,11 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.develop.gleb.deliveryphones.IBaseView;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.mvp.base.IBasePhoneView;
 
-public abstract class BasePhoneFragment extends Fragment implements IBasePhoneView {
+public abstract class BasePhoneFragment extends Fragment implements IBasePhoneView, IBaseView {
 
     @Nullable
     @Override
@@ -22,6 +23,7 @@ public abstract class BasePhoneFragment extends Fragment implements IBasePhoneVi
 
         setRetainInstance(true);
         setHasOptionsMenu(true);
+        initInject();
         return view;
     }
 

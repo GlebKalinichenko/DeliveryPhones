@@ -8,6 +8,9 @@ import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
 import java.util.List;
+
+import javax.inject.Inject;
+
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -16,12 +19,14 @@ import rx.subscriptions.CompositeSubscription;
 
 public class SendPhonePresenter implements ISendPhonePresenter {
     private final String LOG_TAG = this.getClass().getCanonicalName();
-    private ISendPhoneModel model = new SendPhoneModel(this);
+    private ISendPhoneModel model;
     private ISendPhoneView view;
     private Subscription phoneSubscription;
 
-    public SendPhonePresenter(ISendPhoneView view) {
+    @Inject
+    public SendPhonePresenter(ISendPhoneView view, ISendPhoneModel model) {
         this.view = view;
+        this.model = model;
     }
 
     public List<PhoneEntity> getPhones(Context context) {
@@ -33,19 +38,19 @@ public class SendPhonePresenter implements ISendPhonePresenter {
     @Override
     public void sendPhones(List<PhoneEntity> entities) {
         Log.d(LOG_TAG, "Send phones");
-        model.pushPhones(entities);
+        model.pushPhones(entities, this);
     }
 
-    @Override
-    public void responseSync() {
+    /*@Override
+    public void finishSync() {
         Log.d(LOG_TAG, "Sync phones");
-        view.responseSync();
-    }
+        view.finishSync();
+    }*/
 
     @Override
     public void clearPhones() {
         Log.d(LOG_TAG, "Clean phones");
-        model.clearPhones();
+        model.clearPhones(this);
     }
 
     @Override
@@ -80,5 +85,10 @@ public class SendPhonePresenter implements ISendPhonePresenter {
 
         CompositeSubscription subscriptions =((SendPhoneModel) model).getSubscriptions();
         subscriptions.unsubscribe();
+    }
+
+    @Override
+    public void saveSuccess() {
+        view.finishSync();
     }
 }

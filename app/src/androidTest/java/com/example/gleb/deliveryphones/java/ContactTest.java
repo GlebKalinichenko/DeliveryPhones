@@ -1,17 +1,15 @@
-package com.example.gleb.deliveryphones.java;
+package com.develop.gleb.deliveryphones.java;
 
 
-import android.content.Context;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.RecyclerView;
-import android.test.ActivityInstrumentationTestCase2;
 
-import com.example.gleb.deliveryphones.MainActivity;
-import com.example.gleb.deliveryphones.PhoneEntity;
-import com.example.gleb.deliveryphones.R;
-import com.example.gleb.deliveryphones.helpers.ContactPhoneHelper;
+import com.develop.gleb.deliveryphones.MainActivity;
+import com.develop.gleb.deliveryphones.PhoneEntity;
+import com.develop.gleb.deliveryphones.R;
+import com.develop.gleb.deliveryphones.helpers.ContactPhoneHelper;
 
 import org.junit.Assert;
 import org.junit.Rule;

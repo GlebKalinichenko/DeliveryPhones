@@ -1,9 +1,8 @@
-package com.example.gleb.deliveryphones.java;
+package com.develop.gleb.deliveryphones.java;
 
-import com.example.gleb.deliveryphones.PhoneEntity;
+import com.develop.gleb.deliveryphones.PhoneEntity;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.util.List;
 import static org.mockito.Mockito.mock;

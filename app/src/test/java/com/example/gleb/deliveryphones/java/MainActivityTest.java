@@ -1,7 +1,7 @@
-package com.example.gleb.deliveryphones.java;
+package com.develop.gleb.deliveryphones.java;
 
-import com.example.gleb.deliveryphones.BuildConfig;
-import com.example.gleb.deliveryphones.MainActivity;
+import com.develop.gleb.deliveryphones.BuildConfig;
+import com.develop.gleb.deliveryphones.MainActivity;
 
 import org.junit.Assert;
 import org.junit.Test;

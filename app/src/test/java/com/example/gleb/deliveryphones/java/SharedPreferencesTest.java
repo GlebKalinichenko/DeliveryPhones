@@ -1,26 +1,19 @@
-package com.example.gleb.deliveryphones.java;
+package com.develop.gleb.deliveryphones.java;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.gleb.deliveryphones.BuildConfig;
-import com.example.gleb.deliveryphones.LoginActivity;
-import com.example.gleb.deliveryphones.MainActivity;
-import com.example.gleb.deliveryphones.fragments.phones.ReceivePhonesFragment;
-import com.example.gleb.deliveryphones.fragments.sign.SignInFragment;
-import com.example.gleb.deliveryphones.helpers.SharedPreferencesHelper;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.develop.gleb.deliveryphones.BuildConfig;
+import com.develop.gleb.deliveryphones.LoginActivity;
+import com.develop.gleb.deliveryphones.MainActivity;
+import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.mockito.stubbing.Answer;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import org.robolectric.shadows.support.v4.SupportFragmentTestUtil;
 
 import static org.mockito.Mockito.mock;
 

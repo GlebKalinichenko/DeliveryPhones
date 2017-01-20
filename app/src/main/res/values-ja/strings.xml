@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">DeliveryPhones</string>
+    <string name="alert_conf_title">あなたが欲しいもの?</string>
+    <string name="alert_conf_content">あなたはどのモードを好むかを選択する必要があります。 クラウドに電話を保存して同期させるか、クラウドから電話番号を受け取り、連絡先に保存します</string>
+    <string name="confirm_send_contacts">送信</string>
+    <string name="receive_contacts">受信する</string>
+    <string name="email_hint">Eメール</string>
+    <string name="password_hint">パスワード</string>
+    <string name="hint_sign_up_text">サインアップ?</string>
+    <string name="sign_in_text">サインイン</string>
+    <string name="account_login">アカウントのログイン</string>
+    <string name="registration_login">登録ログイン</string>
+    <string name="confirm_password_hint">パスワードを認証する</string>
+    <string name="sign_up_text">サインアップ</string>
+    <string name="google_dismiss_text">結構です</string>
+    <string name="ok_dialog">Ok</string>
+    <string name="cancel_dialog">キャンセル</string>
+    <string name="permission_message">読み書きの許可を許可しますか</string>
+    <string name="clear_phones">電話をクリアする</string>
+    <string name="sync_finish">同期が完了しました</string>
+    <string name="clean_finish">電話のクリアが完了しました</string>
+    <string name="save_finish">保存済み</string>
+    <string name="successful">成功した</string>
+    <string name="unsuccessful">失敗</string>
+</resources>

@@ -22,4 +22,11 @@
     <string name="save_finish">保存済み</string>
     <string name="successful">成功した</string>
     <string name="unsuccessful">失敗</string>
+    <string name="receive_phones_title">接触を受けます</string>
+    <string name="receive_phones_description_header">モバイル機器との接触の同期</string>
+    <string name="receive_phones_description">サーバーから接触を受け取って、それからモバイル機器の上で彼らの維持を行うために、接触の同期は、許します</string>
+    <string name="send_phones_title">接触を送ります</string>
+    <string name="send_phones_description_header">接触による雲の同期</string>
+    <string name="send_phones_description">雲に関して彼らを保つためにモバイル機器とその時にどれを含むべきかについて、受けることが交信すると、この活動は認めます</string>
+    <string name="open">開いてください</string>
 </resources>

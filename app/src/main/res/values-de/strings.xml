@@ -22,4 +22,11 @@
     <string name="save_finish">Gespeichert wurde beendet</string>
     <string name="successful">Erfolgreich</string>
     <string name="unsuccessful">Erfolglos</string>
+    <string name="receive_phones_title">Die Kontakte zu bekommen</string>
+    <string name="receive_phones_description_header">Die Synchronisation der Kontakte mit der mobilen Einrichtung</string>
+    <string name="receive_phones_description">Die Synchronisation der Kontakte lässt zu, die Kontakte mit dem Server zu bekommen und dann, ihre Erhaltung auf die mobile Einrichtung zu verwirklichen</string>
+    <string name="send_phones_title">Die Kontakte abzusenden</string>
+    <string name="send_phones_description_header">Die Synchronisation der Wolke mit den Kontakten</string>
+    <string name="send_phones_description">Die vorliegende Operation lässt zu, die Kontakte zu bekommen, die, auf der mobilen Einrichtung enthalten zu sein und dann sie auf die Wolke aufzusparen</string>
+    <string name="open">Öffnen</string>
 </resources>

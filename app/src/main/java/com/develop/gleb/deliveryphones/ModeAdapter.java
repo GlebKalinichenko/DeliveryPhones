@@ -4,8 +4,16 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
 import com.develop.gleb.deliveryphones.databinding.ItemModeBinding;
+import com.develop.gleb.deliveryphones.events.ReceivePhonesEvent;
+import com.develop.gleb.deliveryphones.events.SendPhonesEvent;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 public class ModeAdapter extends RecyclerView.Adapter<ModeAdapter.ModeViewHolder> {
@@ -39,6 +47,7 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeAdapter.ModeViewHolder
 
     public class ModeViewHolder extends RecyclerView.ViewHolder {
         private ItemModeBinding binding;
+        private Button openButton;
 
         public ModeViewHolder(ItemModeBinding binding) {
             super(binding.getRoot());
@@ -48,6 +57,21 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeAdapter.ModeViewHolder
         public void bindEntity(int position){
             ModeEntity entity = entities.get(position);
             binding.setModeEntity(entity);
+
+            View view = binding.getRoot();
+            openButton = (Button) view.findViewById(R.id.button_open);
+            openButton.setOnClickListener(i -> {
+                ModeIdentifier id = entity.getId();
+                switch (id){
+                    case RECEIVE_PHONES:
+                        EventBus.getDefault().post(new ReceivePhonesEvent());
+                        break;
+
+                    case SEND_PHONES:
+                        EventBus.getDefault().post(new SendPhonesEvent());
+                        break;
+                }
+            });
         }
     }
 }

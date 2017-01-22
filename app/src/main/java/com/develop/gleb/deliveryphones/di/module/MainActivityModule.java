@@ -43,14 +43,16 @@ public class MainActivityModule {
         descriptionHeader = StringHelper.getString(context, R.string.receive_phones_description_header);
         description = StringHelper.getString(context, R.string.receive_phones_description);
 
-        ModeEntity entity = new ModeEntity(title, descriptionHeader, description, ModeIdentifier.RECEIVE_PHONES);
+        ModeEntity entity = new ModeEntity(title, descriptionHeader, description, ModeIdentifier.RECEIVE_PHONES,
+                R.drawable.receive_phone);
         entities.add(entity);
 
         title = StringHelper.getString(context, R.string.send_phones_title);
         descriptionHeader = StringHelper.getString(context, R.string.send_phones_description_header);
         description = StringHelper.getString(context, R.string.send_phones_description);
 
-        entity = new ModeEntity(title, descriptionHeader, description, ModeIdentifier.SEND_PHONES);
+        entity = new ModeEntity(title, descriptionHeader, description, ModeIdentifier.SEND_PHONES,
+                R.drawable.send_phones);
         entities.add(entity);
 
         return entities;

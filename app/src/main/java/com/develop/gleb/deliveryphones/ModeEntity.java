@@ -5,12 +5,22 @@ public class ModeEntity {
     private String descriptionHeader;
     private String description;
     private ModeIdentifier id;
+    private int resId;
 
-    public ModeEntity(String title, String descriptionHeader, String description, ModeIdentifier id) {
+    public ModeEntity(String title, String descriptionHeader, String description, ModeIdentifier id, int resId) {
         this.title = title;
         this.descriptionHeader = descriptionHeader;
         this.description = description;
         this.id = id;
+        this.resId = resId;
+    }
+
+    public int getResId() {
+        return resId;
+    }
+
+    public void setResId(int resId) {
+        this.resId = resId;
     }
 
     public ModeIdentifier getId() {

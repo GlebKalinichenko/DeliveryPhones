@@ -27,7 +27,8 @@
                 <ImageView
                     android:id="@+id/thumbnail"
                     android:layout_width="match_parent"
-                    style="@style/Thumbnails" />
+                    style="@style/Thumbnails"
+                    app:imageUrl="@{modeEntity.resId}"/>
 
                 <TextView
                     android:id="@+id/mode_title"

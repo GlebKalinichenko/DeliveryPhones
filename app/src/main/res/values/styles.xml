@@ -222,7 +222,7 @@
     <style name="Thumbnails" parent="MainActivity">
         <item name="android:layout_height">@dimen/card_view_thumbnail_height</item>
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:src">@drawable/test_image</item>
+        <item name="android:src">@drawable/receive_phone</item>
         <item name="android:clickable">true</item>
         <item name="android:scaleType">fitXY</item>
     </style>

@@ -1,16 +1,19 @@
 package com.develop.gleb.deliveryphones;
 
 import android.content.Context;
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.develop.gleb.deliveryphones.databinding.ItemModeBinding;
 import com.develop.gleb.deliveryphones.events.ReceivePhonesEvent;
 import com.develop.gleb.deliveryphones.events.SendPhonesEvent;
+import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -19,7 +22,7 @@ import java.util.List;
 public class ModeAdapter extends RecyclerView.Adapter<ModeAdapter.ModeViewHolder> {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private List<ModeEntity> entities;
-    private Context context;
+    private static Context context;
 
     public ModeAdapter(List<ModeEntity> entities, Context context) {
         this.entities = entities;
@@ -73,5 +76,10 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeAdapter.ModeViewHolder
                 }
             });
         }
+    }
+
+    @BindingAdapter("imageUrl")
+    public static void setImageUrl(ImageView imageView, int resId){
+        Picasso.with(context).load(resId).into(imageView);
     }
 }

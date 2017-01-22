@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 
 import com.develop.gleb.deliveryphones.IBaseView;
 import com.develop.gleb.deliveryphones.R;
-import com.develop.gleb.deliveryphones.mvp.base.IBasePhoneView;
+import com.develop.gleb.deliveryphones.mvp.base.IBaseLogicView;
 
-public abstract class BasePhoneFragment extends Fragment implements IBasePhoneView, IBaseView {
+public abstract class BasePhoneFragment extends Fragment implements IBaseLogicView, IBaseView {
 
     @Nullable
     @Override

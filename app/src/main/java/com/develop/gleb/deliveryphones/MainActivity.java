@@ -1,17 +1,14 @@
 package com.develop.gleb.deliveryphones;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.develop.gleb.deliveryphones.di.component.MainActivityComponent;
 import com.develop.gleb.deliveryphones.events.ReceivePhonesEvent;
 import com.develop.gleb.deliveryphones.events.SendPhonesEvent;
+import com.develop.gleb.deliveryphones.fragments.ModeFragment;
 import com.develop.gleb.deliveryphones.fragments.phones.ReceivePhonesFragment;
 import com.develop.gleb.deliveryphones.fragments.phones.SendPhonesFragment;
 import com.develop.gleb.deliveryphones.helpers.AlertHelper;
@@ -33,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements IBaseView {
     @Inject
     public List<ModeEntity> entities;
     public static final String IS_FRAGMENT_DIALOG = "IsFragmentDialog";
-    private RecyclerView modeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,28 +37,15 @@ public class MainActivity extends AppCompatActivity implements IBaseView {
         setContentView(R.layout.activity_main);
 
         initInject();
-        modeList = (RecyclerView) findViewById(R.id.mode_list);
-        initAdapter();
-/*        if (sharedPreferencesHelper.isDisplayChooseDialog())
-            loadAlertConfiguration();*/
+        loadModeFragment();
     }
 
-    private void initAdapter() {
-        ModeAdapter adapter = new ModeAdapter(entities, this);
-        modeList.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        modeList.setLayoutManager(layoutManager);
-        modeList.setAdapter(adapter);
-    }
-
-    /*
-    * Display alert for choosing user way.
+    /**
+    * Load fragments with modes that user can choose.
     * */
-    private void loadAlertConfiguration(){
-        Log.d(LOG_TAG, "Alert is displayed");
-
-        AlertDialog dialog = AlertHelper.createDialog(this, R.style.AlertDialogConfiguration);
-        dialog.show();
+    private void loadModeFragment(){
+        ModeFragment fragment = ModeFragment.getInstance(entities);
+        fragmentHelper.loadFragment(this, R.id.container_modes, fragment);
     }
 
 
@@ -81,13 +64,13 @@ public class MainActivity extends AppCompatActivity implements IBaseView {
     @Subscribe
     public void sendPhonesEvent(SendPhonesEvent event){
         SendPhonesFragment fragment = SendPhonesFragment.getInstance();
-        fragmentHelper.loadFragment(this, R.id.container_phones, fragment);
+        fragmentHelper.replaceFragment(this, R.id.container_modes, fragment);
     }
 
     @Subscribe
     public void receivePhoneEvent(ReceivePhonesEvent event){
         ReceivePhonesFragment fragment = ReceivePhonesFragment.getInstance();
-        fragmentHelper.loadFragment(this, R.id.container_phones, fragment);
+        fragmentHelper.replaceFragment(this, R.id.container_modes, fragment);
     }
 
     @Override

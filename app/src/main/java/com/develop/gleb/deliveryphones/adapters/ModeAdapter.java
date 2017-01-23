@@ -1,4 +1,4 @@
-package com.develop.gleb.deliveryphones;
+package com.develop.gleb.deliveryphones.adapters;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
@@ -9,14 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-
+import com.develop.gleb.deliveryphones.entities.ModeEntity;
+import com.develop.gleb.deliveryphones.entities.ModeIdentifier;
+import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.databinding.ItemModeBinding;
 import com.develop.gleb.deliveryphones.events.ReceivePhonesEvent;
 import com.develop.gleb.deliveryphones.events.SendPhonesEvent;
+import com.develop.gleb.deliveryphones.events.SendPhotosEvent;
 import com.squareup.picasso.Picasso;
-
 import org.greenrobot.eventbus.EventBus;
-
 import java.util.List;
 
 public class ModeAdapter extends RecyclerView.Adapter<ModeAdapter.ModeViewHolder> {
@@ -72,6 +73,10 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeAdapter.ModeViewHolder
 
                     case SEND_PHONES:
                         EventBus.getDefault().post(new SendPhonesEvent());
+                        break;
+
+                    case SEND_PHOTO:
+                        EventBus.getDefault().post(new SendPhotosEvent());
                         break;
                 }
             });

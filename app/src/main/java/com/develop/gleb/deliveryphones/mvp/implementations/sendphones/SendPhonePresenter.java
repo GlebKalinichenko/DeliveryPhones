@@ -2,7 +2,7 @@ package com.develop.gleb.deliveryphones.mvp.implementations.sendphones;
 
 import android.content.Context;
 import android.util.Log;
-import com.develop.gleb.deliveryphones.PhoneEntity;
+import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;

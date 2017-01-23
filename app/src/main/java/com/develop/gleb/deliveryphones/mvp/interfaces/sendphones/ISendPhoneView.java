@@ -1,7 +1,6 @@
 package com.develop.gleb.deliveryphones.mvp.interfaces.sendphones;
 
-import com.develop.gleb.deliveryphones.IBaseView;
-import com.develop.gleb.deliveryphones.PhoneEntity;
+import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 
 import java.util.List;
 

@@ -29,4 +29,10 @@
     <string name="send_phones_description_header">La synchronisation du nuage avec les contacts</string>
     <string name="send_phones_description">L\'opération donnée permet de recevoir les contacts, que se trouver sur l\'installation mobile et puis les garder sur le nuage</string>
     <string name="open">S\'ouvrir</string>
+    <string name="receive_photos_title">Recevoir les photos</string>
+    <string name="receive_photos_description_header">La synchronisation des contacts avec l\'installation mobile</string>
+    <string name="receive_photos_description">La synchronisation des fichiers des représentations permet de recevoir les photos du serveur et puis comprendre garder sur l\'installation mobile</string>
+    <string name="send_photos_title">Expédier la photo</string>
+    <string name="send_photos_description_header">La synchronisation du nuage avec les photos</string>
+    <string name="send_photos_description">Cette opération permet de recevoir les photos pour contenir sur l\'installation mobile et puis les expédier sur le nuage</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.develop.gleb.deliveryphones;
+package com.develop.gleb.deliveryphones.entities;
 
 public class ModeEntity {
     private String title;

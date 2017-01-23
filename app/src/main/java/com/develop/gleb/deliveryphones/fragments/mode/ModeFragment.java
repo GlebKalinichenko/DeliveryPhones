@@ -1,4 +1,4 @@
-package com.develop.gleb.deliveryphones.fragments;
+package com.develop.gleb.deliveryphones.fragments.mode;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,13 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.develop.gleb.deliveryphones.IBaseView;
-import com.develop.gleb.deliveryphones.ModeAdapter;
-import com.develop.gleb.deliveryphones.ModeEntity;
+import com.develop.gleb.deliveryphones.adapters.ModeAdapter;
+import com.develop.gleb.deliveryphones.entities.ModeEntity;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.mvp.base.IBaseLogicView;
 import java.util.List;
-import javax.inject.*;
 
 public class ModeFragment extends Fragment implements IBaseLogicView {
     private final String LOG_TAG = this.getClass().getCanonicalName();

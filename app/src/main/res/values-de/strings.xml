@@ -29,4 +29,10 @@
     <string name="send_phones_description_header">Die Synchronisation der Wolke mit den Kontakten</string>
     <string name="send_phones_description">Die vorliegende Operation lässt zu, die Kontakte zu bekommen, die, auf der mobilen Einrichtung enthalten zu sein und dann sie auf die Wolke aufzusparen</string>
     <string name="open">Öffnen</string>
+    <string name="receive_photos_title">Die Fotografien zu bekommen</string>
+    <string name="receive_photos_description_header">Die Synchronisation der Kontakte mit der mobilen Einrichtung</string>
+    <string name="receive_photos_description">Die Synchronisation der Dateien der Darstellungen lässt zu, die Fotografien vom Server zu bekommen und dann, zu verstehen, auf der mobilen Einrichtung aufzusparen</string>
+    <string name="send_photos_title">Die Fotografie abzusenden</string>
+    <string name="send_photos_description_header">Die Synchronisation der Wolke mit den Fotografien</string>
+    <string name="send_photos_description">Diese Operation lässt zu, die Fotografien zu bekommen, dass auf der mobilen Einrichtung zu enthalten und dann, sie auf der Wolke abzusenden</string>
 </resources>

@@ -2,7 +2,7 @@ package com.develop.gleb.deliveryphones.helpers;
 
 import android.util.Log;
 
-import com.develop.gleb.deliveryphones.PhoneEntity;
+import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;

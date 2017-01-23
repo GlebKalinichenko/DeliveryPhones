@@ -3,7 +3,7 @@
     <data>
         <variable
             name="phoneEntity"
-            type="com.develop.gleb.deliveryphones.PhoneEntity" />
+            type="com.develop.gleb.deliveryphones.entities.PhoneEntity" />
     </data>
 
     <RelativeLayout

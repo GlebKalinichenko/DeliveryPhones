@@ -7,10 +7,9 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.develop.gleb.deliveryphones.PhoneEntity;
+import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.databinding.ItemPhoneBinding;
-
 import java.util.List;
 
 public class PhonesAdapter extends RecyclerView.Adapter<PhonesAdapter.PhonesViewHolder> {

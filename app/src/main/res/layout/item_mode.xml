@@ -3,7 +3,7 @@
     <data>
         <variable
             name="modeEntity"
-            type="com.develop.gleb.deliveryphones.ModeEntity" />
+            type="com.develop.gleb.deliveryphones.entities.ModeEntity" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

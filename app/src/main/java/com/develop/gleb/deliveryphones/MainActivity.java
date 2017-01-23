@@ -1,17 +1,17 @@
 package com.develop.gleb.deliveryphones;
 
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.develop.gleb.deliveryphones.di.component.MainActivityComponent;
+import com.develop.gleb.deliveryphones.entities.ModeEntity;
 import com.develop.gleb.deliveryphones.events.ReceivePhonesEvent;
 import com.develop.gleb.deliveryphones.events.SendPhonesEvent;
-import com.develop.gleb.deliveryphones.fragments.ModeFragment;
+import com.develop.gleb.deliveryphones.events.SendPhotosEvent;
+import com.develop.gleb.deliveryphones.fragments.mode.ModeFragment;
 import com.develop.gleb.deliveryphones.fragments.phones.ReceivePhonesFragment;
 import com.develop.gleb.deliveryphones.fragments.phones.SendPhonesFragment;
-import com.develop.gleb.deliveryphones.helpers.AlertHelper;
+import com.develop.gleb.deliveryphones.fragments.photo.SendPhotoFragment;
 import com.develop.gleb.deliveryphones.helpers.FragmentHelper;
 import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 
@@ -70,6 +70,12 @@ public class MainActivity extends AppCompatActivity implements IBaseView {
     @Subscribe
     public void receivePhoneEvent(ReceivePhonesEvent event){
         ReceivePhonesFragment fragment = ReceivePhonesFragment.getInstance();
+        fragmentHelper.replaceFragment(this, R.id.container_modes, fragment);
+    }
+
+    @Subscribe
+    public void sendPhotosEvent(SendPhotosEvent event){
+        SendPhotoFragment fragment = SendPhotoFragment.getInstance();
         fragmentHelper.replaceFragment(this, R.id.container_modes, fragment);
     }
 

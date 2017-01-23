@@ -12,23 +12,23 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.develop.gleb.deliveryphones.BaseApplication;
-import com.develop.gleb.deliveryphones.PhoneEntity;
+import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 import com.develop.gleb.deliveryphones.adapters.PhonesAdapter;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.di.component.SendPhoneFragmentComponent;
-import com.develop.gleb.deliveryphones.fragments.base.BasePhoneFragment;
+import com.develop.gleb.deliveryphones.fragments.base.BaseFragment;
 import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
-import com.develop.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
 import rx.Observable;
 
-public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneView {
+public class SendPhonesFragment extends BaseFragment implements ISendPhoneView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     @Inject
     public ISendPhonePresenter presenter;

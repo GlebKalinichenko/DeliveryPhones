@@ -1,19 +1,26 @@
 package com.develop.gleb.deliveryphones.fragments.photo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.develop.gleb.deliveryphones.BaseApplication;
 import com.develop.gleb.deliveryphones.R;
+import com.develop.gleb.deliveryphones.adapters.PhotoAdapter;
 import com.develop.gleb.deliveryphones.di.component.SendPhotosFragmentComponent;
+import com.develop.gleb.deliveryphones.entities.PhotoEntity;
 import com.develop.gleb.deliveryphones.fragments.base.BaseFragment;
 import com.develop.gleb.deliveryphones.mvp.base.IBaseLogicView;
 import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoPresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoView;
+
+import java.util.List;
+
 import javax.inject.*;
 
 public class SendPhotoFragment extends BaseFragment implements IBaseLogicView, ISendPhotoView {
@@ -55,8 +62,13 @@ public class SendPhotoFragment extends BaseFragment implements IBaseLogicView, I
     }
 
     @Override
-    public void initAdapter() {
-
+    public void initAdapter(List<PhotoEntity> photos) {
+        Context context = getActivity();
+        PhotoAdapter adapter = new PhotoAdapter(photos, context);
+        StaggeredGridLayoutManager staggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        sendPhotoList.setLayoutManager(staggeredLayoutManager);
+        sendPhotoList.setHasFixedSize(true);
+        sendPhotoList.setAdapter(adapter);
     }
 
     @Override

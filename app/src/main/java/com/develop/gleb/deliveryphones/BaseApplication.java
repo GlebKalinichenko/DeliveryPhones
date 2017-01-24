@@ -41,7 +41,7 @@ public class BaseApplication extends Application {
     public SendPhotosFragmentComponent getSendPhotosFragmentComponent(Activity activity,
                                                                       ISendPhotoView view){
         SendPhotosFragmentComponent component = getMainActivityComponent(activity)
-                .plus(new SendPhotosFragmentModule(view));
+                .plus(new SendPhotosFragmentModule(view, activity));
         return component;
     }
 

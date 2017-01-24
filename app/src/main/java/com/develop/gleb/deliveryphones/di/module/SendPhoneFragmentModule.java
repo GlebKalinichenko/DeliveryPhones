@@ -5,6 +5,7 @@ import android.content.Context;
 import com.develop.gleb.deliveryphones.di.scopes.FragmentScope;
 import com.develop.gleb.deliveryphones.helpers.ContactPhoneHelper;
 import com.develop.gleb.deliveryphones.helpers.IdHelper;
+import com.develop.gleb.deliveryphones.helpers.PhotoHelper;
 import com.develop.gleb.deliveryphones.mvp.implementations.sendphones.SendPhoneModel;
 import com.develop.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;
@@ -24,6 +25,13 @@ public class SendPhoneFragmentModule {
     public SendPhoneFragmentModule(Context context, ISendPhoneView view) {
         this.view = view;
         this.context = context;
+    }
+
+    @Provides
+    @FragmentScope
+    public PhotoHelper createPhotoHelper(){
+        PhotoHelper helper = PhotoHelper.getInstance(context);
+        return helper;
     }
 
     @Provides

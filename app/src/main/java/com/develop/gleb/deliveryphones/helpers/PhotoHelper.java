@@ -4,17 +4,22 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
+
+import com.develop.gleb.deliveryphones.entities.PhoneEntity;
+import com.develop.gleb.deliveryphones.entities.PhotoEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rx.Observable;
 
 public class PhotoHelper {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private Context context;
-    private PhotoHelper instance = null;
+    private static PhotoHelper instance = null;
 
-    public PhotoHelper getInstance(Context context) {
+    public static PhotoHelper getInstance(Context context) {
         if (instance == null)
             instance = new PhotoHelper(context);
         return instance;
@@ -24,13 +29,25 @@ public class PhotoHelper {
         this.context = context;
     }
 
-    public void rcvPhoneContacts(){
+    public Observable<List<PhotoEntity>> rcvPhoneContacts(){
+/*        Uri imageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        String[] projections = {MediaStore.Images.Media.DATA};
+        Observable.just(context.getContentResolver())
+                .map(i -> i.query(imageUri, projections, null, null, null))
+                .takeWhile(i -> !i.isLast())
+                .doOnNext(i -> Log.d(LOG_TAG, i.toString()));*/
+
+        List<PhotoEntity> entities = new ArrayList<>();
         Uri imageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         String[] projections = {MediaStore.Images.Media.DATA};
-        Observable.just(context.getContentResolver()).map(i -> i.query(imageUri, projections, null,
-                null, null)).filter(i -> i.moveToNext() && i != null)
-                .map(i -> i.getString(i.getColumnIndex(MediaStore.Images.Media.DATA)))
-                .reduce(new ArrayList<String>(), (arr, val) -> {arr.add(val); return arr;});
+        Cursor cursor = context.getContentResolver().query(imageUri, projections, null, null, null);
+        while (cursor != null && cursor.moveToNext()){
+            String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            PhotoEntity entity = new PhotoEntity(path);
+            entities.add(entity);
+        }
+
+        return Observable.just(entities);
     }
 
 }

@@ -2,9 +2,13 @@ package com.develop.gleb.deliveryphones.mvp.implementations.sendphotos;
 
 import android.util.Log;
 import com.develop.gleb.deliveryphones.callbacks.ISendPhotoCallback;
+import com.develop.gleb.deliveryphones.entities.PhotoEntity;
 import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoModel;
 import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoPresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoView;
+
+import java.util.List;
+
 import javax.inject.*;
 
 public class SendPhotosPresenter implements ISendPhotoPresenter, ISendPhotoCallback {
@@ -36,13 +40,13 @@ public class SendPhotosPresenter implements ISendPhotoPresenter, ISendPhotoCallb
     @Override
     public void getPhonesPhotos() {
         Log.d(LOG_TAG, "Receive photos is started");
-        model.getPhonesPhotos();
+        model.getPhonesPhotos(this);
     }
 
     @Override
-    public void success() {
+    public void success(List<PhotoEntity> photos) {
         Log.d(LOG_TAG, "Receive photos is loaded successful");
-        view.initAdapter();
+        view.initAdapter(photos);
     }
 
     @Override

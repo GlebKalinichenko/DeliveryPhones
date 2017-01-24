@@ -226,4 +226,24 @@
         <item name="android:clickable">true</item>
         <item name="android:scaleType">fitXY</item>
     </style>
+
+    <style name="SendPhotoFragment"></style>
+
+    <style name="ThumbnailPhoto" parent="SendPhotoFragment">
+        <item name="android:layout_height">@dimen/send_photo_thumbnail_height</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="PlaceNameHolder" parent="SendPhotoFragment">
+        <item name="android:layout_height">@dimen/send_photo_place_name_holder</item>
+        <item name="android:layout_gravity">bottom</item>
+    </style>
+
+    <style name="PhotoName" parent="SendPhotoFragment">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingLeft">@dimen/send_photo_image</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 </resources>

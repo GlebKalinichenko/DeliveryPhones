@@ -12,18 +12,16 @@
         android:id="@+id/placeCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        card_view:cardCornerRadius="3dp"
-        card_view:cardElevation="3dp">
+        android:layout_margin="@dimen/send_photo_card_view_margin_bottom"
+        card_view:cardCornerRadius="@dimen/send_photo_card_view_radius"
+        card_view:cardElevation="@dimen/send_photo_card_view_evaluation">
 
         <ImageView
-            android:id="@+id/placeImage"
+            android:id="@+id/thumbnailsPhoto"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
+            style="@style/ThumbnailPhoto"
             app:srcImage="@{photo.path}"/>
 
-        <!-- Used for the ripple effect on touch -->
         <LinearLayout
             android:id="@+id/mainHolder"
             android:layout_width="match_parent"
@@ -34,19 +32,14 @@
         <LinearLayout
             android:id="@+id/placeNameHolder"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_gravity="bottom"
+            style="@style/PlaceNameHolder"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/photoName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="left"
-                android:paddingLeft="10dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white"
+                style="@style/PhotoName"
                 android:text="@{photo.path}"/>
 
         </LinearLayout>

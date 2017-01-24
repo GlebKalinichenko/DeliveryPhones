@@ -63,4 +63,12 @@
     <dimen name="mode_description_header_padding">10dp</dimen>
     <dimen name="mode_description_header_text_size">28sp</dimen>
     <dimen name="mode_description_padding">5dp</dimen>
+
+    <!--Send photo fragment-->
+    <dimen name="send_photo_card_view_margin_bottom">8dp</dimen>
+    <dimen name="send_photo_card_view_radius">3dp</dimen>
+    <dimen name="send_photo_card_view_evaluation">3dp</dimen>
+    <dimen name="send_photo_thumbnail_height">200dp</dimen>
+    <dimen name="send_photo_place_name_holder">55dp</dimen>
+    <dimen name="send_photo_image">10dp</dimen>
 </resources>

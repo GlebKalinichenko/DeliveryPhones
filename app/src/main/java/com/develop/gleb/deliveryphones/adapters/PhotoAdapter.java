@@ -64,4 +64,8 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
         File imgFile = new File(path);
         Picasso.with(context).load(imgFile).into(imageView);
     }
+
+    public List<PhotoEntity> getPhotos() {
+        return photos;
+    }
 }

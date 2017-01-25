@@ -38,4 +38,15 @@ public class StringHelper {
         String res = context.getString(resId);
         return res;
     }
+
+    /**
+     * Check is valid file path without brackets /.
+     * @param path        File path
+     * @return String     Refactored file path
+     * */
+    public static String validPathFile(String path){
+        int lastIndex = path.lastIndexOf("/") + 1;
+        String res = path.substring(lastIndex);
+        return res;
+    }
 }

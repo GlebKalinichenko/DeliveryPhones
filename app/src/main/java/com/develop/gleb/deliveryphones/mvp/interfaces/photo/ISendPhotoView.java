@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ISendPhotoView {
     void initAdapter(List<PhotoEntity> photos);
+    void uploadSuccess();
+    void uploadUnsuccess();
 }

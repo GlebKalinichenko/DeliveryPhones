@@ -13,6 +13,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.develop.gleb.deliveryphones.BaseApplication;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.adapters.PhotoAdapter;
@@ -71,6 +73,10 @@ public class SendPhotoFragment extends BaseFragment implements IBaseLogicView, I
     public void initWidgets(View view) {
         sendPhotoList = (RecyclerView) view.findViewById(R.id.send_photo_list);
         actionButton = (FloatingActionButton) view.findViewById(R.id.action_button);
+
+        actionButton.setOnClickListener(i -> {
+            List<PhotoEntity> entities = adapter.getPhotos();
+            presenter.uploadPhotos(entities);});
     }
 
     @Override
@@ -81,6 +87,18 @@ public class SendPhotoFragment extends BaseFragment implements IBaseLogicView, I
         sendPhotoList.setLayoutManager(staggeredLayoutManager);
         sendPhotoList.setHasFixedSize(true);
         sendPhotoList.setAdapter(adapter);
+    }
+
+    @Override
+    public void uploadSuccess() {
+        Context context = getActivity();
+        Toast.makeText(context, "Send photos is finished success", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void uploadUnsuccess() {
+        Context context = getActivity();
+        Toast.makeText(context, "Send photos is finished unsuccess", Toast.LENGTH_SHORT).show();
     }
 
     @Override

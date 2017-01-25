@@ -1,19 +1,17 @@
 package com.develop.gleb.deliveryphones.di.module;
 
 import android.app.Activity;
-
-import com.develop.gleb.deliveryphones.di.scopes.FragmentScope;
+import com.develop.gleb.deliveryphones.FirebaseApi;
 import com.develop.gleb.deliveryphones.entities.ModeEntity;
 import com.develop.gleb.deliveryphones.entities.ModeIdentifier;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.di.scopes.ActivityScope;
 import com.develop.gleb.deliveryphones.helpers.FragmentHelper;
-import com.develop.gleb.deliveryphones.helpers.IdHelper;
 import com.develop.gleb.deliveryphones.helpers.StringHelper;
-
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -30,6 +28,20 @@ public class MainActivityModule {
     public FragmentHelper createFragmentHelper(){
         FragmentHelper helper = FragmentHelper.getInstance(context);
         return helper;
+    }
+
+    @Provides
+    @ActivityScope
+    public FirebaseStorage createFirebaseStorage(){
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        return firebaseStorage;
+    }
+
+    @Provides
+    @ActivityScope
+    public StorageReference createStorageReference(FirebaseStorage firebaseStorage){
+        StorageReference storageReference = firebaseStorage.getReferenceFromUrl(FirebaseApi.STORAGE_URL);
+        return storageReference;
     }
 
     @Provides

@@ -57,44 +57,10 @@ public class SendPhotosModel implements ISendPhotoModel {
 
     @Override
     public void savePhotos(List<PhotoEntity> photos, IUploadPhotosCallback callback) {
-  /*      final boolean[] isSuccessSequence = {true};
-        emailHash = idHelper.getEmailHash();
-        for (PhotoEntity photo : photos) {
-            String filePath = StringHelper.validPathFile(photo.getPath());
-            StorageReference reference = storageReference.child(emailHash).child(PHOTOS + SLASH + filePath);
-            InputStream stream = null;
-            try {
-                stream = new FileInputStream(new File(photo.getPath()));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-
-            UploadTask uploadTask = reference.putStream(stream);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    Log.d(LOG_TAG, "File saved is failed");
-                    isSuccessSequence[0] = false;
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Log.d(LOG_TAG, "File is saved");
-                }
-            });
-        }
-
-
-        if (isSuccessSequence[0] == true)
-            callback.uploadSuccess();
-        else
-            callback.uploadUnsuccess();*/
-
         emailHash = idHelper.getEmailHash();
         Observable<PhotoEntity> photosObservable = Observable.from(photos);
         Observable<StorageReference> storageObservable = Observable.from(photos).map(i -> StringHelper.validPathFile(i.getPath()))
                 .map(i -> storageReference.child(emailHash).child(PHOTOS + SLASH + i));
-
 
         Observable.zip(photosObservable, storageObservable, (photo, storageReference) -> {
             final boolean[] isSuccess = {true};
@@ -105,21 +71,10 @@ public class SendPhotosModel implements ISendPhotoModel {
                 e.printStackTrace();
             }
             UploadTask uploadTask = storageReference.putStream(stream);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    Log.d(LOG_TAG, "File saved is failed");
-                    isSuccess[0] = false;
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Log.d(LOG_TAG, "File is saved");
-                }
-            });
+            uploadTask.addOnFailureListener(i -> {Log.d(LOG_TAG, "File saved is failed");
+                isSuccess[0] = false;}, e -> {Log.d(LOG_TAG, "File is saved");});
             return isSuccess[0];
         }).filter(i -> i == true).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(i -> callback.uploadSuccess());
-
     }
 }

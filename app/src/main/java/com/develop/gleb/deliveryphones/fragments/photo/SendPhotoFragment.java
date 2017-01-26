@@ -104,6 +104,7 @@ public class SendPhotoFragment extends BaseFragment implements IBaseLogicView, I
         sendPhotoList.setLayoutManager(staggeredLayoutManager);
         sendPhotoList.setHasFixedSize(true);
         sendPhotoList.setAdapter(adapter);
+        progressBar.setVisibility(GONE);
     }
 
     @Override

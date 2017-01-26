@@ -22,4 +22,19 @@
     <string name="save_finish">Saved was finished</string>
     <string name="successful">Successful</string>
     <string name="unsuccessful">Unsuccessful</string>
+    <string name="receive_phones_title">Receive phones</string>
+    <string name="receive_phones_description_header">Synchronization with device</string>
+    <string name="receive_phones_description">Synchronization of contacts allows to receive contacts from the server and then to realize their saving on the mobile device</string>
+    <string name="send_phones_title">Send phones</string>
+    <string name="send_phones_description_header">Synchronization of a cloud with contacts</string>
+    <string name="send_phones_description">This operation allows to receive contacts which to contain on the mobile device and then to keep them on a cloud</string>
+    <string name="open">Open</string>
+    <string name="receive_photos_title">Receive photos</string>
+    <string name="receive_photos_description_header">Synchronization photos with device</string>
+    <string name="receive_photos_description">Synchronization of image files allows to receive photos from the server and then to realize their saving on the mobile device</string>
+    <string name="send_photos_title">Send photos</string>
+    <string name="send_photos_description_header">Synchronization of a cloud with photos</string>
+    <string name="send_photos_description">This operation allows to receive photos which to contain on the mobile device and then to keep them on a cloud</string>
+    <string name="send_photos_success">Send photos is finished success</string>
+    <string name="send_photos_unsuccess">Send photos is finished unsuccess</string>
 </resources>

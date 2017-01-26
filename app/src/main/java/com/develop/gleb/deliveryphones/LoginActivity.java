@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public SharedPreferencesHelper sharedPreferencesHelper;
     @Inject
     public PermissionHelper permissionHelper;
+    @Inject
+    public IdHelper idHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,7 +99,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Subscribe
     public void signUpEvent(SignUpEvent event){
         String emailHash = event.getEmailHash();
-        IdHelper idHelper = IdHelper.getInstance();
         idHelper.setEmailHash(emailHash);
 
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);

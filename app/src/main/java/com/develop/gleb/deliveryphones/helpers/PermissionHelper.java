@@ -20,6 +20,7 @@ public class PermissionHelper {
     private static PermissionHelper instance = null;
     private final String WRITE_PERMISSION = Manifest.permission.READ_CONTACTS;
     private final String READ_PERMISSION = Manifest.permission.WRITE_CONTACTS;
+    private final String READ_EXTERNAL_STORAGE = Manifest.permission.READ_EXTERNAL_STORAGE;
     private final static int READ_REQUEST = 1;
 
     public static PermissionHelper getInstance(Activity context) {
@@ -35,7 +36,8 @@ public class PermissionHelper {
     }
 
     public void checkPermissions(){
-        if (ContextCompat.checkSelfPermission(context,READ_PERMISSION) != PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(context,READ_PERMISSION) != PackageManager.PERMISSION_GRANTED
+            || ContextCompat.checkSelfPermission(context,READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             if (ActivityCompat.shouldShowRequestPermissionRationale(context, READ_PERMISSION)){
                 Log.d(LOG_TAG, "Permission again");
                 AlertDialog dialog = AlertHelper.createDialogOnlyMessage(context, R.string.permission_message);
@@ -63,7 +65,7 @@ public class PermissionHelper {
                 }
             }
             else{
-                ActivityCompat.requestPermissions(context, new String[]{READ_PERMISSION}, READ_REQUEST);
+                ActivityCompat.requestPermissions(context, new String[]{READ_PERMISSION, READ_EXTERNAL_STORAGE}, READ_REQUEST);
             }
         }
         else{

@@ -9,6 +9,7 @@ import com.develop.gleb.deliveryphones.di.component.LoginActivityComponent;
 import com.develop.gleb.deliveryphones.di.component.MainActivityComponent;
 import com.develop.gleb.deliveryphones.di.component.ReceivePhoneFragmentComponent;
 import com.develop.gleb.deliveryphones.di.component.SendPhoneFragmentComponent;
+import com.develop.gleb.deliveryphones.di.component.SendPhotosFragmentComponent;
 import com.develop.gleb.deliveryphones.di.component.SignUpFragmentComponent;
 import com.develop.gleb.deliveryphones.di.module.BaseActivityModule;
 import com.develop.gleb.deliveryphones.di.module.LoginActivityModule;
@@ -16,8 +17,10 @@ import com.develop.gleb.deliveryphones.di.component.SignInFragmentComponent;
 import com.develop.gleb.deliveryphones.di.module.MainActivityModule;
 import com.develop.gleb.deliveryphones.di.module.ReceivePhoneFragmentModule;
 import com.develop.gleb.deliveryphones.di.module.SendPhoneFragmentModule;
+import com.develop.gleb.deliveryphones.di.module.SendPhotosFragmentModule;
 import com.develop.gleb.deliveryphones.di.module.SignInFragmentModule;
 import com.develop.gleb.deliveryphones.di.module.SignUpFragmentModule;
+import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoView;
 import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesView;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
 import com.develop.gleb.deliveryphones.mvp.interfaces.signin.ISignInView;
@@ -35,13 +38,20 @@ public class BaseApplication extends Application {
         return component;
     }
 
+    public SendPhotosFragmentComponent getSendPhotosFragmentComponent(Activity activity,
+                                                                      ISendPhotoView view){
+        SendPhotosFragmentComponent component = getMainActivityComponent(activity)
+                .plus(new SendPhotosFragmentModule(view, activity));
+        return component;
+    }
+
     public ReceivePhoneFragmentComponent getReceivePhoneFragmentComponent(Activity activity, IReceivePhonesView view){
         ReceivePhoneFragmentComponent component = getMainActivityComponent(activity).plus(new ReceivePhoneFragmentModule(view));
         return component;
     }
 
     public SendPhoneFragmentComponent getSendPhoneFragmentComponent(Activity activity, ISendPhoneView view){
-        SendPhoneFragmentComponent component = getMainActivityComponent(activity).plus(new SendPhoneFragmentModule(view));
+        SendPhoneFragmentComponent component = getMainActivityComponent(activity).plus(new SendPhoneFragmentModule(activity, view));
         return component;
     }
 

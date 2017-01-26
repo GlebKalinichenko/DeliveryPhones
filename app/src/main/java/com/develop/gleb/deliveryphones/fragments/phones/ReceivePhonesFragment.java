@@ -12,13 +12,12 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.develop.gleb.deliveryphones.BaseApplication;
-import com.develop.gleb.deliveryphones.PhoneEntity;
+import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.adapters.PhonesAdapter;
 import com.develop.gleb.deliveryphones.di.component.ReceivePhoneFragmentComponent;
-import com.develop.gleb.deliveryphones.fragments.base.BasePhoneFragment;
+import com.develop.gleb.deliveryphones.fragments.base.BaseFragment;
 import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
-import com.develop.gleb.deliveryphones.mvp.implementations.ReceivePhonesPresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesModel;
 import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesView;
@@ -27,7 +26,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class ReceivePhonesFragment extends BasePhoneFragment implements IReceivePhonesView {
+public class ReceivePhonesFragment extends BaseFragment implements IReceivePhonesView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     @Inject
     public IReceivePhonesPresenter presenter;

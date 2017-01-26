@@ -35,4 +35,6 @@
     <string name="send_photos_title">Die Fotografie abzusenden</string>
     <string name="send_photos_description_header">Die Synchronisation der Wolke mit den Fotografien</string>
     <string name="send_photos_description">Diese Operation lässt zu, die Fotografien zu bekommen, dass auf der mobilen Einrichtung zu enthalten und dann, sie auf der Wolke abzusenden</string>
+    <string name="send_photos_success">Die Abfahrt der Fotografie ist erfolgreich erledigt</string>
+    <string name="send_photos_unsuccess">Die Abfahrt der Fotografie ist mit dem Fehler erledigt</string>
 </resources>

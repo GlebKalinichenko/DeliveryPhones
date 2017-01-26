@@ -35,4 +35,6 @@
     <string name="send_photos_title">Expédier la photo</string>
     <string name="send_photos_description_header">La synchronisation du nuage avec les photos</string>
     <string name="send_photos_description">Cette opération permet de recevoir les photos pour contenir sur l\'installation mobile et puis les expédier sur le nuage</string>
+    <string name="send_photos_success">L\'expédition de la photo est avec succès finie</string>
+    <string name="send_photos_unsuccess">L\'expédition de la photo est finie avec l\'erreur</string>
 </resources>

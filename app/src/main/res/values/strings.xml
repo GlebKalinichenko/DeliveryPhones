@@ -35,4 +35,6 @@
     <string name="send_photos_title">Send photos</string>
     <string name="send_photos_description_header">Synchronization of a cloud with photos</string>
     <string name="send_photos_description">This operation allows to receive photos which to contain on the mobile device and then to keep them on a cloud</string>
+    <string name="send_photos_success">Send photos is finished success</string>
+    <string name="send_photos_unsuccess">Send photos is finished unsuccess</string>
 </resources>

@@ -3,6 +3,7 @@ package com.develop.gleb.deliveryphones.fragments.photo;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.develop.gleb.deliveryphones.BaseApplication;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.adapters.PhotoAdapter;
@@ -24,10 +25,9 @@ import com.develop.gleb.deliveryphones.fragments.base.BaseFragment;
 import com.develop.gleb.deliveryphones.mvp.base.IBaseLogicView;
 import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoPresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoView;
-
 import java.util.List;
-
 import javax.inject.*;
+import static android.view.View.GONE;
 
 public class SendPhotoFragment extends BaseFragment implements IBaseLogicView, ISendPhotoView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
@@ -37,7 +37,9 @@ public class SendPhotoFragment extends BaseFragment implements IBaseLogicView, I
     @Inject
     public ISendPhotoPresenter presenter;
     private FloatingActionButton actionButton;
+    private ProgressBar progressBar;
     private PhotoAdapter adapter;
+    private Handler handler;
     private boolean isViewList = true;
 
     public static SendPhotoFragment getInstance() {
@@ -73,10 +75,25 @@ public class SendPhotoFragment extends BaseFragment implements IBaseLogicView, I
     public void initWidgets(View view) {
         sendPhotoList = (RecyclerView) view.findViewById(R.id.send_photo_list);
         actionButton = (FloatingActionButton) view.findViewById(R.id.action_button);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        handler = new Handler();
 
         actionButton.setOnClickListener(i -> {
-            List<PhotoEntity> entities = adapter.getPhotos();
-            presenter.uploadPhotos(entities);});
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressBar.setVisibility(View.VISIBLE);
+                        }
+                    });
+                    List<PhotoEntity> photoEntities = adapter.getPhotos();
+                    presenter.uploadPhotos(photoEntities);
+                }
+            });
+            t.start();
+        });
     }
 
     @Override
@@ -92,13 +109,19 @@ public class SendPhotoFragment extends BaseFragment implements IBaseLogicView, I
     @Override
     public void uploadSuccess() {
         Context context = getActivity();
-        Toast.makeText(context, "Send photos is finished success", Toast.LENGTH_SHORT).show();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(context, R.string.send_photos_success, Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(GONE);
+            }
+        });
     }
 
     @Override
     public void uploadUnsuccess() {
         Context context = getActivity();
-        Toast.makeText(context, "Send photos is finished unsuccess", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.send_photos_unsuccess, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -111,6 +134,12 @@ public class SendPhotoFragment extends BaseFragment implements IBaseLogicView, I
     public void onResume() {
         super.onResume();
         presenter.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.onPause();
     }
 
     @Override

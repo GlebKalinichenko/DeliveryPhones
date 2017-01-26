@@ -35,5 +35,6 @@
     <string name="send_photos_title">写真を送ります</string>
     <string name="send_photos_description_header">写真による雲の同期</string>
     <string name="send_photos_description">モバイル機器の上で含む写真を受けて、それから雲に関して彼らを送るために、この活動は許します</string>
-
+    <string name="send_photos_success">写真を送ることは、うまく終えられます</string>
+    <string name="send_photos_unsuccess">写真を送ることは、間違いで仕上げられます</string>
 </resources>

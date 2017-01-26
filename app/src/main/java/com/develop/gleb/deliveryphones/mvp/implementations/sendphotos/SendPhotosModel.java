@@ -1,7 +1,5 @@
 package com.develop.gleb.deliveryphones.mvp.implementations.sendphotos;
 
-import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import com.develop.gleb.deliveryphones.callbacks.ISendPhotoCallback;
 import com.develop.gleb.deliveryphones.callbacks.IUploadPhotosCallback;
@@ -10,12 +8,8 @@ import com.develop.gleb.deliveryphones.helpers.IdHelper;
 import com.develop.gleb.deliveryphones.helpers.PhotoHelper;
 import com.develop.gleb.deliveryphones.helpers.StringHelper;
 import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoModel;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,13 +17,17 @@ import java.io.InputStream;
 import java.util.List;
 import javax.inject.*;
 import rx.Observable;
+import rx.Observer;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 
 public class SendPhotosModel implements ISendPhotoModel {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     private final String SLASH = "/";
     private final String PHOTOS = "Photos";
+    private CompositeSubscription subscriptions = new CompositeSubscription();
     @Inject
     public PhotoHelper photoHelper;
     @Inject
@@ -62,7 +60,7 @@ public class SendPhotosModel implements ISendPhotoModel {
         Observable<StorageReference> storageObservable = Observable.from(photos).map(i -> StringHelper.validPathFile(i.getPath()))
                 .map(i -> storageReference.child(emailHash).child(PHOTOS + SLASH + i));
 
-        Observable.zip(photosObservable, storageObservable, (photo, storageReference) -> {
+        Subscription subscription = Observable.zip(photosObservable, storageObservable, (photo, storageReference) -> {
             final boolean[] isSuccess = {true};
             InputStream stream = null;
             try {
@@ -75,6 +73,27 @@ public class SendPhotosModel implements ISendPhotoModel {
                 isSuccess[0] = false;}, e -> {Log.d(LOG_TAG, "File is saved");});
             return isSuccess[0];
         }).filter(i -> i == true).subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(i -> callback.uploadSuccess());
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Boolean>() {
+                    @Override
+                    public void onCompleted() {
+                        callback.uploadSuccess();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+
+                    }
+                });
+        subscriptions.add(subscription);
+    }
+
+    @Override
+    public CompositeSubscription getSubscriptions() {
+        return subscriptions;
     }
 }

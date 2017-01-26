@@ -7,10 +7,9 @@ import com.develop.gleb.deliveryphones.entities.PhotoEntity;
 import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoModel;
 import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoPresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoView;
-
 import java.util.List;
-
 import javax.inject.*;
+import rx.subscriptions.CompositeSubscription;
 
 public class SendPhotosPresenter implements ISendPhotoPresenter, ISendPhotoCallback, IUploadPhotosCallback {
     private final String LOG_TAG = this.getClass().getCanonicalName();
@@ -34,8 +33,18 @@ public class SendPhotosPresenter implements ISendPhotoPresenter, ISendPhotoCallb
     }
 
     @Override
-    public void onDestroy() {
+    public void onPause() {
+        clearSubscriptions();
+    }
 
+    @Override
+    public void onDestroy() {
+        clearSubscriptions();
+    }
+
+    private void clearSubscriptions(){
+        CompositeSubscription subscriptions = model.getSubscriptions();
+        subscriptions.clear();
     }
 
     @Override

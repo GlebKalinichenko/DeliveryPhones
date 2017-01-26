@@ -35,4 +35,6 @@
     <string name="send_photos_title">Отправить фотографии</string>
     <string name="send_photos_description_header">Синхронизация облака с фотографиями</string>
     <string name="send_photos_description">Эта операция позволяет получать фотографии, чтобы содержать на мобильном устройстве и затем отправить их на облаке</string>
+    <string name="send_photos_success">Отправка фотографий окончена успешно</string>
+    <string name="send_photos_unsuccess">Отправка фотографий окончена с ошибкой</string>
 </resources>

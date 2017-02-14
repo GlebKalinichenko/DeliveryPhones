@@ -28,6 +28,7 @@ public class SendPhoneModel implements ISendPhoneModel {
     public ContactPhoneHelper helper;
     @Inject
     public DatabaseReference database;
+
     @Inject
     public IdHelper idHelper;
     private String emailHash;

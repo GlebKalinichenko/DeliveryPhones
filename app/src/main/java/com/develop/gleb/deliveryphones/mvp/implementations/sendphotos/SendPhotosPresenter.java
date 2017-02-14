@@ -4,9 +4,9 @@ import android.util.Log;
 import com.develop.gleb.deliveryphones.callbacks.ISendPhotoCallback;
 import com.develop.gleb.deliveryphones.callbacks.IUploadPhotosCallback;
 import com.develop.gleb.deliveryphones.entities.PhotoEntity;
-import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoModel;
-import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoPresenter;
-import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoView;
+import com.develop.gleb.deliveryphones.mvp.interfaces.sendphotos.ISendPhotoModel;
+import com.develop.gleb.deliveryphones.mvp.interfaces.sendphotos.ISendPhotoPresenter;
+import com.develop.gleb.deliveryphones.mvp.interfaces.sendphotos.ISendPhotoView;
 import java.util.List;
 import javax.inject.*;
 import rx.subscriptions.CompositeSubscription;
@@ -59,6 +59,11 @@ public class SendPhotosPresenter implements ISendPhotoPresenter, ISendPhotoCallb
     }
 
     @Override
+    public void clearPhotos() {
+        model.initClearPhotos(this);
+    }
+
+    @Override
     public void success(List<PhotoEntity> photos) {
         Log.d(LOG_TAG, "Receive photos is loaded successful");
         view.initAdapter(photos);
@@ -67,6 +72,16 @@ public class SendPhotosPresenter implements ISendPhotoPresenter, ISendPhotoCallb
     @Override
     public void unsuccess() {
         Log.d(LOG_TAG, "Receive photos is loaded unsuccessful");
+    }
+
+    @Override
+    public void clearSuccess() {
+        view.clearSuccess();
+    }
+
+    @Override
+    public void clearUnsuccess() {
+        view.clearUnsuccess();
     }
 
     @Override

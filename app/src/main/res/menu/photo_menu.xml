@@ -6,4 +6,10 @@
         android:icon="@drawable/grid"
         android:title="@string/clear_phones"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/clear_photos"
+        android:icon="@drawable/clear_phones"
+        android:title="@string/clear_phones"
+        app:showAsAction="ifRoom"/>
 </menu>

@@ -1,4 +1,4 @@
-package com.develop.gleb.deliveryphones.mvp.interfaces.photo;
+package com.develop.gleb.deliveryphones.mvp.interfaces.sendphotos;
 
 import com.develop.gleb.deliveryphones.entities.PhotoEntity;
 
@@ -8,4 +8,6 @@ public interface ISendPhotoView {
     void initAdapter(List<PhotoEntity> photos);
     void uploadSuccess();
     void uploadUnsuccess();
+    void clearSuccess();
+    void clearUnsuccess();
 }

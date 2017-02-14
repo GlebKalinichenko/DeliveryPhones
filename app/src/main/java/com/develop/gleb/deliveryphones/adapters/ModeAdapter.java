@@ -14,6 +14,7 @@ import com.develop.gleb.deliveryphones.entities.ModeIdentifier;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.databinding.ItemModeBinding;
 import com.develop.gleb.deliveryphones.events.ReceivePhonesEvent;
+import com.develop.gleb.deliveryphones.events.ReceivePhotosEvent;
 import com.develop.gleb.deliveryphones.events.SendPhonesEvent;
 import com.develop.gleb.deliveryphones.events.SendPhotosEvent;
 import com.squareup.picasso.Picasso;
@@ -77,6 +78,10 @@ public class ModeAdapter extends RecyclerView.Adapter<ModeAdapter.ModeViewHolder
 
                     case SEND_PHOTO:
                         EventBus.getDefault().post(new SendPhotosEvent());
+                        break;
+
+                    case RECEIVE_PHOTO:
+                        EventBus.getDefault().post(new ReceivePhotosEvent());
                         break;
                 }
             });

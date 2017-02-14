@@ -16,7 +16,7 @@ import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.adapters.PhonesAdapter;
 import com.develop.gleb.deliveryphones.di.component.ReceivePhoneFragmentComponent;
-import com.develop.gleb.deliveryphones.fragments.base.BaseFragment;
+import com.develop.gleb.deliveryphones.fragments.base.BasePhoneFragment;
 import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesModel;
 import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
@@ -26,7 +26,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class ReceivePhonesFragment extends BaseFragment implements IReceivePhonesView {
+public class ReceivePhoneFragment extends BasePhoneFragment implements IReceivePhonesView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     @Inject
     public IReceivePhonesPresenter presenter;
@@ -39,8 +39,8 @@ public class ReceivePhonesFragment extends BaseFragment implements IReceivePhone
     private ProgressBar progressBarReceive;
     private PhonesAdapter adapter;
 
-    public static ReceivePhonesFragment getInstance() {
-        ReceivePhonesFragment fragment = new ReceivePhonesFragment();
+    public static ReceivePhoneFragment getInstance() {
+        ReceivePhoneFragment fragment = new ReceivePhoneFragment();
         return fragment;
     }
 

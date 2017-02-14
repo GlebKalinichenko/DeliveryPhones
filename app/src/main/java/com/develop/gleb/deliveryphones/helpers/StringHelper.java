@@ -49,4 +49,9 @@ public class StringHelper {
         String res = path.substring(lastIndex);
         return res;
     }
+
+    public static String validPathFile(int index){
+        String strIndex = String.valueOf(index);
+        return strIndex;
+    }
 }

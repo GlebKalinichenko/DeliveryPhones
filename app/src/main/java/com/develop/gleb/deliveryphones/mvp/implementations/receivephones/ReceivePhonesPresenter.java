@@ -1,4 +1,4 @@
-package com.develop.gleb.deliveryphones.mvp.implementations;
+package com.develop.gleb.deliveryphones.mvp.implementations.receivephones;
 
 import android.content.Context;
 import android.util.Log;

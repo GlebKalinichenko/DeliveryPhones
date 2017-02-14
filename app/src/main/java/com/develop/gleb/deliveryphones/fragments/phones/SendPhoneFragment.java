@@ -16,7 +16,7 @@ import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 import com.develop.gleb.deliveryphones.adapters.PhonesAdapter;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.di.component.SendPhoneFragmentComponent;
-import com.develop.gleb.deliveryphones.fragments.base.BaseFragment;
+import com.develop.gleb.deliveryphones.fragments.base.BasePhoneFragment;
 import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
@@ -28,7 +28,7 @@ import javax.inject.Inject;
 
 import rx.Observable;
 
-public class SendPhonesFragment extends BaseFragment implements ISendPhoneView {
+public class SendPhoneFragment extends BasePhoneFragment implements ISendPhoneView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     @Inject
     public ISendPhonePresenter presenter;
@@ -42,8 +42,8 @@ public class SendPhonesFragment extends BaseFragment implements ISendPhoneView {
     private FloatingActionButton actionButton;
     private ProgressBar progressBar;
 
-    public static SendPhonesFragment getInstance() {
-        SendPhonesFragment fragment = new SendPhonesFragment();
+    public static SendPhoneFragment getInstance() {
+        SendPhoneFragment fragment = new SendPhoneFragment();
 
         return fragment;
     }

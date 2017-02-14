@@ -7,9 +7,10 @@ import com.develop.gleb.deliveryphones.helpers.IdHelper;
 import com.develop.gleb.deliveryphones.helpers.PhotoHelper;
 import com.develop.gleb.deliveryphones.mvp.implementations.sendphotos.SendPhotosModel;
 import com.develop.gleb.deliveryphones.mvp.implementations.sendphotos.SendPhotosPresenter;
-import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoModel;
-import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoPresenter;
-import com.develop.gleb.deliveryphones.mvp.interfaces.photo.ISendPhotoView;
+import com.develop.gleb.deliveryphones.mvp.interfaces.sendphotos.ISendPhotoModel;
+import com.develop.gleb.deliveryphones.mvp.interfaces.sendphotos.ISendPhotoPresenter;
+import com.develop.gleb.deliveryphones.mvp.interfaces.sendphotos.ISendPhotoView;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 
 import dagger.Module;
@@ -27,16 +28,10 @@ public class SendPhotosFragmentModule {
 
     @Provides
     @FragmentScope
-    public PhotoHelper createPhotoHelper(){
-        PhotoHelper photoHelper = PhotoHelper.getInstance(context);
-        return photoHelper;
-    }
-
-    @Provides
-    @FragmentScope
     public ISendPhotoModel createSendPhotoModel(PhotoHelper photoHelper, IdHelper idHelper,
-                                                StorageReference storageReference){
-        ISendPhotoModel model = new SendPhotosModel(photoHelper, idHelper, storageReference);
+            StorageReference storageReference, DatabaseReference databaseReference){
+        ISendPhotoModel model = new SendPhotosModel(photoHelper, idHelper, storageReference,
+                databaseReference);
         return model;
     }
 

@@ -41,7 +41,10 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
 
     @Override
     public int getItemCount() {
-        return photos.size();
+        if (photos != null)
+            return photos.size();
+        else
+            return  0;
     }
 
     public class PhotoViewHolder extends RecyclerView.ViewHolder{
@@ -67,5 +70,10 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
 
     public List<PhotoEntity> getPhotos() {
         return photos;
+    }
+
+    public void setPhotos(List<PhotoEntity> photos) {
+        this.photos = photos;
+        notifyDataSetChanged();
     }
 }

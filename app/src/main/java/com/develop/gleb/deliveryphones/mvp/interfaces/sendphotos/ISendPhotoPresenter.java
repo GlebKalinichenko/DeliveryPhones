@@ -1,4 +1,4 @@
-package com.develop.gleb.deliveryphones.mvp.interfaces.photo;
+package com.develop.gleb.deliveryphones.mvp.interfaces.sendphotos;
 
 import com.develop.gleb.deliveryphones.entities.PhotoEntity;
 
@@ -11,4 +11,5 @@ public interface ISendPhotoPresenter {
     void onDestroy();
     void getPhonesPhotos();
     void uploadPhotos(List<PhotoEntity> entities);
+    void clearPhotos();
 }

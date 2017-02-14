@@ -6,11 +6,13 @@ import android.os.Bundle;
 import com.develop.gleb.deliveryphones.di.component.MainActivityComponent;
 import com.develop.gleb.deliveryphones.entities.ModeEntity;
 import com.develop.gleb.deliveryphones.events.ReceivePhonesEvent;
+import com.develop.gleb.deliveryphones.events.ReceivePhotosEvent;
 import com.develop.gleb.deliveryphones.events.SendPhonesEvent;
 import com.develop.gleb.deliveryphones.events.SendPhotosEvent;
 import com.develop.gleb.deliveryphones.fragments.mode.ModeFragment;
-import com.develop.gleb.deliveryphones.fragments.phones.ReceivePhonesFragment;
-import com.develop.gleb.deliveryphones.fragments.phones.SendPhonesFragment;
+import com.develop.gleb.deliveryphones.fragments.phones.ReceivePhoneFragment;
+import com.develop.gleb.deliveryphones.fragments.phones.SendPhoneFragment;
+import com.develop.gleb.deliveryphones.fragments.photo.ReceivePhotoFragment;
 import com.develop.gleb.deliveryphones.fragments.photo.SendPhotoFragment;
 import com.develop.gleb.deliveryphones.helpers.FragmentHelper;
 import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
@@ -63,19 +65,25 @@ public class MainActivity extends AppCompatActivity implements IBaseView {
 
     @Subscribe
     public void sendPhonesEvent(SendPhonesEvent event){
-        SendPhonesFragment fragment = SendPhonesFragment.getInstance();
+        SendPhoneFragment fragment = SendPhoneFragment.getInstance();
         fragmentHelper.replaceFragment(this, R.id.container_modes, fragment);
     }
 
     @Subscribe
     public void receivePhoneEvent(ReceivePhonesEvent event){
-        ReceivePhonesFragment fragment = ReceivePhonesFragment.getInstance();
+        ReceivePhoneFragment fragment = ReceivePhoneFragment.getInstance();
         fragmentHelper.replaceFragment(this, R.id.container_modes, fragment);
     }
 
     @Subscribe
     public void sendPhotosEvent(SendPhotosEvent event){
         SendPhotoFragment fragment = SendPhotoFragment.getInstance();
+        fragmentHelper.replaceFragment(this, R.id.container_modes, fragment);
+    }
+
+    @Subscribe
+    public void receivePhotosEvent(ReceivePhotosEvent event){
+        ReceivePhotoFragment fragment = ReceivePhotoFragment.getInstance();
         fragmentHelper.replaceFragment(this, R.id.container_modes, fragment);
     }
 

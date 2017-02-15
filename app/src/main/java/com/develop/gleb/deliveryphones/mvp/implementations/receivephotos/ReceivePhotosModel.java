@@ -2,7 +2,6 @@ package com.develop.gleb.deliveryphones.mvp.implementations.receivephotos;
 
 import android.os.Environment;
 import android.util.Log;
-
 import com.develop.gleb.deliveryphones.callbacks.IReceivePhotosCallback;
 import com.develop.gleb.deliveryphones.entities.PhotoEntity;
 import com.develop.gleb.deliveryphones.helpers.IdHelper;

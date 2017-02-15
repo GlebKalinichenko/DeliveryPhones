@@ -54,6 +54,7 @@ public class ReceivePhotoFragment extends BasePhotoFragment implements IBaseLogi
         super.initWidgets(view);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         handler = new Handler();
+        actionButton.setVisibility(View.GONE);
     }
 
     @Override

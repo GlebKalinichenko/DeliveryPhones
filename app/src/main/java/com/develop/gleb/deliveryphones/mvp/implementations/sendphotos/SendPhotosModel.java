@@ -1,11 +1,8 @@
 package com.develop.gleb.deliveryphones.mvp.implementations.sendphotos;
 
 import android.util.Log;
-
-import com.develop.gleb.deliveryphones.callbacks.IReceivePhotosCallback;
 import com.develop.gleb.deliveryphones.callbacks.ISendPhotoCallback;
 import com.develop.gleb.deliveryphones.callbacks.IUploadPhotosCallback;
-import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 import com.develop.gleb.deliveryphones.entities.PhotoEntity;
 import com.develop.gleb.deliveryphones.helpers.IdHelper;
 import com.develop.gleb.deliveryphones.helpers.PhotoHelper;

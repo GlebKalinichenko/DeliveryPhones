@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.develop.gleb.deliveryphones.BaseApplication;
-import com.develop.gleb.deliveryphones.PhoneEntity;
+import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 import com.develop.gleb.deliveryphones.adapters.PhonesAdapter;
 import com.develop.gleb.deliveryphones.R;
 import com.develop.gleb.deliveryphones.di.component.SendPhoneFragmentComponent;
@@ -21,14 +21,14 @@ import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneModel;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhonePresenter;
 import com.develop.gleb.deliveryphones.mvp.interfaces.sendphones.ISendPhoneView;
-import com.develop.gleb.deliveryphones.mvp.implementations.sendphones.SendPhonePresenter;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
 import rx.Observable;
 
-public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneView {
+public class SendPhoneFragment extends BasePhoneFragment implements ISendPhoneView {
     private final String LOG_TAG = this.getClass().getCanonicalName();
     @Inject
     public ISendPhonePresenter presenter;
@@ -42,8 +42,8 @@ public class SendPhonesFragment extends BasePhoneFragment implements ISendPhoneV
     private FloatingActionButton actionButton;
     private ProgressBar progressBar;
 
-    public static SendPhonesFragment getInstance() {
-        SendPhonesFragment fragment = new SendPhonesFragment();
+    public static SendPhoneFragment getInstance() {
+        SendPhoneFragment fragment = new SendPhoneFragment();
 
         return fragment;
     }

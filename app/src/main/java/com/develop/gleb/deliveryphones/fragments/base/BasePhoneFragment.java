@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 
 import com.develop.gleb.deliveryphones.IBaseView;
 import com.develop.gleb.deliveryphones.R;
-import com.develop.gleb.deliveryphones.mvp.base.IBasePhoneView;
+import com.develop.gleb.deliveryphones.mvp.base.IBaseLogicView;
 
-public abstract class BasePhoneFragment extends Fragment implements IBasePhoneView, IBaseView {
+public abstract class BasePhoneFragment extends Fragment implements IBaseLogicView, IBaseView {
 
     @Nullable
     @Override
@@ -37,6 +37,6 @@ public abstract class BasePhoneFragment extends Fragment implements IBasePhoneVi
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.phone_menu, menu);
     }
 }

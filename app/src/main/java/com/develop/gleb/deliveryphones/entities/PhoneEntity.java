@@ -1,4 +1,4 @@
-package com.develop.gleb.deliveryphones;
+package com.develop.gleb.deliveryphones.entities;
 
 import java.util.List;
 

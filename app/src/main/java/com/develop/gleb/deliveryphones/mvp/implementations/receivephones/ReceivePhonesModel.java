@@ -1,15 +1,14 @@
-package com.develop.gleb.deliveryphones.mvp.implementations;
+package com.develop.gleb.deliveryphones.mvp.implementations.receivephones;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.develop.gleb.deliveryphones.IReceivePhoneCallback;
-import com.develop.gleb.deliveryphones.PhoneEntity;
+import com.develop.gleb.deliveryphones.callbacks.IReceivePhoneCallback;
+import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 import com.develop.gleb.deliveryphones.helpers.ContactPhoneHelper;
 import com.develop.gleb.deliveryphones.helpers.IdHelper;
 import com.develop.gleb.deliveryphones.helpers.ReceivePhoneHelper;
 import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesModel;
-import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,13 +27,17 @@ import rx.subscriptions.CompositeSubscription;
 
 public class ReceivePhonesModel implements IReceivePhonesModel {
     private final String LOG_TAG =  this.getClass().getCanonicalName();
-    private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+    @Inject
+    public DatabaseReference database;
     private CompositeSubscription subscriptions = new CompositeSubscription();
-    private IdHelper idHelper = IdHelper.getInstance();
-    private String emailHash = idHelper.getEmailHash();
+    @Inject
+    public IdHelper idHelper;
+    private String emailHash;
 
     @Inject
-    public ReceivePhonesModel() {
+    public ReceivePhonesModel(DatabaseReference database, IdHelper helper) {
+        this.database = database;
+        this.idHelper = helper;
     }
 
     @Override
@@ -86,6 +89,7 @@ public class ReceivePhonesModel implements IReceivePhonesModel {
     @Override
     public void clearPhones(IReceivePhoneCallback callback) {
         Log.d(LOG_TAG, "Clean phones");
+        emailHash = idHelper.getEmailHash();
 
         Subscription subscription = Observable.just(database).map(i -> i.child(emailHash).removeValue())
                 .subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())

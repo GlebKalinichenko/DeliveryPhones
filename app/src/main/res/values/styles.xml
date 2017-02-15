@@ -184,5 +184,66 @@
         <item name="android:layout_alignParentRight">true</item>
     </style>
 
+    <style name="MainActivity"></style>
 
+    <style name="ModeTitle" parent="MainActivity">
+        <item name="android:paddingLeft">@dimen/mode_title_padding_left_right</item>
+        <item name="android:paddingRight">@dimen/mode_title_padding_left_right</item>
+        <item name="android:paddingBottom">@dimen/mode_title_padding_bottom</item>
+        <item name="android:textSize">@dimen/mode_title_text_size</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:gravity">right</item>
+    </style>
+
+    <style name="ModeDescriptionHeader" parent="MainActivity">
+        <item name="android:padding">@dimen/mode_description_header_padding</item>
+        <item name="android:textSize">@dimen/mode_description_header_text_size</item>
+        <item name="android:gravity">right</item>
+        <item name="android:textColor">@color/colorLightGrey</item>
+    </style>
+
+    <style name="ModeDescription">
+        <item name="android:paddingBottom">@dimen/mode_description_padding</item>
+        <item name="android:paddingLeft">@dimen/mode_description_padding</item>
+        <item name="android:paddingRight">@dimen/mode_description_padding</item>
+        <item name="android:gravity">right</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+    <style name="ButtonOpen" parent="MainActivity">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:text">@string/open</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="Thumbnails" parent="MainActivity">
+        <item name="android:layout_height">@dimen/card_view_thumbnail_height</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:src">@drawable/receive_phone</item>
+        <item name="android:clickable">true</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
+    <style name="SendPhotoFragment"></style>
+
+    <style name="ThumbnailPhoto" parent="SendPhotoFragment">
+        <item name="android:layout_height">@dimen/send_photo_thumbnail_height</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="PlaceNameHolder" parent="SendPhotoFragment">
+        <item name="android:layout_height">@dimen/send_photo_place_name_holder</item>
+        <item name="android:layout_gravity">bottom</item>
+    </style>
+
+    <style name="PhotoName" parent="SendPhotoFragment">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingLeft">@dimen/send_photo_image</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 </resources>

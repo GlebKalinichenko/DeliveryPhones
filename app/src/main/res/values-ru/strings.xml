@@ -22,4 +22,19 @@
     <string name="save_finish">Сохранено завершение</string>
     <string name="successful">Удачно</string>
     <string name="unsuccessful">Неудачно</string>
+    <string name="receive_phones_title">Получить контакты</string>
+    <string name="receive_phones_description_header">Синхронизация контактов с мобильным устройством</string>
+    <string name="receive_phones_description">Синхронизация контактов позволяет получить контакты с сервера и затем осуществить их сохранение на мобильное устройство</string>
+    <string name="send_phones_title">Отправить контакты</string>
+    <string name="send_phones_description_header">Синронизация облака с контактами</string>
+    <string name="send_phones_description">Данная операция позволяет получить контакты, которые содержаться на мобильном устройстве и затем сохранить их на облако</string>
+    <string name="open">Открыть</string>
+    <string name="receive_photos_title">Получить фотографии</string>
+    <string name="receive_photos_description_header">Синхронизация контактов с мобильным устройством</string>
+    <string name="receive_photos_description">Синхронизация файлов изображений позволяет получать фотографии от сервера и затем понимать сохранять на мобильном устройстве</string>
+    <string name="send_photos_title">Отправить фотографии</string>
+    <string name="send_photos_description_header">Синхронизация облака с фотографиями</string>
+    <string name="send_photos_description">Эта операция позволяет получать фотографии, чтобы содержать на мобильном устройстве и затем отправить их на облаке</string>
+    <string name="send_photos_success">Отправка фотографий окончена успешно</string>
+    <string name="send_photos_unsuccess">Отправка фотографий окончена с ошибкой</string>
 </resources>

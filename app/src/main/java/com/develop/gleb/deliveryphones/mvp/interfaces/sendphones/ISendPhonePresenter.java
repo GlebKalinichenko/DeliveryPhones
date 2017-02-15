@@ -2,9 +2,8 @@ package com.develop.gleb.deliveryphones.mvp.interfaces.sendphones;
 
 import android.content.Context;
 
-import com.develop.gleb.deliveryphones.ISendPhoneCallback;
-import com.develop.gleb.deliveryphones.PhoneEntity;
-import com.develop.gleb.deliveryphones.callbacks.ILoginCallback;
+import com.develop.gleb.deliveryphones.callbacks.ISendPhoneCallback;
+import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 import com.develop.gleb.deliveryphones.helpers.SharedPreferencesHelper;
 
 import java.util.List;

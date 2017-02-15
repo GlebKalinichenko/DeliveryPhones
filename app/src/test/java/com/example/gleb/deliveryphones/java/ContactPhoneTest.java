@@ -1,6 +1,6 @@
 package com.develop.gleb.deliveryphones.java;
 
-import com.develop.gleb.deliveryphones.PhoneEntity;
+import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 import org.junit.Assert;
 import org.junit.Test;
 

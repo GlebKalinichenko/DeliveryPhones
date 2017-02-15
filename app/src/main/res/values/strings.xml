@@ -4,7 +4,7 @@
     <string name="alert_conf_content">You need to choose, what mode do you prefer. There are saved you phones on cloud and synchonized or receive numbers from cloud and save to your contacts</string>
     <string name="confirm_send_contacts">Send</string>
     <string name="receive_contacts">Receive</string>
-    <string name="email_hint">User Name</string>
+    <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
     <string name="hint_sign_up_text">Sign up?</string>
     <string name="sign_in_text">Sign in</string>
@@ -22,4 +22,19 @@
     <string name="save_finish">Saved was finished</string>
     <string name="successful">Successful</string>
     <string name="unsuccessful">Unsuccessful</string>
+    <string name="receive_phones_title">Receive phones</string>
+    <string name="receive_phones_description_header">Synchronization with device</string>
+    <string name="receive_phones_description">Synchronization of contacts allows to receive contacts from the server and then to realize their saving on the mobile device</string>
+    <string name="send_phones_title">Send phones</string>
+    <string name="send_phones_description_header">Synchronization of a cloud with contacts</string>
+    <string name="send_phones_description">This operation allows to receive contacts which to contain on the mobile device and then to keep them on a cloud</string>
+    <string name="open">Open</string>
+    <string name="receive_photos_title">Receive photos</string>
+    <string name="receive_photos_description_header">Synchronization photos with device</string>
+    <string name="receive_photos_description">Synchronization of image files allows to receive photos from the server and then to realize their saving on the mobile device</string>
+    <string name="send_photos_title">Send photos</string>
+    <string name="send_photos_description_header">Synchronization of a cloud with photos</string>
+    <string name="send_photos_description">This operation allows to receive photos which to contain on the mobile device and then to keep them on a cloud</string>
+    <string name="send_photos_success">Send photos is finished success</string>
+    <string name="send_photos_unsuccess">Send photos is finished unsuccess</string>
 </resources>

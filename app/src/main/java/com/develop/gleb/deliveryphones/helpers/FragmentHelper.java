@@ -38,4 +38,20 @@ public class FragmentHelper {
         ft = ft.add(resId, fragment, null);
         ft.commit();
     }
+
+    /**
+     * Load fragments into activity
+     * @param activity    Activity host
+     * @param fragment    Inserted fragment
+     * @param resId       Id of container
+     * */
+    public void replaceFragment(FragmentActivity activity, int resId, Fragment fragment){
+        Log.d(LOG_TAG, "Replace fragment is started");
+
+        FragmentManager fm = activity.getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft = ft.replace(resId, fragment, null);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
 }

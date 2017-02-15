@@ -10,8 +10,7 @@ import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
 
-import com.develop.gleb.deliveryphones.PhoneEntity;
-import com.develop.gleb.deliveryphones.mvp.interfaces.receivephones.IReceivePhonesPresenter;
+import com.develop.gleb.deliveryphones.entities.PhoneEntity;
 
 import java.util.ArrayList;
 import java.util.List;
